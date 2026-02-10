@@ -8,8 +8,9 @@
           {
             "title": "AI News: The AI Launch That Crashed The Market",
             "url": "https://www.youtube.com/watch?v=xdp8bulnidY",
-            "views": "87K views",
-            "dateStr": "3 days ago",
+            "views": "88K views",
+            "dateStr": "4 days ago",
+            "duration": "29:39",
             "videoId": "xdp8bulnidY",
             "thumbnail": "https://i.ytimg.com/vi/xdp8bulnidY/hqdefault.jpg",
             "isNew": true
@@ -23,46 +24,33 @@
           {
             "title": "OpenAI's New Device was LEAKED (Dime)",
             "url": "https://www.youtube.com/watch?v=boP_p-2YoZs",
-            "views": "25K views",
-            "dateStr": "18 hours ago",
+            "views": "28K views",
+            "dateStr": "21 hours ago",
+            "duration": "7:31",
             "videoId": "boP_p-2YoZs",
             "thumbnail": "https://i.ytimg.com/vi/boP_p-2YoZs/hqdefault.jpg",
             "isNew": true
           }
         ]
-      },
-      {
-        "creator": "AI News & Strategy Daily | Nate B Jones",
-        "channel": "@NateBJones",
-        "videos": [
-          {
-            "title": "The $285 Billion Crash Wall Street Won't Explain Honestly. Here's What Everyone Missed.",
-            "url": "https://www.youtube.com/watch?v=DGWtSzqCpog",
-            "views": "",
-            "dateStr": "Recent",
-            "videoId": "DGWtSzqCpog",
-            "thumbnail": "https://i.ytimg.com/vi/DGWtSzqCpog/hqdefault.jpg",
-            "isNew": true
-          }
-        ]
-      },
-      {
-        "creator": "Auto Focus",
-        "channel": "@AutoFocus",
-        "videos": [
-          {
-            "title": "2026 Rivian R2 First Drive - Rivian's Model Y Fighter!",
-            "url": "https://www.youtube.com/watch?v=EfReqcUJfBU",
-            "views": "",
-            "dateStr": "Recent",
-            "videoId": "EfReqcUJfBU",
-            "thumbnail": "https://i.ytimg.com/vi/EfReqcUJfBU/hqdefault.jpg",
-            "isNew": true
-          }
-        ]
       }
     ],
-    "Finance": [
+    "News and Finance": [
+      {
+        "creator": "Claus Kellerman POV",
+        "channel": "@clauskellermanpov3004",
+        "videos": [
+          {
+            "title": "BREAKING; CANADA COMMITTING TO 14 MORE F-35 FIGHTER JETS?",
+            "url": "https://www.youtube.com/watch?v=YhaTQwMVGOw",
+            "views": "14K views",
+            "dateStr": "2 hours ago",
+            "duration": "10:39",
+            "videoId": "YhaTQwMVGOw",
+            "thumbnail": "https://i.ytimg.com/vi/YhaTQwMVGOw/hqdefault.jpg",
+            "isNew": true
+          }
+        ]
+      },
       {
         "creator": "Russell Matthews",
         "channel": "@russellmatthews",
@@ -70,8 +58,9 @@
           {
             "title": "EXPOSED: Canada Police Tied to Criminal Gangs, Blackmail, Drugs",
             "url": "https://www.youtube.com/watch?v=oEQowHRmVe8",
-            "views": "25K views",
+            "views": "26K views",
             "dateStr": "4 days ago",
+            "duration": "13:37",
             "videoId": "oEQowHRmVe8",
             "thumbnail": "https://i.ytimg.com/vi/oEQowHRmVe8/hqdefault.jpg",
             "isNew": true
@@ -85,8 +74,9 @@
           {
             "title": "No More Rate Cuts?",
             "url": "https://www.youtube.com/watch?v=4U6SLPu4728",
-            "views": "12K views",
+            "views": "13K views",
             "dateStr": "1 day ago",
+            "duration": "9:49",
             "videoId": "4U6SLPu4728",
             "thumbnail": "https://i.ytimg.com/vi/4U6SLPu4728/hqdefault.jpg",
             "isNew": true
@@ -100,8 +90,9 @@
           {
             "title": "The Biggest Mistakes in Personal Finance",
             "url": "https://www.youtube.com/watch?v=d7wnAw7ufG4",
-            "views": "166K views",
+            "views": "170K views",
             "dateStr": "2 days ago",
+            "duration": "15:37",
             "videoId": "d7wnAw7ufG4",
             "thumbnail": "https://i.ytimg.com/vi/d7wnAw7ufG4/hqdefault.jpg",
             "isNew": true
@@ -115,10 +106,11 @@
         "channel": "@DrAlexGeorge",
         "videos": [
           {
-            "title": "I Quit Alcohol For 1000 Days But Didn't Expect This",
+            "title": "I Quit Alcohol For 1000 Days But Didn’t Expect This",
             "url": "https://www.youtube.com/watch?v=QvhKvX5e-S8",
-            "views": "4.6K views",
+            "views": "4.8K views",
             "dateStr": "2 days ago",
+            "duration": "13:12",
             "videoId": "QvhKvX5e-S8",
             "thumbnail": "https://i.ytimg.com/vi/QvhKvX5e-S8/hqdefault.jpg",
             "isNew": true
@@ -132,8 +124,9 @@
           {
             "title": "7 Surprising Foods that Help Fight CANCER",
             "url": "https://www.youtube.com/watch?v=rEE7yamHeoo",
-            "views": "2.8K views",
-            "dateStr": "2 hours ago",
+            "views": "7.6K views",
+            "dateStr": "5 hours ago",
+            "duration": "8:34",
             "videoId": "rEE7yamHeoo",
             "thumbnail": "https://i.ytimg.com/vi/rEE7yamHeoo/hqdefault.jpg",
             "isNew": true
@@ -145,10 +138,11 @@
         "channel": "@nicknorwitzMDPhD",
         "videos": [
           {
-            "title": "Does the World's Most Profitable Drug Damage Muscle?",
+            "title": "Does the World’s Most Profitable Drug Damage Muscle?",
             "url": "https://www.youtube.com/watch?v=s05mUXTcKCg",
-            "views": "23K views",
+            "views": "24K views",
             "dateStr": "1 day ago",
+            "duration": "13:40",
             "videoId": "s05mUXTcKCg",
             "thumbnail": "https://i.ytimg.com/vi/s05mUXTcKCg/hqdefault.jpg",
             "isNew": true
@@ -164,10 +158,11 @@
         "channel": "@practical-sailor",
         "videos": [
           {
-            "title": "This 'Bulletproof' Cruiser Has a Serious Weak Spot Caliber 40 LRC SE",
+            "title": "This “Bulletproof” Cruiser Has a Serious Weak Spot Caliber 40 LRC SE",
             "url": "https://www.youtube.com/watch?v=HFsjRc4Y2t0",
-            "views": "9.8K views",
+            "views": "10K views",
             "dateStr": "1 day ago",
+            "duration": "9:03",
             "videoId": "HFsjRc4Y2t0",
             "thumbnail": "https://i.ytimg.com/vi/HFsjRc4Y2t0/hqdefault.jpg",
             "isNew": true
@@ -179,10 +174,11 @@
         "channel": "@Thenewkidsonthedock",
         "videos": [
           {
-            "title": "This System is CRITICAL for our 57ft Abandoned Catamaran...And We've Never Done it Before",
+            "title": "This System is CRITICAL for our 57ft Abandoned Catamaran…And We’ve Never Done it Before 😬",
             "url": "https://www.youtube.com/watch?v=jE05We9IJIA",
             "views": "131K views",
             "dateStr": "5 days ago",
+            "duration": "42:02",
             "videoId": "jE05We9IJIA",
             "thumbnail": "https://i.ytimg.com/vi/jE05We9IJIA/hqdefault.jpg",
             "isNew": true
@@ -194,10 +190,11 @@
         "channel": "@ParlayRevival",
         "videos": [
           {
-            "title": "REBUILDING OUR HULLS: Blister repair series - part 4 (Episode 350)",
+            "title": "REBUILDING OUR HULLS: Blister repair series - part 4  (Episode 350)",
             "url": "https://www.youtube.com/watch?v=XhZZCNfBmLI",
-            "views": "136K views",
+            "views": "137K views",
             "dateStr": "2 days ago",
+            "duration": "23:23",
             "videoId": "XhZZCNfBmLI",
             "thumbnail": "https://i.ytimg.com/vi/XhZZCNfBmLI/hqdefault.jpg",
             "isNew": true

@@ -242,8 +242,10 @@ const JS = `
   let syncTimeout = null;
   let selectedVideos = new Set();
   
-  // Get page type from URL
-  const pageType = location.pathname.includes('entertainment') ? 'entertainment' : 'research';
+  // Get page type from URL or hostname
+  const pageType = location.hostname.includes('entertainment') ? 'entertainment' :
+                   location.hostname.includes('news') ? 'news' :
+                   location.pathname.includes('entertainment') ? 'entertainment' : 'research';
   
   async function loadUserData() {
     setStatus('syncing', 'Loading...');
@@ -274,14 +276,34 @@ const JS = `
       showPendingNewVideos();
       setStatus('synced', 'Synced ✓');
     } catch (e) {
-      console.error('Load failed:', e);
-      setStatus('error', 'Sync failed');
-      // Fall back to showing all videos
+      console.error('Cloud sync unavailable:', e);
+      // Fall back to localStorage
+      try {
+        const local = localStorage.getItem('yt-userData');
+        if (local) {
+          userData = JSON.parse(local);
+          updateUI();
+          showPendingNewVideos();
+          setStatus('synced', 'Local mode ✓');
+          return;
+        }
+      } catch {}
+      // First visit - initialize with current videos
+      userData.myVideos[pageType] = {};
+      document.querySelectorAll('.video-card').forEach(card => {
+        const videoId = card.dataset.videoId;
+        const creator = card.dataset.creator;
+        userData.myVideos[pageType][videoId] = { added: Date.now(), creator };
+      });
+      localStorage.setItem('yt-userData', JSON.stringify(userData));
+      setStatus('synced', 'Local mode ✓');
     }
   }
   
   async function saveUserData() {
     setStatus('syncing', 'Saving...');
+    // Always save to localStorage
+    localStorage.setItem('yt-userData', JSON.stringify(userData));
     try {
       await fetch(BLOB_URL, {
         method: 'PUT',
@@ -290,8 +312,8 @@ const JS = `
       });
       setStatus('synced', 'Synced ✓');
     } catch (e) {
-      console.error('Save failed:', e);
-      setStatus('error', 'Sync failed');
+      console.error('Cloud sync unavailable:', e);
+      setStatus('synced', 'Local mode ✓');
     }
   }
   

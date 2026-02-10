@@ -84,9 +84,20 @@ async function getChannelVideos(browser, channelHandle, limit = 1) {
             }
           });
           
-          // Get video duration from thumbnail overlay
-          const durationEl = item.querySelector('ytd-thumbnail-overlay-time-status-renderer span, .ytd-thumbnail-overlay-time-status-renderer, #overlays span');
-          let duration = durationEl ? durationEl.textContent.trim() : '';
+          // Get video duration from thumbnail overlay or aria-label
+          let duration = '';
+          const durationEl = item.querySelector('#overlays #text, ytd-thumbnail-overlay-time-status-renderer #text, span.ytd-thumbnail-overlay-time-status-renderer');
+          if (durationEl) {
+            duration = durationEl.textContent.trim();
+          }
+          // Fallback: try to get from aria-label which often contains duration
+          if (!duration) {
+            const ariaLabel = item.querySelector('#video-title')?.getAttribute('aria-label') || '';
+            const durationMatch = ariaLabel.match(/(\d+:\d+(?::\d+)?)/);
+            if (durationMatch) {
+              duration = durationMatch[1];
+            }
+          }
           
           results.push({
             title: titleEl.textContent.trim(),

@@ -1,11 +1,10 @@
-const fs = require('fs');
-
-const data = JSON.parse(fs.readFileSync('videos-data.json', 'utf8'));
-
-// JSONBlob ID for cross-device sync
-const JSONBLOB_ID = '019c48c6-b141-7c1f-a893-5de4c2335f8e';
-
-const CSS = `
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🔬 Research Feed</title>
+  <style>
   * { box-sizing: border-box; margin: 0; padding: 0; }
   body { 
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
@@ -234,9 +233,206 @@ const CSS = `
     .video-header { flex-direction: column; }
     .thumb { width: 100%; height: auto; aspect-ratio: 16/9; }
   }
-`;
-
-const JS = `
+</style>
+</head>
+<body>
+  <h1>🔬 Research Feed</h1>
+  <p class="subtitle">Curated videos from AI, Finance, and Health creators • Click to play</p>
+  <div id="sync-status" class="sync-status">Loading...</div>
+  
+  <div id="new-videos-banner" class="new-videos-banner">
+    <h3>📺 New Videos Available</h3>
+    <div id="new-videos-list"></div>
+  </div>
+  
+  <div class="controls">
+    <button onclick="hideWatched()">Hide Watched</button>
+    <button onclick="clearWatched()">Clear History</button>
+    <button id="refresh-selected-btn" onclick="refreshSelected()" disabled>Refresh Selected</button>
+    <span id="selection-count" class="selection-count"></span>
+  </div>
+  <div class="category">
+    <h2>AI and Tech</h2>
+    <div class="video-card" data-video-id="xdp8bulnidY" data-creator="Matt Wolfe">
+      <input type="checkbox" class="select-checkbox" onclick="toggleSelect('xdp8bulnidY', this, event)">
+      <div class="video-header" onclick="togglePlayer(this.parentElement, 'xdp8bulnidY')">
+        <div class="thumb-container">
+          <img class="thumb" src="https://i.ytimg.com/vi/xdp8bulnidY/hqdefault.jpg" alt="" loading="lazy">
+          <span class="new-badge">NEW</span>
+          <span class="duration">29:39</span>
+        </div>
+        <div class="video-info">
+          <div class="creator-name"><a href="https://www.youtube.com/@mreflow" target="_blank" onclick="event.stopPropagation()">Matt Wolfe</a></div>
+          <div class="video-title">AI News: The AI Launch That Crashed The Market</div>
+          <div class="video-meta">
+            <span class="video-date">4 days ago</span>
+            <span>88K views</span>
+          </div>
+        </div>
+      </div>
+      <div class="player-container"></div>
+    </div>
+    <div class="video-card" data-video-id="boP_p-2YoZs" data-creator="Matthew Berman">
+      <input type="checkbox" class="select-checkbox" onclick="toggleSelect('boP_p-2YoZs', this, event)">
+      <div class="video-header" onclick="togglePlayer(this.parentElement, 'boP_p-2YoZs')">
+        <div class="thumb-container">
+          <img class="thumb" src="https://i.ytimg.com/vi/boP_p-2YoZs/hqdefault.jpg" alt="" loading="lazy">
+          <span class="new-badge">NEW</span>
+          <span class="duration">7:31</span>
+        </div>
+        <div class="video-info">
+          <div class="creator-name"><a href="https://www.youtube.com/@matthew_berman" target="_blank" onclick="event.stopPropagation()">Matthew Berman</a></div>
+          <div class="video-title">OpenAI&#39;s New Device was LEAKED (Dime)</div>
+          <div class="video-meta">
+            <span class="video-date">21 hours ago</span>
+            <span>28K views</span>
+          </div>
+        </div>
+      </div>
+      <div class="player-container"></div>
+    </div>
+  </div>
+  <div class="category">
+    <h2>News and Finance</h2>
+    <div class="video-card" data-video-id="YhaTQwMVGOw" data-creator="Claus Kellerman POV">
+      <input type="checkbox" class="select-checkbox" onclick="toggleSelect('YhaTQwMVGOw', this, event)">
+      <div class="video-header" onclick="togglePlayer(this.parentElement, 'YhaTQwMVGOw')">
+        <div class="thumb-container">
+          <img class="thumb" src="https://i.ytimg.com/vi/YhaTQwMVGOw/hqdefault.jpg" alt="" loading="lazy">
+          <span class="new-badge">NEW</span>
+          <span class="duration">10:39</span>
+        </div>
+        <div class="video-info">
+          <div class="creator-name"><a href="https://www.youtube.com/@clauskellermanpov3004" target="_blank" onclick="event.stopPropagation()">Claus Kellerman POV</a></div>
+          <div class="video-title">BREAKING; CANADA COMMITTING TO 14 MORE F-35 FIGHTER JETS?</div>
+          <div class="video-meta">
+            <span class="video-date">2 hours ago</span>
+            <span>14K views</span>
+          </div>
+        </div>
+      </div>
+      <div class="player-container"></div>
+    </div>
+    <div class="video-card" data-video-id="oEQowHRmVe8" data-creator="Russell Matthews">
+      <input type="checkbox" class="select-checkbox" onclick="toggleSelect('oEQowHRmVe8', this, event)">
+      <div class="video-header" onclick="togglePlayer(this.parentElement, 'oEQowHRmVe8')">
+        <div class="thumb-container">
+          <img class="thumb" src="https://i.ytimg.com/vi/oEQowHRmVe8/hqdefault.jpg" alt="" loading="lazy">
+          <span class="new-badge">NEW</span>
+          <span class="duration">13:37</span>
+        </div>
+        <div class="video-info">
+          <div class="creator-name"><a href="https://www.youtube.com/@russellmatthews" target="_blank" onclick="event.stopPropagation()">Russell Matthews</a></div>
+          <div class="video-title">EXPOSED: Canada Police Tied to Criminal Gangs, Blackmail, Drugs</div>
+          <div class="video-meta">
+            <span class="video-date">4 days ago</span>
+            <span>26K views</span>
+          </div>
+        </div>
+      </div>
+      <div class="player-container"></div>
+    </div>
+    <div class="video-card" data-video-id="4U6SLPu4728" data-creator="Mark Mitchell">
+      <input type="checkbox" class="select-checkbox" onclick="toggleSelect('4U6SLPu4728', this, event)">
+      <div class="video-header" onclick="togglePlayer(this.parentElement, '4U6SLPu4728')">
+        <div class="thumb-container">
+          <img class="thumb" src="https://i.ytimg.com/vi/4U6SLPu4728/hqdefault.jpg" alt="" loading="lazy">
+          <span class="new-badge">NEW</span>
+          <span class="duration">9:49</span>
+        </div>
+        <div class="video-info">
+          <div class="creator-name"><a href="https://www.youtube.com/@MortgageBrokerLondonOntario" target="_blank" onclick="event.stopPropagation()">Mark Mitchell</a></div>
+          <div class="video-title">No More Rate Cuts?</div>
+          <div class="video-meta">
+            <span class="video-date">1 day ago</span>
+            <span>13K views</span>
+          </div>
+        </div>
+      </div>
+      <div class="player-container"></div>
+    </div>
+    <div class="video-card" data-video-id="d7wnAw7ufG4" data-creator="Ben Felix">
+      <input type="checkbox" class="select-checkbox" onclick="toggleSelect('d7wnAw7ufG4', this, event)">
+      <div class="video-header" onclick="togglePlayer(this.parentElement, 'd7wnAw7ufG4')">
+        <div class="thumb-container">
+          <img class="thumb" src="https://i.ytimg.com/vi/d7wnAw7ufG4/hqdefault.jpg" alt="" loading="lazy">
+          <span class="new-badge">NEW</span>
+          <span class="duration">15:37</span>
+        </div>
+        <div class="video-info">
+          <div class="creator-name"><a href="https://www.youtube.com/@BenFelixCSI" target="_blank" onclick="event.stopPropagation()">Ben Felix</a></div>
+          <div class="video-title">The Biggest Mistakes in Personal Finance</div>
+          <div class="video-meta">
+            <span class="video-date">2 days ago</span>
+            <span>170K views</span>
+          </div>
+        </div>
+      </div>
+      <div class="player-container"></div>
+    </div>
+  </div>
+  <div class="category">
+    <h2>Health</h2>
+    <div class="video-card" data-video-id="QvhKvX5e-S8" data-creator="Doctor Alex">
+      <input type="checkbox" class="select-checkbox" onclick="toggleSelect('QvhKvX5e-S8', this, event)">
+      <div class="video-header" onclick="togglePlayer(this.parentElement, 'QvhKvX5e-S8')">
+        <div class="thumb-container">
+          <img class="thumb" src="https://i.ytimg.com/vi/QvhKvX5e-S8/hqdefault.jpg" alt="" loading="lazy">
+          <span class="new-badge">NEW</span>
+          <span class="duration">13:12</span>
+        </div>
+        <div class="video-info">
+          <div class="creator-name"><a href="https://www.youtube.com/@DrAlexGeorge" target="_blank" onclick="event.stopPropagation()">Doctor Alex</a></div>
+          <div class="video-title">I Quit Alcohol For 1000 Days But Didn’t Expect This</div>
+          <div class="video-meta">
+            <span class="video-date">2 days ago</span>
+            <span>4.8K views</span>
+          </div>
+        </div>
+      </div>
+      <div class="player-container"></div>
+    </div>
+    <div class="video-card" data-video-id="rEE7yamHeoo" data-creator="Nutrition Made Simple!">
+      <input type="checkbox" class="select-checkbox" onclick="toggleSelect('rEE7yamHeoo', this, event)">
+      <div class="video-header" onclick="togglePlayer(this.parentElement, 'rEE7yamHeoo')">
+        <div class="thumb-container">
+          <img class="thumb" src="https://i.ytimg.com/vi/rEE7yamHeoo/hqdefault.jpg" alt="" loading="lazy">
+          <span class="new-badge">NEW</span>
+          <span class="duration">8:34</span>
+        </div>
+        <div class="video-info">
+          <div class="creator-name"><a href="https://www.youtube.com/@NutritionMadeSimple" target="_blank" onclick="event.stopPropagation()">Nutrition Made Simple!</a></div>
+          <div class="video-title">7 Surprising Foods that Help Fight CANCER</div>
+          <div class="video-meta">
+            <span class="video-date">5 hours ago</span>
+            <span>7.6K views</span>
+          </div>
+        </div>
+      </div>
+      <div class="player-container"></div>
+    </div>
+    <div class="video-card" data-video-id="s05mUXTcKCg" data-creator="Nick Norwitz">
+      <input type="checkbox" class="select-checkbox" onclick="toggleSelect('s05mUXTcKCg', this, event)">
+      <div class="video-header" onclick="togglePlayer(this.parentElement, 's05mUXTcKCg')">
+        <div class="thumb-container">
+          <img class="thumb" src="https://i.ytimg.com/vi/s05mUXTcKCg/hqdefault.jpg" alt="" loading="lazy">
+          <span class="new-badge">NEW</span>
+          <span class="duration">13:40</span>
+        </div>
+        <div class="video-info">
+          <div class="creator-name"><a href="https://www.youtube.com/@nicknorwitzMDPhD" target="_blank" onclick="event.stopPropagation()">Nick Norwitz</a></div>
+          <div class="video-title">Does the World’s Most Profitable Drug Damage Muscle?</div>
+          <div class="video-meta">
+            <span class="video-date">1 day ago</span>
+            <span>24K views</span>
+          </div>
+        </div>
+      </div>
+      <div class="player-container"></div>
+    </div>
+  </div>
+  <div class="updated">Last updated: Feb 10, 2026, 1:32 PM PST</div>
+  <script>
   const BLOB_URL = '/api/sync?feed=research';
   let userData = { watched: {}, myVideos: {}, pendingNew: [] };
   let syncTimeout = null;
@@ -392,12 +588,12 @@ const JS = `
       return;
     }
     
-    list.innerHTML = pending.map(v => \`
+    list.innerHTML = pending.map(v => `
       <div class="new-video-item">
-        <span><strong>\${v.creator}</strong>: \${v.title}</span>
-        <button onclick="addPendingVideo('\${v.videoId}')">Add to List</button>
+        <span><strong>${v.creator}</strong>: ${v.title}</span>
+        <button onclick="addPendingVideo('${v.videoId}')">Add to List</button>
       </div>
-    \`).join('');
+    `).join('');
     
     banner.classList.add('visible');
   }
@@ -459,136 +655,6 @@ const JS = `
   
   // Initialize on load
   document.addEventListener('DOMContentLoaded', loadUserData);
-`;
-
-function generatePage(title, subtitle, categories, pageType) {
-  let html = `<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>${title}</title>
-  <style>${CSS}</style>
-</head>
-<body>
-  <h1>${title}</h1>
-  <p class="subtitle">${subtitle}</p>
-  <div id="sync-status" class="sync-status">Loading...</div>
-  
-  <div id="new-videos-banner" class="new-videos-banner">
-    <h3>📺 New Videos Available</h3>
-    <div id="new-videos-list"></div>
-  </div>
-  
-  <div class="controls">
-    <button onclick="hideWatched()">Hide Watched</button>
-    <button onclick="clearWatched()">Clear History</button>
-    <button id="refresh-selected-btn" onclick="refreshSelected()" disabled>Refresh Selected</button>
-    <span id="selection-count" class="selection-count"></span>
-  </div>
-`;
-
-  for (const [catName, creators] of Object.entries(categories)) {
-    html += `  <div class="category">
-    <h2>${catName}</h2>
-`;
-    for (const creator of creators) {
-      const channelUrl = `https://www.youtube.com/${creator.channel}`;
-      for (const video of creator.videos) {
-        const thumb = video.thumbnail || `https://i.ytimg.com/vi/${video.videoId}/hqdefault.jpg`;
-        const newBadge = video.isNew ? '<span class="new-badge">NEW</span>' : '';
-        const durationBadge = video.duration ? `<span class="duration">${escapeHtml(video.duration)}</span>` : '';
-        
-        html += `    <div class="video-card" data-video-id="${video.videoId}" data-creator="${escapeHtml(creator.creator)}">
-      <input type="checkbox" class="select-checkbox" onclick="toggleSelect('${video.videoId}', this, event)">
-      <div class="video-header" onclick="togglePlayer(this.parentElement, '${video.videoId}')">
-        <div class="thumb-container">
-          <img class="thumb" src="${thumb}" alt="" loading="lazy">
-          ${newBadge}
-          ${durationBadge}
-        </div>
-        <div class="video-info">
-          <div class="creator-name"><a href="${channelUrl}" target="_blank" onclick="event.stopPropagation()">${escapeHtml(creator.creator)}</a></div>
-          <div class="video-title">${escapeHtml(video.title)}</div>
-          <div class="video-meta">
-            <span class="video-date">${escapeHtml(video.dateStr || '')}</span>
-            <span>${escapeHtml(video.views || '')}</span>
-          </div>
-        </div>
-      </div>
-      <div class="player-container"></div>
-    </div>
-`;
-      }
-    }
-    html += `  </div>
-`;
-  }
-
-  const now = new Date().toLocaleString('en-US', { 
-    timeZone: 'America/Los_Angeles',
-    dateStyle: 'medium',
-    timeStyle: 'short'
-  });
-  html += `  <div class="updated">Last updated: ${now} PST</div>
-  <script>${JS}</script>
+</script>
 </body>
-</html>`;
-
-  return html;
-}
-
-function escapeHtml(str) {
-  return String(str || '')
-    .replace(/&/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;')
-    .replace(/"/g, '&quot;')
-    .replace(/'/g, '&#39;');
-}
-
-// Create public directory
-fs.mkdirSync('public', { recursive: true });
-
-// Build research page
-const researchHtml = generatePage(
-  '🔬 Research Feed',
-  'Curated videos from AI, Finance, and Health creators • Click to play',
-  data.research,
-  'research'
-);
-fs.writeFileSync('public/research.html', researchHtml);
-console.log('✅ Built public/research.html');
-
-// Build entertainment page
-const entertainmentHtml = generatePage(
-  '⛵ Entertainment Feed',
-  'Sailing content for leisure time • Click to play',
-  data.entertainment,
-  'entertainment'
-);
-fs.writeFileSync('public/entertainment.html', entertainmentHtml);
-console.log('✅ Built public/entertainment.html');
-
-// Build index
-const indexHtml = `<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>YouTube Curated</title>
-  <style>
-    body { font-family: -apple-system, sans-serif; background: #0f0f0f; color: #fff; display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100vh; gap: 20px; }
-    a { color: #fff; text-decoration: none; font-size: 24px; padding: 20px 40px; background: #1a1a1a; border-radius: 12px; }
-    a:hover { background: #333; }
-  </style>
-</head>
-<body>
-  <a href="/research.html">🔬 Research</a>
-  <a href="/entertainment.html">⛵ Entertainment</a>
-</body>
-</html>`;
-fs.writeFileSync('public/index.html', indexHtml);
-console.log('✅ Built public/index.html');
-
-console.log('\\nDone!');
+</html>
