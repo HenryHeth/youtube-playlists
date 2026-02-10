@@ -166,11 +166,78 @@ async function fetchAllVideos() {
   return results;
 }
 
+const JSONBLOB_ID = '019c48c6-b141-7c1f-a893-5de4c2335f8e';
+const BLOB_URL = `https://jsonblob.com/api/jsonBlob/${JSONBLOB_ID}`;
+
+async function checkForNewVideos(results) {
+  console.log('\n📡 Checking for new videos in user list...');
+  
+  try {
+    // Fetch current user data
+    const res = await fetch(BLOB_URL);
+    const userData = await res.json();
+    
+    const myVideos = userData.myVideos || {};
+    let pendingNew = userData.pendingNew || [];
+    let newCount = 0;
+    
+    // Check each fetched video against user's list
+    for (const [pageType, subcats] of Object.entries(results)) {
+      const userPageVideos = myVideos[pageType] || {};
+      
+      for (const [subcat, creators] of Object.entries(subcats)) {
+        for (const creator of creators) {
+          for (const video of creator.videos) {
+            // If video is not in user's list and not already pending
+            if (!userPageVideos[video.videoId] && 
+                !pendingNew.some(p => p.videoId === video.videoId)) {
+              // Only add to pending if user has some videos (not first visit)
+              if (Object.keys(userPageVideos).length > 0) {
+                pendingNew.push({
+                  videoId: video.videoId,
+                  title: video.title,
+                  creator: creator.creator,
+                  channel: creator.channel,
+                  pageType: pageType,
+                  thumbnail: video.thumbnail,
+                  dateStr: video.dateStr,
+                  duration: video.duration,
+                  addedAt: Date.now()
+                });
+                newCount++;
+                console.log(`  📺 NEW: ${creator.creator} - ${video.title.substring(0, 40)}...`);
+              }
+            }
+          }
+        }
+      }
+    }
+    
+    if (newCount > 0) {
+      // Save updated pending list
+      userData.pendingNew = pendingNew;
+      await fetch(BLOB_URL, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(userData)
+      });
+      console.log(`✅ Added ${newCount} new videos to pending list`);
+    } else {
+      console.log('  No new videos found');
+    }
+  } catch (e) {
+    console.error('Error checking for new videos:', e.message);
+  }
+}
+
 // Run and save
-fetchAllVideos().then(results => {
+fetchAllVideos().then(async (results) => {
   const fs = require('fs');
   fs.writeFileSync('videos-data.json', JSON.stringify(results, null, 2));
   console.log('\n✅ Saved to videos-data.json');
+  
+  // Check for new videos and update user's pending list
+  await checkForNewVideos(results);
   
   let total = 0;
   let newCount = 0;

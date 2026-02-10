@@ -46,10 +46,14 @@ const CSS = `
     border-radius: 12px;
     overflow: hidden;
     margin-bottom: 20px;
-    transition: opacity 0.3s;
+    transition: opacity 0.3s, border 0.2s;
+    position: relative;
   }
   .video-card.watched {
     opacity: 0.5;
+  }
+  .video-card.selected {
+    border: 2px solid #4a9eff;
   }
   .video-card.watched .video-title::before {
     content: "✓ ";
@@ -66,6 +70,16 @@ const CSS = `
   }
   .video-card.watched .video-header:hover {
     opacity: 1;
+  }
+  .select-checkbox {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    z-index: 10;
+    accent-color: #4a9eff;
   }
   .thumb-container {
     position: relative;
@@ -89,6 +103,15 @@ const CSS = `
     padding: 2px 6px;
     border-radius: 4px;
   }
+  .duration {
+    background: rgba(0,0,0,0.8);
+    padding: 2px 4px;
+    border-radius: 4px;
+    font-size: 12px;
+    position: absolute;
+    bottom: 6px;
+    right: 6px;
+  }
   .video-info {
     flex: 1;
     min-width: 0;
@@ -105,15 +128,6 @@ const CSS = `
   .creator-name a:hover {
     color: #fff;
     text-decoration: underline;
-  }
-  .duration {
-    background: rgba(0,0,0,0.8);
-    padding: 2px 4px;
-    border-radius: 4px;
-    font-size: 12px;
-    position: absolute;
-    bottom: 6px;
-    right: 6px;
   }
   .video-title {
     font-size: 16px;
@@ -147,6 +161,8 @@ const CSS = `
     display: flex;
     gap: 12px;
     margin-bottom: 20px;
+    flex-wrap: wrap;
+    align-items: center;
   }
   .controls button {
     background: #333;
@@ -159,6 +175,52 @@ const CSS = `
   }
   .controls button:hover {
     background: #444;
+  }
+  .controls button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+  .selection-count {
+    font-size: 13px;
+    color: #888;
+  }
+  .new-videos-banner {
+    background: #1a3a1a;
+    border: 1px solid #2a5a2a;
+    border-radius: 8px;
+    padding: 16px;
+    margin-bottom: 20px;
+    display: none;
+  }
+  .new-videos-banner.visible {
+    display: block;
+  }
+  .new-videos-banner h3 {
+    color: #6c6;
+    margin-bottom: 12px;
+    font-size: 16px;
+  }
+  .new-video-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 0;
+    border-bottom: 1px solid #2a4a2a;
+  }
+  .new-video-item:last-child {
+    border-bottom: none;
+  }
+  .new-video-item button {
+    background: #4a4;
+    color: #fff;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 12px;
+  }
+  .new-video-item button:hover {
+    background: #5b5;
   }
   .updated {
     text-align: center;
@@ -176,38 +238,56 @@ const CSS = `
 
 const JS = `
   const BLOB_URL = 'https://jsonblob.com/api/jsonBlob/${JSONBLOB_ID}';
-  let watchedData = {};
+  let userData = { watched: {}, myVideos: {}, pendingNew: [] };
   let syncTimeout = null;
+  let selectedVideos = new Set();
   
-  async function loadWatched() {
+  // Get page type from URL
+  const pageType = location.pathname.includes('entertainment') ? 'entertainment' : 'research';
+  
+  async function loadUserData() {
     setStatus('syncing', 'Loading...');
     try {
       const res = await fetch(BLOB_URL);
       const data = await res.json();
-      watchedData = data.watched || {};
-      updateWatchedUI();
+      userData = {
+        watched: data.watched || {},
+        myVideos: data.myVideos || {},
+        pendingNew: data.pendingNew || []
+      };
+      
+      // First visit: if no myVideos for this page, add all current videos
+      if (!userData.myVideos[pageType] || Object.keys(userData.myVideos[pageType]).length === 0) {
+        userData.myVideos[pageType] = {};
+        document.querySelectorAll('.video-card').forEach(card => {
+          const videoId = card.dataset.videoId;
+          const creator = card.dataset.creator;
+          userData.myVideos[pageType][videoId] = { 
+            added: Date.now(),
+            creator: creator
+          };
+        });
+        await saveUserData();
+      }
+      
+      updateUI();
+      showPendingNewVideos();
       setStatus('synced', 'Synced ✓');
     } catch (e) {
       console.error('Load failed:', e);
       setStatus('error', 'Sync failed');
-      // Fall back to localStorage
-      try {
-        watchedData = JSON.parse(localStorage.getItem('yt-watched') || '{}');
-        updateWatchedUI();
-      } catch {}
+      // Fall back to showing all videos
     }
   }
   
-  async function saveWatched() {
+  async function saveUserData() {
     setStatus('syncing', 'Saving...');
     try {
       await fetch(BLOB_URL, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ watched: watchedData })
+        body: JSON.stringify(userData)
       });
-      // Also save to localStorage as backup
-      localStorage.setItem('yt-watched', JSON.stringify(watchedData));
       setStatus('synced', 'Synced ✓');
     } catch (e) {
       console.error('Save failed:', e);
@@ -217,7 +297,7 @@ const JS = `
   
   function debouncedSave() {
     clearTimeout(syncTimeout);
-    syncTimeout = setTimeout(saveWatched, 500);
+    syncTimeout = setTimeout(saveUserData, 500);
   }
   
   function setStatus(cls, text) {
@@ -229,22 +309,116 @@ const JS = `
   }
   
   function setWatched(videoId) {
-    watchedData[videoId] = Date.now();
+    userData.watched[videoId] = Date.now();
     debouncedSave();
   }
   
   function isWatched(videoId) {
-    return !!watchedData[videoId];
+    return !!userData.watched[videoId];
   }
   
-  function updateWatchedUI() {
+  function updateUI() {
     document.querySelectorAll('.video-card').forEach(card => {
       const videoId = card.dataset.videoId;
+      
+      // Update watched state
       if (isWatched(videoId)) {
         card.classList.add('watched');
       } else {
         card.classList.remove('watched');
       }
+      
+      // Update selection state
+      if (selectedVideos.has(videoId)) {
+        card.classList.add('selected');
+        card.querySelector('.select-checkbox').checked = true;
+      } else {
+        card.classList.remove('selected');
+        card.querySelector('.select-checkbox').checked = false;
+      }
+    });
+    
+    updateSelectionCount();
+  }
+  
+  function toggleSelect(videoId, checkbox, event) {
+    event.stopPropagation();
+    if (checkbox.checked) {
+      selectedVideos.add(videoId);
+    } else {
+      selectedVideos.delete(videoId);
+    }
+    updateUI();
+  }
+  
+  function updateSelectionCount() {
+    const countEl = document.getElementById('selection-count');
+    if (countEl) {
+      const count = selectedVideos.size;
+      countEl.textContent = count > 0 ? count + ' selected' : '';
+    }
+    
+    const refreshBtn = document.getElementById('refresh-selected-btn');
+    if (refreshBtn) {
+      refreshBtn.disabled = selectedVideos.size === 0;
+    }
+  }
+  
+  function refreshSelected() {
+    if (selectedVideos.size === 0) {
+      alert('Select videos to refresh by clicking their checkboxes');
+      return;
+    }
+    // Remove selected videos from myVideos - they'll be re-added on next fetch
+    selectedVideos.forEach(videoId => {
+      if (userData.myVideos[pageType]) {
+        delete userData.myVideos[pageType][videoId];
+      }
+    });
+    selectedVideos.clear();
+    saveUserData().then(() => {
+      alert('Selected videos will be refreshed on next update. Reload to see changes.');
+    });
+  }
+  
+  function showPendingNewVideos() {
+    const banner = document.getElementById('new-videos-banner');
+    const list = document.getElementById('new-videos-list');
+    if (!banner || !list) return;
+    
+    const pending = userData.pendingNew.filter(v => v.pageType === pageType);
+    if (pending.length === 0) {
+      banner.classList.remove('visible');
+      return;
+    }
+    
+    list.innerHTML = pending.map(v => \`
+      <div class="new-video-item">
+        <span><strong>\${v.creator}</strong>: \${v.title}</span>
+        <button onclick="addPendingVideo('\${v.videoId}')">Add to List</button>
+      </div>
+    \`).join('');
+    
+    banner.classList.add('visible');
+  }
+  
+  function addPendingVideo(videoId) {
+    const pending = userData.pendingNew.find(v => v.videoId === videoId);
+    if (!pending) return;
+    
+    // Add to myVideos
+    if (!userData.myVideos[pageType]) userData.myVideos[pageType] = {};
+    userData.myVideos[pageType][videoId] = {
+      added: Date.now(),
+      creator: pending.creator
+    };
+    
+    // Remove from pending
+    userData.pendingNew = userData.pendingNew.filter(v => v.videoId !== videoId);
+    
+    saveUserData().then(() => {
+      showPendingNewVideos();
+      alert('Video added! Reload page to see it.');
     });
   }
   
@@ -270,9 +444,9 @@ const JS = `
   
   async function clearWatched() {
     if (confirm('Clear all watched markers across all devices?')) {
-      watchedData = {};
-      await saveWatched();
-      updateWatchedUI();
+      userData.watched = {};
+      await saveUserData();
+      updateUI();
     }
   }
   
@@ -284,10 +458,10 @@ const JS = `
   }
   
   // Initialize on load
-  document.addEventListener('DOMContentLoaded', loadWatched);
+  document.addEventListener('DOMContentLoaded', loadUserData);
 `;
 
-function generatePage(title, subtitle, categories) {
+function generatePage(title, subtitle, categories, pageType) {
   let html = `<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -300,10 +474,17 @@ function generatePage(title, subtitle, categories) {
   <h1>${title}</h1>
   <p class="subtitle">${subtitle}</p>
   <div id="sync-status" class="sync-status">Loading...</div>
+  
+  <div id="new-videos-banner" class="new-videos-banner">
+    <h3>📺 New Videos Available</h3>
+    <div id="new-videos-list"></div>
+  </div>
+  
   <div class="controls">
     <button onclick="hideWatched()">Hide Watched</button>
     <button onclick="clearWatched()">Clear History</button>
-    <button onclick="loadWatched()">Refresh</button>
+    <button id="refresh-selected-btn" onclick="refreshSelected()" disabled>Refresh Selected</button>
+    <span id="selection-count" class="selection-count"></span>
   </div>
 `;
 
@@ -318,8 +499,9 @@ function generatePage(title, subtitle, categories) {
         const newBadge = video.isNew ? '<span class="new-badge">NEW</span>' : '';
         const durationBadge = video.duration ? `<span class="duration">${escapeHtml(video.duration)}</span>` : '';
         
-        html += `    <div class="video-card" data-video-id="${video.videoId}" onclick="togglePlayer(this, '${video.videoId}')">
-      <div class="video-header">
+        html += `    <div class="video-card" data-video-id="${video.videoId}" data-creator="${escapeHtml(creator.creator)}">
+      <input type="checkbox" class="select-checkbox" onclick="toggleSelect('${video.videoId}', this, event)">
+      <div class="video-header" onclick="togglePlayer(this.parentElement, '${video.videoId}')">
         <div class="thumb-container">
           <img class="thumb" src="${thumb}" alt="" loading="lazy">
           ${newBadge}
@@ -372,7 +554,8 @@ fs.mkdirSync('public', { recursive: true });
 const researchHtml = generatePage(
   '🔬 Research Feed',
   'Curated videos from AI, Finance, and Health creators • Click to play',
-  data.research
+  data.research,
+  'research'
 );
 fs.writeFileSync('public/research.html', researchHtml);
 console.log('✅ Built public/research.html');
@@ -381,7 +564,8 @@ console.log('✅ Built public/research.html');
 const entertainmentHtml = generatePage(
   '⛵ Entertainment Feed',
   'Sailing content for leisure time • Click to play',
-  data.entertainment
+  data.entertainment,
+  'entertainment'
 );
 fs.writeFileSync('public/entertainment.html', entertainmentHtml);
 console.log('✅ Built public/entertainment.html');
