@@ -1,0 +1,96 @@
+{
+  "news": {
+    "News": [
+      {
+        "creator": "Claus Kellerman POV",
+        "channel": "@clauskellermanpov3004",
+        "videos": [
+          {
+            "title": "USA LAUNCHES MOST IGNORANT EXTORTION THREAT ON CANADA",
+            "url": "https://www.youtube.com/watch?v=DiZTxRpWNk0",
+            "views": "45K views",
+            "dateStr": "6 hours ago",
+            "videoId": "DiZTxRpWNk0",
+            "thumbnail": "https://i.ytimg.com/vi/DiZTxRpWNk0/hqdefault.jpg",
+            "isNew": true
+          }
+        ]
+      },
+      {
+        "creator": "Global News",
+        "channel": "@GlobalNews",
+        "videos": [
+          {
+            "title": "Carney comments on Trump threat to block opening of Gordie Howe bridge",
+            "url": "https://www.youtube.com/watch?v=NqMutxrZshY",
+            "views": "",
+            "dateStr": "Recent",
+            "videoId": "NqMutxrZshY",
+            "thumbnail": "https://i.ytimg.com/vi/NqMutxrZshY/hqdefault.jpg",
+            "isNew": true
+          }
+        ]
+      },
+      {
+        "creator": "CTV News",
+        "channel": "@CTVNews",
+        "videos": [
+          {
+            "title": "Early federal election has come up with conversations with Carney but 'it's up to him': Ford",
+            "url": "https://www.youtube.com/watch?v=WAKOZloEtGw",
+            "views": "",
+            "dateStr": "Recent",
+            "videoId": "WAKOZloEtGw",
+            "thumbnail": "https://i.ytimg.com/vi/WAKOZloEtGw/hqdefault.jpg",
+            "isNew": true
+          }
+        ]
+      },
+      {
+        "creator": "Brian Tyler Cohen",
+        "channel": "@briantylercohen",
+        "videos": [
+          {
+            "title": "Trump ATTACKS Olympian in INSANE tirade",
+            "url": "https://www.youtube.com/watch?v=cV_3EyVNr7I",
+            "views": "",
+            "dateStr": "Recent",
+            "videoId": "cV_3EyVNr7I",
+            "thumbnail": "https://i.ytimg.com/vi/cV_3EyVNr7I/hqdefault.jpg",
+            "isNew": true
+          }
+        ]
+      },
+      {
+        "creator": "House of El",
+        "channel": "@HouseofEl",
+        "videos": [
+          {
+            "title": "China ORDERS Banks to MASS DUMP US Treasuries - US Panics as Dollar COLLAPSES Under Trump",
+            "url": "https://www.youtube.com/watch?v=N2FLAPCSbZo",
+            "views": "",
+            "dateStr": "Recent",
+            "videoId": "N2FLAPCSbZo",
+            "thumbnail": "https://i.ytimg.com/vi/N2FLAPCSbZo/hqdefault.jpg",
+            "isNew": true
+          }
+        ]
+      },
+      {
+        "creator": "Angry Mortgage Podcast",
+        "channel": "@AngryMortgagePodcast",
+        "videos": [
+          {
+            "title": "AI: The Trillion Dollar Business",
+            "url": "https://www.youtube.com/watch?v=0ypLH4q-3Rw",
+            "views": "",
+            "dateStr": "Recent",
+            "videoId": "0ypLH4q-3Rw",
+            "thumbnail": "https://i.ytimg.com/vi/0ypLH4q-3Rw/hqdefault.jpg",
+            "isNew": true
+          }
+        ]
+      }
+    ]
+  }
+}
