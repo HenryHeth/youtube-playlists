@@ -97,6 +97,23 @@
     color: #888;
     margin-bottom: 4px;
   }
+  .creator-name a {
+    color: #aaa;
+    text-decoration: none;
+  }
+  .creator-name a:hover {
+    color: #fff;
+    text-decoration: underline;
+  }
+  .duration {
+    background: rgba(0,0,0,0.8);
+    padding: 2px 4px;
+    border-radius: 4px;
+    font-size: 12px;
+    position: absolute;
+    bottom: 6px;
+    right: 6px;
+  }
   .video-title {
     font-size: 16px;
     font-weight: 500;
@@ -161,7 +178,7 @@
   <p class="subtitle">Sailing content for leisure time • Click to play</p>
   <div id="sync-status" class="sync-status">Loading...</div>
   <div class="controls">
-    <button onclick="hideWatched()">Toggle Watched</button>
+    <button onclick="hideWatched()">Hide Watched</button>
     <button onclick="clearWatched()">Clear History</button>
     <button onclick="loadWatched()">Refresh</button>
   </div>
@@ -172,9 +189,10 @@
         <div class="thumb-container">
           <img class="thumb" src="https://i.ytimg.com/vi/HFsjRc4Y2t0/hqdefault.jpg" alt="" loading="lazy">
           <span class="new-badge">NEW</span>
+          
         </div>
         <div class="video-info">
-          <div class="creator-name">Practical Sailor</div>
+          <div class="creator-name"><a href="https://www.youtube.com/@practical-sailor" target="_blank" onclick="event.stopPropagation()">Practical Sailor</a></div>
           <div class="video-title">This “Bulletproof” Cruiser Has a Serious Weak Spot Caliber 40 LRC SE</div>
           <div class="video-meta">
             <span class="video-date">1 day ago</span>
@@ -189,9 +207,10 @@
         <div class="thumb-container">
           <img class="thumb" src="https://i.ytimg.com/vi/jE05We9IJIA/hqdefault.jpg" alt="" loading="lazy">
           <span class="new-badge">NEW</span>
+          
         </div>
         <div class="video-info">
-          <div class="creator-name">New Kids On The Dock</div>
+          <div class="creator-name"><a href="https://www.youtube.com/@Thenewkidsonthedock" target="_blank" onclick="event.stopPropagation()">New Kids On The Dock</a></div>
           <div class="video-title">This System is CRITICAL for our 57ft Abandoned Catamaran…And We’ve Never Done it Before 😬</div>
           <div class="video-meta">
             <span class="video-date">5 days ago</span>
@@ -206,9 +225,10 @@
         <div class="thumb-container">
           <img class="thumb" src="https://i.ytimg.com/vi/XhZZCNfBmLI/hqdefault.jpg" alt="" loading="lazy">
           <span class="new-badge">NEW</span>
+          
         </div>
         <div class="video-info">
-          <div class="creator-name">Sailing Parlay Revival</div>
+          <div class="creator-name"><a href="https://www.youtube.com/@ParlayRevival" target="_blank" onclick="event.stopPropagation()">Sailing Parlay Revival</a></div>
           <div class="video-title">REBUILDING OUR HULLS: Blister repair series - part 4  (Episode 350)</div>
           <div class="video-meta">
             <span class="video-date">2 days ago</span>
@@ -219,7 +239,7 @@
       <div class="player-container"></div>
     </div>
   </div>
-  <div class="updated">Last updated: Feb 10, 2026, 10:29 AM PST</div>
+  <div class="updated">Last updated: Feb 10, 2026, 12:42 PM PST</div>
   <script>
   const BLOB_URL = 'https://jsonblob.com/api/jsonBlob/019c48c6-b141-7c1f-a893-5de4c2335f8e';
   let watchedData = {};

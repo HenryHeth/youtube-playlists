@@ -97,6 +97,23 @@
     color: #888;
     margin-bottom: 4px;
   }
+  .creator-name a {
+    color: #aaa;
+    text-decoration: none;
+  }
+  .creator-name a:hover {
+    color: #fff;
+    text-decoration: underline;
+  }
+  .duration {
+    background: rgba(0,0,0,0.8);
+    padding: 2px 4px;
+    border-radius: 4px;
+    font-size: 12px;
+    position: absolute;
+    bottom: 6px;
+    right: 6px;
+  }
   .video-title {
     font-size: 16px;
     font-weight: 500;
@@ -161,7 +178,7 @@
   <p class="subtitle">Curated videos from AI, Finance, and Health creators • Click to play</p>
   <div id="sync-status" class="sync-status">Loading...</div>
   <div class="controls">
-    <button onclick="hideWatched()">Toggle Watched</button>
+    <button onclick="hideWatched()">Hide Watched</button>
     <button onclick="clearWatched()">Clear History</button>
     <button onclick="loadWatched()">Refresh</button>
   </div>
@@ -172,9 +189,10 @@
         <div class="thumb-container">
           <img class="thumb" src="https://i.ytimg.com/vi/xdp8bulnidY/hqdefault.jpg" alt="" loading="lazy">
           <span class="new-badge">NEW</span>
+          
         </div>
         <div class="video-info">
-          <div class="creator-name">Matt Wolfe</div>
+          <div class="creator-name"><a href="https://www.youtube.com/@mreflow" target="_blank" onclick="event.stopPropagation()">Matt Wolfe</a></div>
           <div class="video-title">AI News: The AI Launch That Crashed The Market</div>
           <div class="video-meta">
             <span class="video-date">3 days ago</span>
@@ -189,9 +207,10 @@
         <div class="thumb-container">
           <img class="thumb" src="https://i.ytimg.com/vi/boP_p-2YoZs/hqdefault.jpg" alt="" loading="lazy">
           <span class="new-badge">NEW</span>
+          
         </div>
         <div class="video-info">
-          <div class="creator-name">Matthew Berman</div>
+          <div class="creator-name"><a href="https://www.youtube.com/@matthew_berman" target="_blank" onclick="event.stopPropagation()">Matthew Berman</a></div>
           <div class="video-title">OpenAI&#39;s New Device was LEAKED (Dime)</div>
           <div class="video-meta">
             <span class="video-date">18 hours ago</span>
@@ -209,9 +228,10 @@
         <div class="thumb-container">
           <img class="thumb" src="https://i.ytimg.com/vi/DiZTxRpWNk0/hqdefault.jpg" alt="" loading="lazy">
           <span class="new-badge">NEW</span>
+          
         </div>
         <div class="video-info">
-          <div class="creator-name">Claus Kellerman POV</div>
+          <div class="creator-name"><a href="https://www.youtube.com/@clauskellermanpov3004" target="_blank" onclick="event.stopPropagation()">Claus Kellerman POV</a></div>
           <div class="video-title">USA LAUNCHES MOST IGNORANT EXTORTION THREAT ON CANADA</div>
           <div class="video-meta">
             <span class="video-date">6 hours ago</span>
@@ -226,9 +246,10 @@
         <div class="thumb-container">
           <img class="thumb" src="https://i.ytimg.com/vi/oEQowHRmVe8/hqdefault.jpg" alt="" loading="lazy">
           <span class="new-badge">NEW</span>
+          
         </div>
         <div class="video-info">
-          <div class="creator-name">Russell Matthews</div>
+          <div class="creator-name"><a href="https://www.youtube.com/@russellmatthews" target="_blank" onclick="event.stopPropagation()">Russell Matthews</a></div>
           <div class="video-title">EXPOSED: Canada Police Tied to Criminal Gangs, Blackmail, Drugs</div>
           <div class="video-meta">
             <span class="video-date">4 days ago</span>
@@ -243,9 +264,10 @@
         <div class="thumb-container">
           <img class="thumb" src="https://i.ytimg.com/vi/4U6SLPu4728/hqdefault.jpg" alt="" loading="lazy">
           <span class="new-badge">NEW</span>
+          
         </div>
         <div class="video-info">
-          <div class="creator-name">Mark Mitchell</div>
+          <div class="creator-name"><a href="https://www.youtube.com/@MortgageBrokerLondonOntario" target="_blank" onclick="event.stopPropagation()">Mark Mitchell</a></div>
           <div class="video-title">No More Rate Cuts?</div>
           <div class="video-meta">
             <span class="video-date">1 day ago</span>
@@ -260,9 +282,10 @@
         <div class="thumb-container">
           <img class="thumb" src="https://i.ytimg.com/vi/d7wnAw7ufG4/hqdefault.jpg" alt="" loading="lazy">
           <span class="new-badge">NEW</span>
+          
         </div>
         <div class="video-info">
-          <div class="creator-name">Ben Felix</div>
+          <div class="creator-name"><a href="https://www.youtube.com/@BenFelixCSI" target="_blank" onclick="event.stopPropagation()">Ben Felix</a></div>
           <div class="video-title">The Biggest Mistakes in Personal Finance</div>
           <div class="video-meta">
             <span class="video-date">2 days ago</span>
@@ -280,9 +303,10 @@
         <div class="thumb-container">
           <img class="thumb" src="https://i.ytimg.com/vi/QvhKvX5e-S8/hqdefault.jpg" alt="" loading="lazy">
           <span class="new-badge">NEW</span>
+          
         </div>
         <div class="video-info">
-          <div class="creator-name">Doctor Alex</div>
+          <div class="creator-name"><a href="https://www.youtube.com/@DrAlexGeorge" target="_blank" onclick="event.stopPropagation()">Doctor Alex</a></div>
           <div class="video-title">I Quit Alcohol For 1000 Days But Didn’t Expect This</div>
           <div class="video-meta">
             <span class="video-date">2 days ago</span>
@@ -297,9 +321,10 @@
         <div class="thumb-container">
           <img class="thumb" src="https://i.ytimg.com/vi/rEE7yamHeoo/hqdefault.jpg" alt="" loading="lazy">
           <span class="new-badge">NEW</span>
+          
         </div>
         <div class="video-info">
-          <div class="creator-name">Nutrition Made Simple!</div>
+          <div class="creator-name"><a href="https://www.youtube.com/@NutritionMadeSimple" target="_blank" onclick="event.stopPropagation()">Nutrition Made Simple!</a></div>
           <div class="video-title">7 Surprising Foods that Help Fight CANCER</div>
           <div class="video-meta">
             <span class="video-date">2 hours ago</span>
@@ -314,9 +339,10 @@
         <div class="thumb-container">
           <img class="thumb" src="https://i.ytimg.com/vi/s05mUXTcKCg/hqdefault.jpg" alt="" loading="lazy">
           <span class="new-badge">NEW</span>
+          
         </div>
         <div class="video-info">
-          <div class="creator-name">Nick Norwitz</div>
+          <div class="creator-name"><a href="https://www.youtube.com/@nicknorwitzMDPhD" target="_blank" onclick="event.stopPropagation()">Nick Norwitz</a></div>
           <div class="video-title">Does the World’s Most Profitable Drug Damage Muscle?</div>
           <div class="video-meta">
             <span class="video-date">1 day ago</span>
@@ -327,7 +353,7 @@
       <div class="player-container"></div>
     </div>
   </div>
-  <div class="updated">Last updated: Feb 10, 2026, 10:29 AM PST</div>
+  <div class="updated">Last updated: Feb 10, 2026, 12:42 PM PST</div>
   <script>
   const BLOB_URL = 'https://jsonblob.com/api/jsonBlob/019c48c6-b141-7c1f-a893-5de4c2335f8e';
   let watchedData = {};

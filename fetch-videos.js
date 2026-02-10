@@ -84,11 +84,16 @@ async function getChannelVideos(browser, channelHandle, limit = 1) {
             }
           });
           
+          // Get video duration from thumbnail overlay
+          const durationEl = item.querySelector('ytd-thumbnail-overlay-time-status-renderer span, .ytd-thumbnail-overlay-time-status-renderer, #overlays span');
+          let duration = durationEl ? durationEl.textContent.trim() : '';
+          
           results.push({
             title: titleEl.textContent.trim(),
             url: href,
             views,
-            dateStr
+            dateStr,
+            duration
           });
         }
       }

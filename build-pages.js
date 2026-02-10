@@ -98,6 +98,23 @@ const CSS = `
     color: #888;
     margin-bottom: 4px;
   }
+  .creator-name a {
+    color: #aaa;
+    text-decoration: none;
+  }
+  .creator-name a:hover {
+    color: #fff;
+    text-decoration: underline;
+  }
+  .duration {
+    background: rgba(0,0,0,0.8);
+    padding: 2px 4px;
+    border-radius: 4px;
+    font-size: 12px;
+    position: absolute;
+    bottom: 6px;
+    right: 6px;
+  }
   .video-title {
     font-size: 16px;
     font-weight: 500;
@@ -284,7 +301,7 @@ function generatePage(title, subtitle, categories) {
   <p class="subtitle">${subtitle}</p>
   <div id="sync-status" class="sync-status">Loading...</div>
   <div class="controls">
-    <button onclick="hideWatched()">Toggle Watched</button>
+    <button onclick="hideWatched()">Hide Watched</button>
     <button onclick="clearWatched()">Clear History</button>
     <button onclick="loadWatched()">Refresh</button>
   </div>
@@ -295,18 +312,21 @@ function generatePage(title, subtitle, categories) {
     <h2>${catName}</h2>
 `;
     for (const creator of creators) {
+      const channelUrl = `https://www.youtube.com/${creator.channel}`;
       for (const video of creator.videos) {
         const thumb = video.thumbnail || `https://i.ytimg.com/vi/${video.videoId}/hqdefault.jpg`;
         const newBadge = video.isNew ? '<span class="new-badge">NEW</span>' : '';
+        const durationBadge = video.duration ? `<span class="duration">${escapeHtml(video.duration)}</span>` : '';
         
         html += `    <div class="video-card" data-video-id="${video.videoId}" onclick="togglePlayer(this, '${video.videoId}')">
       <div class="video-header">
         <div class="thumb-container">
           <img class="thumb" src="${thumb}" alt="" loading="lazy">
           ${newBadge}
+          ${durationBadge}
         </div>
         <div class="video-info">
-          <div class="creator-name">${escapeHtml(creator.creator)}</div>
+          <div class="creator-name"><a href="${channelUrl}" target="_blank" onclick="event.stopPropagation()">${escapeHtml(creator.creator)}</a></div>
           <div class="video-title">${escapeHtml(video.title)}</div>
           <div class="video-meta">
             <span class="video-date">${escapeHtml(video.dateStr || '')}</span>
