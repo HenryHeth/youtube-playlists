@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Manage Channels - YouTube Curated</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { 
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: #0f0f0f;
+      color: #fff;
+      padding: 20px;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    header {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 30px;
+    }
+    .back-link {
+      color: #888;
+      text-decoration: none;
+      font-size: 24px;
+    }
+    .back-link:hover { color: #fff; }
+    h1 { font-size: 28px; }
+    
+    /* Add channel form */
+    .add-form {
+      background: #1a1a1a;
+      padding: 24px;
+      border-radius: 12px;
+      margin-bottom: 30px;
+    }
+    .add-form h2 {
+      font-size: 18px;
+      margin-bottom: 16px;
+    }
+    .form-row {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+    .form-row input, .form-row select {
+      flex: 1;
+      padding: 12px;
+      border: 1px solid #333;
+      border-radius: 8px;
+      background: #0f0f0f;
+      color: #fff;
+      font-size: 14px;
+    }
+    .form-row input::placeholder { color: #666; }
+    .add-btn {
+      padding: 12px 24px;
+      background: #ff0000;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+    .add-btn:hover { background: #cc0000; }
+    .add-btn:disabled { background: #666; cursor: not-allowed; }
+    
+    .hint {
+      color: #666;
+      font-size: 12px;
+      margin-top: 8px;
+    }
+    .status {
+      padding: 12px;
+      border-radius: 8px;
+      margin-top: 12px;
+      display: none;
+    }
+    .status.success { display: block; background: #1a3a1a; color: #4a4; }
+    .status.error { display: block; background: #3a1a1a; color: #a44; }
+    
+    /* Channel list */
+    .feed-section {
+      margin-bottom: 30px;
+    }
+    .feed-section h2 {
+      font-size: 20px;
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .category {
+      background: #1a1a1a;
+      border-radius: 12px;
+      padding: 16px;
+      margin-bottom: 12px;
+    }
+    .category h3 {
+      font-size: 14px;
+      color: #888;
+      margin-bottom: 12px;
+    }
+    .channel-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .channel-tag {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: #252525;
+      padding: 8px 12px;
+      border-radius: 6px;
+      font-size: 14px;
+    }
+    .channel-tag a {
+      color: #fff;
+      text-decoration: none;
+    }
+    .channel-tag a:hover { text-decoration: underline; }
+    .remove-btn {
+      background: none;
+      border: none;
+      color: #666;
+      cursor: pointer;
+      font-size: 16px;
+      padding: 0;
+    }
+    .remove-btn:hover { color: #f44; }
+    
+    .empty {
+      color: #666;
+      font-style: italic;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <a href="/" class="back-link">←</a>
+    <h1>⚙️ Manage Channels</h1>
+  </header>
+
+  <!-- Add Channel Form -->
+  <div class="add-form">
+    <h2>Add New Channel</h2>
+    <div class="form-row">
+      <input type="text" id="channel-url" placeholder="Paste YouTube channel URL or @handle">
+      <input type="text" id="channel-name" placeholder="Display name (optional)">
+    </div>
+    <div class="form-row">
+      <select id="channel-feed">
+        <option value="">Auto-detect feed</option>
+        <option value="research">🔬 Research</option>
+        <option value="entertainment">⛵ Entertainment</option>
+        <option value="news">📰 News</option>
+      </select>
+      <select id="channel-category">
+        <option value="">Auto-detect category</option>
+        <option value="AI and Tech">AI and Tech</option>
+        <option value="News and Finance">News and Finance</option>
+        <option value="Health">Health</option>
+        <option value="Sailing">Sailing</option>
+        <option value="News">News</option>
+        <option value="General">General</option>
+      </select>
+      <button class="add-btn" id="add-btn" onclick="addChannel()">Add</button>
+    </div>
+    <p class="hint">Paste a YouTube channel URL, @handle, or video URL. We'll extract the channel automatically.</p>
+    <div class="status" id="status"></div>
+  </div>
+
+  <!-- Current Channels -->
+  <div id="channels-list">
+    <p class="empty">Loading channels...</p>
+  </div>
+
+  <script>
+    const API_BASE = '';
+    
+    async function loadChannels() {
+      try {
+        const resp = await fetch(`${API_BASE}/api/channels?action=list`);
+        const data = await resp.json();
+        renderChannels(data.channels || {});
+      } catch (e) {
+        document.getElementById('channels-list').innerHTML = '<p class="empty">Failed to load channels</p>';
+      }
+    }
+    
+    function renderChannels(channels) {
+      const feeds = [
+        { key: 'research', icon: '🔬', name: 'Research' },
+        { key: 'entertainment', icon: '⛵', name: 'Entertainment' },
+        { key: 'news', icon: '📰', name: 'News' }
+      ];
+      
+      let html = '';
+      
+      for (const feed of feeds) {
+        const categories = channels[feed.key] || {};
+        const catKeys = Object.keys(categories).filter(k => categories[k].length > 0);
+        
+        if (catKeys.length === 0) {
+          html += `
+            <div class="feed-section">
+              <h2>${feed.icon} ${feed.name}</h2>
+              <p class="empty">No channels added yet</p>
+            </div>
+          `;
+          continue;
+        }
+        
+        html += `<div class="feed-section"><h2>${feed.icon} ${feed.name}</h2>`;
+        
+        for (const cat of catKeys) {
+          html += `
+            <div class="category">
+              <h3>${cat}</h3>
+              <div class="channel-list">
+          `;
+          
+          for (const ch of categories[cat]) {
+            const ytUrl = `https://www.youtube.com/${ch.channel}`;
+            html += `
+              <div class="channel-tag">
+                <a href="${ytUrl}" target="_blank">${ch.name}</a>
+                <button class="remove-btn" onclick="removeChannel('${ch.channel}', '${feed.key}', '${cat}')" title="Remove">×</button>
+              </div>
+            `;
+          }
+          
+          html += '</div></div>';
+        }
+        
+        html += '</div>';
+      }
+      
+      document.getElementById('channels-list').innerHTML = html;
+    }
+    
+    async function addChannel() {
+      const url = document.getElementById('channel-url').value.trim();
+      const name = document.getElementById('channel-name').value.trim();
+      const feed = document.getElementById('channel-feed').value;
+      const category = document.getElementById('channel-category').value;
+      const statusEl = document.getElementById('status');
+      const btn = document.getElementById('add-btn');
+      
+      if (!url) {
+        statusEl.textContent = 'Please enter a channel URL';
+        statusEl.className = 'status error';
+        return;
+      }
+      
+      btn.disabled = true;
+      btn.textContent = 'Adding...';
+      
+      try {
+        const resp = await fetch(`${API_BASE}/api/channels?action=add`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ url, name, feed, category })
+        });
+        const data = await resp.json();
+        
+        if (data.success) {
+          statusEl.textContent = `Added ${data.channel.name} to ${data.channel.feed}/${data.channel.category}`;
+          statusEl.className = 'status success';
+          document.getElementById('channel-url').value = '';
+          document.getElementById('channel-name').value = '';
+          loadChannels();
+        } else {
+          statusEl.textContent = data.error || 'Failed to add channel';
+          statusEl.className = 'status error';
+        }
+      } catch (e) {
+        statusEl.textContent = 'Failed to add channel';
+        statusEl.className = 'status error';
+      }
+      
+      btn.disabled = false;
+      btn.textContent = 'Add';
+    }
+    
+    async function removeChannel(handle, feed, category) {
+      if (!confirm(`Remove this channel?`)) return;
+      
+      try {
+        await fetch(`${API_BASE}/api/channels?action=remove`, {
+          method: 'DELETE',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ handle, feed, category })
+        });
+        loadChannels();
+      } catch (e) {
+        alert('Failed to remove channel');
+      }
+    }
+    
+    // Load on page load
+    loadChannels();
+  </script>
+</body>
+</html>

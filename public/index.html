@@ -5,13 +5,203 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>YouTube Curated</title>
   <style>
-    body { font-family: -apple-system, sans-serif; background: #0f0f0f; color: #fff; display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100vh; gap: 20px; }
-    a { color: #fff; text-decoration: none; font-size: 24px; padding: 20px 40px; background: #1a1a1a; border-radius: 12px; }
-    a:hover { background: #333; }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { 
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: #0f0f0f;
+      color: #fff;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+    .container { max-width: 600px; width: 100%; text-align: center; }
+    h1 { font-size: 48px; margin-bottom: 12px; }
+    .subtitle { color: #888; font-size: 18px; margin-bottom: 40px; }
+    
+    /* Login form */
+    .login-form { 
+      background: #1a1a1a; 
+      padding: 30px; 
+      border-radius: 16px; 
+      margin-bottom: 30px;
+      display: none;
+    }
+    .login-form.show { display: block; }
+    .login-form input {
+      width: 100%;
+      padding: 14px;
+      border: 1px solid #333;
+      border-radius: 8px;
+      background: #0f0f0f;
+      color: #fff;
+      font-size: 16px;
+      margin-bottom: 16px;
+    }
+    .login-form button {
+      width: 100%;
+      padding: 14px;
+      background: #ff0000;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+    .login-form button:hover { background: #cc0000; }
+    .error { color: #f44; font-size: 14px; margin-bottom: 16px; }
+    
+    /* Feed cards */
+    .feeds { display: none; }
+    .feeds.show { display: block; }
+    .feed-grid { 
+      display: grid; 
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); 
+      gap: 20px;
+      margin-bottom: 30px;
+    }
+    .feed-card {
+      background: #1a1a1a;
+      border-radius: 16px;
+      padding: 30px 20px;
+      text-decoration: none;
+      color: #fff;
+      transition: transform 0.2s, background 0.2s;
+    }
+    .feed-card:hover { 
+      background: #252525; 
+      transform: translateY(-4px);
+    }
+    .feed-icon { font-size: 48px; margin-bottom: 12px; }
+    .feed-title { font-size: 20px; font-weight: 600; }
+    .feed-desc { color: #888; font-size: 14px; margin-top: 8px; }
+    
+    /* Settings */
+    .settings-link {
+      color: #666;
+      text-decoration: none;
+      font-size: 14px;
+    }
+    .settings-link:hover { color: #fff; }
+    
+    /* Logout */
+    .logout-btn {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: transparent;
+      border: 1px solid #333;
+      color: #888;
+      padding: 8px 16px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 14px;
+    }
+    .logout-btn:hover { border-color: #666; color: #fff; }
   </style>
 </head>
 <body>
-  <a href="/research.html">🔬 Research</a>
-  <a href="/entertainment.html">⛵ Entertainment</a>
+  <button class="logout-btn" id="logout-btn" style="display:none" onclick="logout()">Logout</button>
+  
+  <div class="container">
+    <h1>📺 YouTube Curated</h1>
+    <p class="subtitle">Your personal video feed, without the algorithm</p>
+    
+    <!-- Login Form -->
+    <div class="login-form show" id="login-form">
+      <div class="error" id="error" style="display:none"></div>
+      <input type="password" id="password" placeholder="Enter password" onkeypress="if(event.key==='Enter')login()">
+      <button onclick="login()">Sign In</button>
+    </div>
+    
+    <!-- Feed Selection -->
+    <div class="feeds" id="feeds">
+      <div class="feed-grid">
+        <a href="/research" class="feed-card">
+          <div class="feed-icon">🔬</div>
+          <div class="feed-title">Research</div>
+          <div class="feed-desc">AI, Finance, Health</div>
+        </a>
+        <a href="/entertainment" class="feed-card">
+          <div class="feed-icon">⛵</div>
+          <div class="feed-title">Entertainment</div>
+          <div class="feed-desc">Sailing & Leisure</div>
+        </a>
+        <a href="/news" class="feed-card">
+          <div class="feed-icon">📰</div>
+          <div class="feed-title">News</div>
+          <div class="feed-desc">Current Events</div>
+        </a>
+      </div>
+      <a href="/settings" class="settings-link">⚙️ Manage Channels</a>
+    </div>
+  </div>
+
+  <script>
+    const API_BASE = '';
+    
+    async function checkAuth() {
+      const token = localStorage.getItem('yt_token');
+      if (!token) return false;
+      
+      try {
+        const resp = await fetch(`${API_BASE}/api/auth?action=verify`, {
+          headers: { 'Authorization': `Bearer ${token}` }
+        });
+        const data = await resp.json();
+        return data.valid;
+      } catch {
+        return false;
+      }
+    }
+    
+    async function login() {
+      const password = document.getElementById('password').value;
+      const errorEl = document.getElementById('error');
+      
+      try {
+        const resp = await fetch(`${API_BASE}/api/auth?action=login`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ password })
+        });
+        const data = await resp.json();
+        
+        if (data.success) {
+          localStorage.setItem('yt_token', data.token);
+          showFeeds();
+        } else {
+          errorEl.textContent = 'Invalid password';
+          errorEl.style.display = 'block';
+        }
+      } catch (e) {
+        errorEl.textContent = 'Login failed';
+        errorEl.style.display = 'block';
+      }
+    }
+    
+    function logout() {
+      const token = localStorage.getItem('yt_token');
+      fetch(`${API_BASE}/api/auth?action=logout`, {
+        headers: { 'Authorization': `Bearer ${token}` }
+      });
+      localStorage.removeItem('yt_token');
+      location.reload();
+    }
+    
+    function showFeeds() {
+      document.getElementById('login-form').classList.remove('show');
+      document.getElementById('feeds').classList.add('show');
+      document.getElementById('logout-btn').style.display = 'block';
+    }
+    
+    // Check auth on load
+    checkAuth().then(valid => {
+      if (valid) showFeeds();
+    });
+  </script>
 </body>
 </html>

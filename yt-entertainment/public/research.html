@@ -229,6 +229,18 @@
     padding-top: 20px;
     border-top: 1px solid #222;
   }
+  .top-nav {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+  }
+  .top-nav a {
+    color: #888;
+    text-decoration: none;
+    font-size: 14px;
+  }
+  .top-nav a:hover { color: #fff; }
+  .settings-link { color: #4a9eff; }
   @media (max-width: 600px) {
     .video-header { flex-direction: column; }
     .thumb { width: 100%; height: auto; aspect-ratio: 16/9; }
@@ -236,6 +248,10 @@
 </style>
 </head>
 <body>
+  <nav class="top-nav">
+    <a href="/" class="back-link">← Home</a>
+    <a href="/settings" class="settings-link">+ Add Channel</a>
+  </nav>
   <h1>🔬 Research Feed</h1>
   <p class="subtitle">Curated videos from AI, Finance, and Health creators • Click to play</p>
   <div id="sync-status" class="sync-status">Loading...</div>
@@ -431,7 +447,7 @@
       <div class="player-container"></div>
     </div>
   </div>
-  <div class="updated">Last updated: Feb 10, 2026, 1:32 PM PST</div>
+  <div class="updated">Last updated: Feb 10, 2026, 2:06 PM PST</div>
   <script>
   const BLOB_URL = '/api/sync?feed=entertainment';
   let userData = { watched: {}, myVideos: {}, pendingNew: [] };

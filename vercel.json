@@ -1,11 +1,9 @@
 {
-  "version": 2,
-  "builds": [
-    { "src": "public/**", "use": "@vercel/static" }
-  ],
-  "routes": [
-    { "src": "/research", "dest": "/public/research.html" },
-    { "src": "/entertainment", "dest": "/public/entertainment.html" },
-    { "src": "/(.*)", "dest": "/public/$1" }
+  "rewrites": [
+    { "source": "/research", "destination": "/yt-research/public/index.html" },
+    { "source": "/entertainment", "destination": "/yt-entertainment/public/index.html" },
+    { "source": "/news", "destination": "/yt-news/public/index.html" },
+    { "source": "/settings", "destination": "/public/settings.html" },
+    { "source": "/api/:path*", "destination": "/api/:path*" }
   ]
 }

@@ -230,6 +230,18 @@ const CSS = `
     padding-top: 20px;
     border-top: 1px solid #222;
   }
+  .top-nav {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+  }
+  .top-nav a {
+    color: #888;
+    text-decoration: none;
+    font-size: 14px;
+  }
+  .top-nav a:hover { color: #fff; }
+  .settings-link { color: #4a9eff; }
   @media (max-width: 600px) {
     .video-header { flex-direction: column; }
     .thumb { width: 100%; height: auto; aspect-ratio: 16/9; }
@@ -471,6 +483,10 @@ function generatePage(title, subtitle, categories, pageType) {
   <style>${CSS}</style>
 </head>
 <body>
+  <nav class="top-nav">
+    <a href="/" class="back-link">← Home</a>
+    <a href="/settings" class="settings-link">+ Add Channel</a>
+  </nav>
   <h1>${title}</h1>
   <p class="subtitle">${subtitle}</p>
   <div id="sync-status" class="sync-status">Loading...</div>
