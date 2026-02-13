@@ -263,6 +263,22 @@
   }
   #watched-duration { color: #f44; }
   #remaining-duration { color: #4a4; }
+  .new-video-indicator {
+    background: #1a2a1a;
+    border-left: 3px solid #4a4;
+    padding: 10px 16px;
+    margin: -8px 0 12px 0;
+    border-radius: 0 8px 8px 0;
+    font-size: 13px;
+    color: #ccc;
+  }
+  .indicator-badge {
+    font-weight: 600;
+    color: #6c6;
+  }
+  .indicator-duration {
+    color: #888;
+  }
   @media (max-width: 600px) {
     .video-header { flex-direction: column; }
     .thumb { width: 100%; height: auto; aspect-ratio: 16/9; }
@@ -276,10 +292,7 @@
   <div class="last-refresh" id="last-refresh">Checking...</div>
   <div id="sync-status" class="sync-status">Loading...</div>
   
-  <div id="new-videos-banner" class="new-videos-banner">
-    <h3>📺 New Videos Available</h3>
-    <div id="new-videos-list"></div>
-  </div>
+  <!-- New video indicators appear inline below each creator's card -->
 
   <div class="stats-footer">
     <div class="stat-item">
@@ -400,7 +413,7 @@
       <div class="player-container"></div>
     </div>
   </div>
-  <div class="updated">Last updated: Feb 12, 2026, 8:11 PM PST</div>
+  <div class="updated">Last updated: Feb 12, 2026, 8:19 PM PST</div>
   <script>
   const BLOB_URL = 'https://jsonblob.com/api/jsonBlob/019c547f-4dd8-779b-ba67-4d612b238762';
   let userData = { watched: {}, myVideos: {}, pendingNew: [] };
@@ -574,58 +587,114 @@
       alert('Select videos to refresh by clicking their checkboxes');
       return;
     }
-    // Remove selected videos from myVideos - they'll be re-added on next fetch
+    // For each selected video, check if there's a pending new video for that creator
+    // If so, swap it in (replace the old video with the new one)
+    let swapped = 0;
     selectedVideos.forEach(videoId => {
-      if (userData.myVideos[pageType]) {
-        delete userData.myVideos[pageType][videoId];
+      const card = document.querySelector(`.video-card[data-video-id="${videoId}"]`);
+      if (!card) return;
+      const creator = card.dataset.creator;
+      const pending = (userData.pendingNew || []).find(v => v.creator === creator && v.pageType === pageType);
+      
+      if (pending) {
+        // Remove old video from myVideos
+        if (userData.myVideos[pageType]) delete userData.myVideos[pageType][videoId];
+        // Add new video to myVideos
+        if (!userData.myVideos[pageType]) userData.myVideos[pageType] = {};
+        userData.myVideos[pageType][pending.videoId] = { added: Date.now(), creator: pending.creator };
+        // Remove from pending
+        userData.pendingNew = userData.pendingNew.filter(v => v.videoId !== pending.videoId);
+        // Update the card in-place
+        swapCardContent(card, pending);
+        swapped++;
       }
     });
     selectedVideos.clear();
     saveUserData().then(() => {
-      alert('Selected videos will be refreshed on next update. Reload to see changes.');
-    });
-  }
-  
-  function showPendingNewVideos() {
-    const banner = document.getElementById('new-videos-banner');
-    const list = document.getElementById('new-videos-list');
-    if (!banner || !list) return;
-    
-    const pending = userData.pendingNew.filter(v => v.pageType === pageType);
-    if (pending.length === 0) {
-      banner.classList.remove('visible');
-      return;
-    }
-    
-    list.innerHTML = pending.map(v => `
-      <div class="new-video-item">
-        <span><strong>${v.creator}</strong>: ${v.title}</span>
-        <button onclick="addPendingVideo('${v.videoId}')">Add to List</button>
-      </div>
-    `).join('');
-    
-    banner.classList.add('visible');
-  }
-  
-  function addPendingVideo(videoId) {
-    const pending = userData.pendingNew.find(v => v.videoId === videoId);
-    if (!pending) return;
-    
-    // Add to myVideos
-    if (!userData.myVideos[pageType]) userData.myVideos[pageType] = {};
-    userData.myVideos[pageType][videoId] = {
-      added: Date.now(),
-      creator: pending.creator
-    };
-    
-    // Remove from pending
-    userData.pendingNew = userData.pendingNew.filter(v => v.videoId !== videoId);
-    
-    saveUserData().then(() => {
       updateUI();
-      showPendingNewVideos();
+      showNewVideoIndicators();
+    });
+    if (swapped > 0) {
+      // Uncheck all
+      document.querySelectorAll('.select-checkbox').forEach(cb => cb.checked = false);
+    }
+  }
+  
+  function swapCardContent(card, newVideo) {
+    // Update card attributes
+    card.dataset.videoId = newVideo.videoId;
+    // Update thumbnail
+    const thumb = card.querySelector('.thumb');
+    if (thumb) thumb.src = newVideo.thumbnail || 'https://i.ytimg.com/vi/' + newVideo.videoId + '/hqdefault.jpg';
+    // Update title
+    const title = card.querySelector('.video-title');
+    if (title) title.textContent = newVideo.title;
+    // Update duration
+    const dur = card.querySelector('.duration');
+    if (dur) dur.textContent = newVideo.duration || '';
+    // Update date
+    const dateEl = card.querySelector('.video-date');
+    if (dateEl) dateEl.textContent = newVideo.dateStr || '';
+    // Update NEW badge
+    let badge = card.querySelector('.new-badge');
+    if (!badge) {
+      badge = document.createElement('span');
+      badge.className = 'new-badge';
+      badge.textContent = 'NEW';
+      card.querySelector('.thumb-container')?.appendChild(badge);
+    }
+    badge.style.display = '';
+    // Update checkbox onclick
+    const cb = card.querySelector('.select-checkbox');
+    if (cb) cb.setAttribute('onclick', "toggleSelect('" + newVideo.videoId + "', this, event)");
+    // Update header onclick
+    const header = card.querySelector('.video-header');
+    if (header) header.setAttribute('onclick', "togglePlayer(this.parentElement, '" + newVideo.videoId + "')");
+    // Close any open player
+    const player = card.querySelector('.player-container');
+    if (player) { player.classList.remove('active'); player.innerHTML = ''; }
+    // Remove watched state
+    card.classList.remove('watched');
+  }
+  
+  function showNewVideoIndicators() {
+    // Remove old indicators
+    document.querySelectorAll('.new-video-indicator').forEach(el => el.remove());
+    
+    const pending = (userData.pendingNew || []).filter(v => v.pageType === pageType);
+    if (pending.length === 0) return;
+    
+    // For each pending video, find the card for that creator and add indicator below it
+    pending.forEach(p => {
+      // Find the card for this creator
+      const cards = document.querySelectorAll(`.video-card[data-creator="${p.creator}"]`);
+      const card = Array.from(cards).find(c => c.style.display !== 'none');
+      if (!card) return;
+      
+      const currentVideoId = card.dataset.videoId;
+      
+      // If current video is watched, auto-swap
+      if (isWatched(currentVideoId)) {
+        // Remove old from myVideos, add new
+        if (userData.myVideos[pageType]) delete userData.myVideos[pageType][currentVideoId];
+        if (!userData.myVideos[pageType]) userData.myVideos[pageType] = {};
+        userData.myVideos[pageType][p.videoId] = { added: Date.now(), creator: p.creator };
+        userData.pendingNew = userData.pendingNew.filter(v => v.videoId !== p.videoId);
+        swapCardContent(card, p);
+        debouncedSave();
+        return;
+      }
+      
+      // Not watched — show indicator below card
+      const indicator = document.createElement('div');
+      indicator.className = 'new-video-indicator';
+      indicator.innerHTML = `<span class="indicator-badge">🆕 NEW</span> <strong>${p.creator}</strong>: ${p.title} · <span class="indicator-duration">${p.duration || ''}</span>`;
+      card.after(indicator);
     });
   }
+  
+  // Keep old function name for compatibility but redirect
+  function showPendingNewVideos() { showNewVideoIndicators(); }
   
   let watchTimers = {};
 
