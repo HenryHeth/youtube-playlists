@@ -56,22 +56,6 @@
     ],
     "News and Finance": [
       {
-        "creator": "Claus Kellerman POV",
-        "channel": "@clauskellermanpov3004",
-        "videos": [
-          {
-            "title": "US LIES ARE OUT OF CONTROL - THE BIGGEST THREAT TO CANADA",
-            "url": "https://www.youtube.com/watch?v=XUHJ_DX_PwI",
-            "views": "64K views",
-            "dateStr": "1 day ago",
-            "duration": "13:45",
-            "videoId": "XUHJ_DX_PwI",
-            "thumbnail": "https://i.ytimg.com/vi/XUHJ_DX_PwI/hqdefault.jpg",
-            "isNew": true
-          }
-        ]
-      },
-      {
         "creator": "Russell Matthews",
         "channel": "@russellmatthews",
         "videos": [
