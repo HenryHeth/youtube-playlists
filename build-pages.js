@@ -592,6 +592,16 @@ const entertainmentHtml = generatePage(
 fs.writeFileSync('public/entertainment.html', entertainmentHtml);
 console.log('✅ Built public/entertainment.html');
 
+// Build news page
+const newsHtml = generatePage(
+  '📰 News Feed',
+  'News and current events from trusted sources • Click to play',
+  data.news || [],
+  'news'
+);
+fs.writeFileSync('public/news.html', newsHtml);
+console.log('✅ Built public/news.html');
+
 // NOTE: Do NOT regenerate index.html - it contains the auth/landing page
 // The auth page is maintained manually in public/index.html
 console.log('⏭️ Skipped public/index.html (auth page - do not overwrite)');

@@ -1,6 +1,9 @@
 {
   "rewrites": [
     { "source": "/settings", "destination": "/settings.html" },
+    { "source": "/research", "destination": "/research.html" },
+    { "source": "/entertainment", "destination": "/entertainment.html" },
+    { "source": "/news", "destination": "/news.html" },
     { "source": "/api/:path*", "destination": "/api/:path*" }
   ],
   "headers": [
