@@ -14,6 +14,16 @@
             "videoId": "Tk9bVpYIIjc",
             "thumbnail": "https://i.ytimg.com/vi/Tk9bVpYIIjc/hqdefault.jpg",
             "isNew": true
+          },
+          {
+            "videoId": "sLhxdcpuot0",
+            "title": "The AI Wake-Up Call Everyone Needs Right Now!",
+            "url": "https://www.youtube.com/watch?v=sLhxdcpuot0",
+            "thumbnail": "https://i.ytimg.com/vi/sLhxdcpuot0/hqdefault.jpg",
+            "dateStr": "1 day ago",
+            "duration": "28:06",
+            "views": "75K views",
+            "isNew": false
           }
         ]
       },
@@ -30,6 +40,16 @@
             "videoId": "31A41ckhb7Q",
             "thumbnail": "https://i.ytimg.com/vi/31A41ckhb7Q/hqdefault.jpg",
             "isNew": true
+          },
+          {
+            "videoId": "Q7r--i9lLck",
+            "title": "How I'm using OpenClaw Everyday (Use Cases)",
+            "url": "https://www.youtube.com/watch?v=Q7r--i9lLck",
+            "thumbnail": "https://i.ytimg.com/vi/Q7r--i9lLck/hqdefault.jpg",
+            "dateStr": "2 days ago",
+            "duration": "27:41",
+            "views": "120K views",
+            "isNew": false
           }
         ]
       }

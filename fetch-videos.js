@@ -282,6 +282,32 @@ async function checkForNewVideos(results) {
 // Run and save
 fetchAllVideos().then(async (results) => {
   const fs = require('fs');
+  
+  // Merge with previous videos-data.json to keep old videos for swap UI
+  try {
+    const oldData = JSON.parse(fs.readFileSync('videos-data.json', 'utf8'));
+    for (const [pageType, subcats] of Object.entries(oldData)) {
+      if (!results[pageType]) continue;
+      for (const [subcat, creators] of Object.entries(subcats)) {
+        if (!results[pageType][subcat]) continue;
+        for (const oldCreator of creators) {
+          const newCreator = results[pageType][subcat].find(c => c.creator === oldCreator.creator);
+          if (!newCreator) continue;
+          // Add old videos that aren't in the new fetch
+          for (const oldVid of oldCreator.videos) {
+            if (!newCreator.videos.some(v => v.videoId === oldVid.videoId)) {
+              oldVid.isNew = false; // Mark as old
+              newCreator.videos.push(oldVid);
+            }
+          }
+        }
+      }
+    }
+    console.log('Merged with previous videos-data.json');
+  } catch (e) {
+    // No previous file, that's fine
+  }
+  
   fs.writeFileSync('videos-data.json', JSON.stringify(results, null, 2));
   console.log('\n✅ Saved to videos-data.json');
   
