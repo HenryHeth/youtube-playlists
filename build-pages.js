@@ -374,8 +374,19 @@ const JS = `
   }
   
   function updateUI() {
+    const userPageVideos = (userData.myVideos && userData.myVideos[pageType]) || {};
+    const hasUserVideos = Object.keys(userPageVideos).length > 0;
+    
     document.querySelectorAll('.video-card').forEach(card => {
       const videoId = card.dataset.videoId;
+      
+      // Hide videos not in user's list (unless first visit / no list yet)
+      if (hasUserVideos && !userPageVideos[videoId]) {
+        card.style.display = 'none';
+        return;
+      } else {
+        card.style.display = '';
+      }
       
       // Update watched state
       if (isWatched(videoId)) {
@@ -392,6 +403,13 @@ const JS = `
         card.classList.remove('selected');
         card.querySelector('.select-checkbox').checked = false;
       }
+    });
+    
+    // Hide empty categories
+    document.querySelectorAll('.category').forEach(cat => {
+      const visibleCards = cat.querySelectorAll('.video-card[style=""], .video-card:not([style])');
+      const hasVisible = Array.from(cat.querySelectorAll('.video-card')).some(c => c.style.display !== 'none');
+      cat.style.display = hasVisible ? '' : 'none';
     });
     
     updateSelectionCount();
@@ -473,8 +491,8 @@ const JS = `
     userData.pendingNew = userData.pendingNew.filter(v => v.videoId !== videoId);
     
     saveUserData().then(() => {
+      updateUI();
       showPendingNewVideos();
-      alert('Video added! Reload page to see it.');
     });
   }
   
