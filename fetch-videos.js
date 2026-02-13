@@ -215,7 +215,7 @@ async function fetchAllVideos() {
   return results;
 }
 
-const JSONBLOB_ID = '019c48c6-b141-7c1f-a893-5de4c2335f8e';
+const JSONBLOB_ID = '019c547f-4dd8-779b-ba67-4d612b238762';
 const BLOB_URL = `https://jsonblob.com/api/jsonBlob/${JSONBLOB_ID}`;
 
 async function checkForNewVideos(results) {

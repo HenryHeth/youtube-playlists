@@ -3,7 +3,7 @@ const fs = require('fs');
 const data = JSON.parse(fs.readFileSync('videos-data.json', 'utf8'));
 
 // JSONBlob ID for cross-device sync
-const JSONBLOB_ID = '019c48c6-b141-7c1f-a893-5de4c2335f8e';
+const JSONBLOB_ID = '019c547f-4dd8-779b-ba67-4d612b238762';
 
 const CSS = `
   * { box-sizing: border-box; margin: 0; padding: 0; }

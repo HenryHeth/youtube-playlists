@@ -1,8 +1,8 @@
 // Vercel API route - proxies to JSONBlob to bypass CORS
 const BLOB_IDS = {
-  research: '019c48c6-b141-7c1f-a893-5de4c2335f8e',
-  entertainment: '019c48c7-1234-7c1f-a893-entertainment',
-  news: '019c48c7-5678-7c1f-a893-news'
+  research: '019c547f-4dd8-779b-ba67-4d612b238762',
+  entertainment: '019c547f-83ba-7456-84c1-d27892416087',
+  news: '019c547f-855a-76d1-ac16-6b29e7fe4293'
 };
 
 export default async function handler(req, res) {
