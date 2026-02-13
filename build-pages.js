@@ -592,25 +592,8 @@ const entertainmentHtml = generatePage(
 fs.writeFileSync('public/entertainment.html', entertainmentHtml);
 console.log('✅ Built public/entertainment.html');
 
-// Build index
-const indexHtml = `<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>YouTube Curated</title>
-  <style>
-    body { font-family: -apple-system, sans-serif; background: #0f0f0f; color: #fff; display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100vh; gap: 20px; }
-    a { color: #fff; text-decoration: none; font-size: 24px; padding: 20px 40px; background: #1a1a1a; border-radius: 12px; }
-    a:hover { background: #333; }
-  </style>
-</head>
-<body>
-  <a href="/research.html">🔬 Research</a>
-  <a href="/entertainment.html">⛵ Entertainment</a>
-</body>
-</html>`;
-fs.writeFileSync('public/index.html', indexHtml);
-console.log('✅ Built public/index.html');
+// NOTE: Do NOT regenerate index.html - it contains the auth/landing page
+// The auth page is maintained manually in public/index.html
+console.log('⏭️ Skipped public/index.html (auth page - do not overwrite)');
 
 console.log('\\nDone!');
