@@ -179,138 +179,56 @@
     opacity: 0.5;
     cursor: not-allowed;
   }
-  #play-selected-btn:not(:disabled) {
-    background: #4a4;
-    color: #fff;
+  .selection-count {
+    font-size: 13px;
+    color: #888;
   }
-  #play-selected-btn:not(:disabled):hover {
-    background: #5b5;
-  }
-  #playlist-bar {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
-    padding: 12px 20px;
+  .new-videos-banner {
+    background: #1a3a1a;
+    border: 1px solid #2a5a2a;
+    border-radius: 8px;
+    padding: 16px;
+    margin-bottom: 20px;
     display: none;
+  }
+  .new-videos-banner.visible {
+    display: block;
+  }
+  .new-videos-banner h3 {
+    color: #6c6;
+    margin-bottom: 12px;
+    font-size: 16px;
+  }
+  .new-video-item {
+    display: flex;
     justify-content: space-between;
     align-items: center;
-    z-index: 1000;
-    border-top: 2px solid #4a9eff;
-    box-shadow: 0 -4px 20px rgba(0,0,0,0.5);
+    padding: 8px 0;
+    border-bottom: 1px solid #2a4a2a;
   }
-  .playlist-info {
-    display: flex;
-    align-items: center;
-    gap: 15px;
+  .new-video-item:last-child {
+    border-bottom: none;
   }
-  .playlist-progress {
-    background: #4a9eff;
-    color: #fff;
-    padding: 4px 12px;
-    border-radius: 12px;
-    font-weight: bold;
-    font-size: 14px;
-  }
-  .playlist-title {
-    color: #ccc;
-    font-size: 14px;
-  }
-  .playlist-controls {
-    display: flex;
-    gap: 10px;
-  }
-  .playlist-controls button {
-    padding: 8px 16px;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-    font-size: 14px;
-    font-weight: 500;
-  }
-  .playlist-controls button:first-child {
+  .new-video-item button {
     background: #4a4;
     color: #fff;
-  }
-  .playlist-controls button:last-child {
-    background: #666;
-    color: #fff;
-  }
-  .playlist-controls button:hover {
-    opacity: 0.9;
-  }
-  .selection-count {
-    font-size: 14px;
-    color: #4a9eff;
-    font-weight: 500;
-  }
-  .channel-pending {
-    display: none;
-    margin-bottom: 16px;
-  }
-  .pending-text {
-    background: #1a2a1a;
-    border-left: 3px solid #4a4;
-    padding: 10px 14px;
-    margin-bottom: 8px;
-    border-radius: 0 8px 8px 0;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 4px;
     cursor: pointer;
-    font-size: 14px;
+    font-size: 12px;
   }
-  .pending-text:hover {
-    background: #253525;
+  .new-video-item button:hover {
+    background: #5b5;
   }
-  .pending-text .new-tag {
-    color: #6c6;
-    font-weight: 600;
-    margin-right: 8px;
-  }
-  .stats-footer {
-    display: flex;
-    justify-content: flex-end;
-    gap: 30px;
-    margin-bottom: 20px;
-    padding: 12px 20px;
-    background: #1a1a1a;
-    border-radius: 12px;
-  }
-  .stat-item {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-  }
-  .stat-label {
-    color: #888;
-    font-size: 13px;
-  }
-  .stat-value {
-    font-size: 18px;
-    font-weight: 600;
-    color: #fff;
-  }
-  #watched-duration { color: #f44; }
-  #remaining-duration { color: #4a4; }
   .updated {
     text-align: center;
     color: #555;
     font-size: 12px;
-    margin-top: 20px;
+    margin-top: 40px;
     padding-top: 20px;
     border-top: 1px solid #222;
   }
-  .top-nav {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 20px;
-  }
-  .top-nav a {
-    color: #888;
-    text-decoration: none;
-    font-size: 14px;
-  }
-  .top-nav a:hover { color: #fff; }
-  .settings-link { color: #4a9eff; }
   @media (max-width: 600px) {
     .video-header { flex-direction: column; }
     .thumb { width: 100%; height: auto; aspect-ratio: 16/9; }
@@ -318,39 +236,24 @@
 </style>
 </head>
 <body>
-  <nav class="top-nav">
-    <a href="https://youtube-playlists-alpha.vercel.app" class="back-link">← Home</a>
-    <a href="https://youtube-playlists-alpha.vercel.app/settings" class="settings-link">⚙️ Manage Channels</a>
-  </nav>
   <h1>📰 News Feed</h1>
-  <p class="subtitle">Current events and news • Click to play</p>
+  <p class="subtitle">News and current events from trusted sources • Click to play</p>
   <div id="sync-status" class="sync-status">Loading...</div>
   
-  <div class="stats-footer">
-    <div class="stat-item">
-      <span class="stat-label">Total on page:</span>
-      <span class="stat-value" id="total-duration">--</span>
-    </div>
-    <div class="stat-item">
-      <span class="stat-label">Watched:</span>
-      <span class="stat-value" id="watched-duration">--</span>
-    </div>
-    <div class="stat-item">
-      <span class="stat-label">Remaining:</span>
-      <span class="stat-value" id="remaining-duration">--</span>
-    </div>
+  <div id="new-videos-banner" class="new-videos-banner">
+    <h3>📺 New Videos Available</h3>
+    <div id="new-videos-list"></div>
   </div>
   
   <div class="controls">
     <button onclick="hideWatched()">Hide Watched</button>
     <button onclick="clearWatched()">Clear History</button>
-    <button id="play-selected-btn" onclick="playSelected()" disabled>▶ Play Selected</button>
     <button id="refresh-selected-btn" onclick="refreshSelected()" disabled>Refresh Selected</button>
     <span id="selection-count" class="selection-count"></span>
   </div>
   <div class="category">
     <h2>News</h2>
-    <div class="video-card" data-video-id="XUHJ_DX_PwI" data-creator="Claus Kellerman POV" data-duration="13:45">
+    <div class="video-card" data-video-id="XUHJ_DX_PwI" data-creator="Claus Kellerman POV">
       <input type="checkbox" class="select-checkbox" onclick="toggleSelect('XUHJ_DX_PwI', this, event)">
       <div class="video-header" onclick="togglePlayer(this.parentElement, 'XUHJ_DX_PwI')">
         <div class="thumb-container">
@@ -369,8 +272,7 @@
       </div>
       <div class="player-container"></div>
     </div>
-    <div class="channel-pending" data-creator="Claus Kellerman POV"></div>
-    <div class="video-card" data-video-id="xvFYJ5mQ7Jc" data-creator="Global News" data-duration="3:36">
+    <div class="video-card" data-video-id="xvFYJ5mQ7Jc" data-creator="Global News">
       <input type="checkbox" class="select-checkbox" onclick="toggleSelect('xvFYJ5mQ7Jc', this, event)">
       <div class="video-header" onclick="togglePlayer(this.parentElement, 'xvFYJ5mQ7Jc')">
         <div class="thumb-container">
@@ -389,8 +291,7 @@
       </div>
       <div class="player-container"></div>
     </div>
-    <div class="channel-pending" data-creator="Global News"></div>
-    <div class="video-card" data-video-id="SdK3-BxN5fo" data-creator="CTV News" data-duration="44:14">
+    <div class="video-card" data-video-id="SdK3-BxN5fo" data-creator="CTV News">
       <input type="checkbox" class="select-checkbox" onclick="toggleSelect('SdK3-BxN5fo', this, event)">
       <div class="video-header" onclick="togglePlayer(this.parentElement, 'SdK3-BxN5fo')">
         <div class="thumb-container">
@@ -409,8 +310,7 @@
       </div>
       <div class="player-container"></div>
     </div>
-    <div class="channel-pending" data-creator="CTV News"></div>
-    <div class="video-card" data-video-id="nrGBkyvMRHA" data-creator="Brian Tyler Cohen" data-duration="10:12">
+    <div class="video-card" data-video-id="nrGBkyvMRHA" data-creator="Brian Tyler Cohen">
       <input type="checkbox" class="select-checkbox" onclick="toggleSelect('nrGBkyvMRHA', this, event)">
       <div class="video-header" onclick="togglePlayer(this.parentElement, 'nrGBkyvMRHA')">
         <div class="thumb-container">
@@ -429,8 +329,7 @@
       </div>
       <div class="player-container"></div>
     </div>
-    <div class="channel-pending" data-creator="Brian Tyler Cohen"></div>
-    <div class="video-card" data-video-id="dCrHOjmVz_I" data-creator="House of El" data-duration="10:00">
+    <div class="video-card" data-video-id="dCrHOjmVz_I" data-creator="House of El">
       <input type="checkbox" class="select-checkbox" onclick="toggleSelect('dCrHOjmVz_I', this, event)">
       <div class="video-header" onclick="togglePlayer(this.parentElement, 'dCrHOjmVz_I')">
         <div class="thumb-container">
@@ -449,20 +348,18 @@
       </div>
       <div class="player-container"></div>
     </div>
-    <div class="channel-pending" data-creator="House of El"></div>
-    <div class="channel-pending" data-creator="Angry Mortgage Podcast"></div>
   </div>
-<div class="updated">Last updated: Feb 12, 2026, 5:21 PM PST</div>
+  <div class="updated">Last updated: Feb 12, 2026, 4:58 PM PST</div>
   <script>
-  const BLOB_URL = '/api/sync?feed=news';
+  const BLOB_URL = 'https://jsonblob.com/api/jsonBlob/019c547f-4dd8-779b-ba67-4d612b238762';
   let userData = { watched: {}, myVideos: {}, pendingNew: [] };
   let syncTimeout = null;
   let selectedVideos = new Set();
-  let playlistQueue = [];
-  let currentPlayingIndex = -1;
   
-  // Get page type from URL
-  const pageType = location.pathname.includes('entertainment') ? 'entertainment' : 'research';
+  // Get page type from URL or hostname
+  const pageType = location.hostname.includes('entertainment') ? 'entertainment' :
+                   location.hostname.includes('news') ? 'news' :
+                   location.pathname.includes('entertainment') ? 'entertainment' : 'research';
   
   async function loadUserData() {
     setStatus('syncing', 'Loading...');
@@ -478,7 +375,7 @@
       // First visit: if no myVideos for this page, add all current videos
       if (!userData.myVideos[pageType] || Object.keys(userData.myVideos[pageType]).length === 0) {
         userData.myVideos[pageType] = {};
-        document.querySelectorAll('.video-card:not(.pending-new)').forEach(card => {
+        document.querySelectorAll('.video-card').forEach(card => {
           const videoId = card.dataset.videoId;
           const creator = card.dataset.creator;
           userData.myVideos[pageType][videoId] = { 
@@ -493,13 +390,34 @@
       showPendingNewVideos();
       setStatus('synced', 'Synced ✓');
     } catch (e) {
-      console.error('Load failed:', e);
-      setStatus('error', 'Sync failed');
+      console.error('Cloud sync unavailable:', e);
+      // Fall back to localStorage
+      try {
+        const local = localStorage.getItem('yt-userData');
+        if (local) {
+          userData = JSON.parse(local);
+          updateUI();
+          showPendingNewVideos();
+          setStatus('synced', 'Local mode ✓');
+          return;
+        }
+      } catch {}
+      // First visit - initialize with current videos
+      userData.myVideos[pageType] = {};
+      document.querySelectorAll('.video-card').forEach(card => {
+        const videoId = card.dataset.videoId;
+        const creator = card.dataset.creator;
+        userData.myVideos[pageType][videoId] = { added: Date.now(), creator };
+      });
+      localStorage.setItem('yt-userData', JSON.stringify(userData));
+      setStatus('synced', 'Local mode ✓');
     }
   }
   
   async function saveUserData() {
     setStatus('syncing', 'Saving...');
+    // Always save to localStorage
+    localStorage.setItem('yt-userData', JSON.stringify(userData));
     try {
       await fetch(BLOB_URL, {
         method: 'PUT',
@@ -508,8 +426,8 @@
       });
       setStatus('synced', 'Synced ✓');
     } catch (e) {
-      console.error('Save failed:', e);
-      setStatus('error', 'Sync failed');
+      console.error('Cloud sync unavailable:', e);
+      setStatus('synced', 'Local mode ✓');
     }
   }
   
@@ -536,15 +454,17 @@
   }
   
   function updateUI() {
-    document.querySelectorAll('.video-card:not(.pending-new)').forEach(card => {
+    document.querySelectorAll('.video-card').forEach(card => {
       const videoId = card.dataset.videoId;
       
+      // Update watched state
       if (isWatched(videoId)) {
         card.classList.add('watched');
       } else {
         card.classList.remove('watched');
       }
       
+      // Update selection state
       if (selectedVideos.has(videoId)) {
         card.classList.add('selected');
         card.querySelector('.select-checkbox').checked = true;
@@ -569,32 +489,14 @@
   
   function updateSelectionCount() {
     const countEl = document.getElementById('selection-count');
-    const count = selectedVideos.size;
-    
     if (countEl) {
-      if (count > 0) {
-        // Calculate total duration of selected videos
-        let totalSeconds = 0;
-        document.querySelectorAll('.video-card').forEach(card => {
-          if (selectedVideos.has(card.dataset.videoId)) {
-            totalSeconds += parseDuration(card.dataset.duration);
-          }
-        });
-        const durationStr = formatDuration(totalSeconds);
-        countEl.textContent = count + ' selected (' + durationStr + ')';
-      } else {
-        countEl.textContent = '';
-      }
+      const count = selectedVideos.size;
+      countEl.textContent = count > 0 ? count + ' selected' : '';
     }
     
     const refreshBtn = document.getElementById('refresh-selected-btn');
     if (refreshBtn) {
-      refreshBtn.disabled = count === 0;
-    }
-    
-    const playBtn = document.getElementById('play-selected-btn');
-    if (playBtn) {
-      playBtn.disabled = count === 0;
+      refreshBtn.disabled = selectedVideos.size === 0;
     }
   }
   
@@ -603,6 +505,7 @@
       alert('Select videos to refresh by clicking their checkboxes');
       return;
     }
+    // Remove selected videos from myVideos - they'll be re-added on next fetch
     selectedVideos.forEach(videoId => {
       if (userData.myVideos[pageType]) {
         delete userData.myVideos[pageType][videoId];
@@ -615,59 +518,43 @@
   }
   
   function showPendingNewVideos() {
-    // Get video IDs already on the page
-    const onPageIds = new Set();
-    document.querySelectorAll('.video-card[data-video-id]').forEach(card => {
-      onPageIds.add(card.dataset.videoId);
-    });
+    const banner = document.getElementById('new-videos-banner');
+    const list = document.getElementById('new-videos-list');
+    if (!banner || !list) return;
     
-    // Filter pending videos to only this feed's pageType AND not already on page
-    const pending = userData.pendingNew.filter(v => 
-      v.pageType === pageType && !onPageIds.has(v.videoId)
-    );
+    const pending = userData.pendingNew.filter(v => v.pageType === pageType);
+    if (pending.length === 0) {
+      banner.classList.remove('visible');
+      return;
+    }
     
-    // Group by creator
-    const byCreator = {};
-    pending.forEach(v => {
-      if (!byCreator[v.creator]) byCreator[v.creator] = [];
-      byCreator[v.creator].push(v);
-    });
+    list.innerHTML = pending.map(v => `
+      <div class="new-video-item">
+        <span><strong>${v.creator}</strong>: ${v.title}</span>
+        <button onclick="addPendingVideo('${v.videoId}')">Add to List</button>
+      </div>
+    `).join('');
     
-    // Show pending videos as simple text under each channel
-    document.querySelectorAll('.channel-pending').forEach(container => {
-      const creator = container.dataset.creator;
-      const videos = byCreator[creator] || [];
-      
-      if (videos.length === 0) {
-        container.style.display = 'none';
-        container.innerHTML = '';
-        return;
-      }
-      
-      container.style.display = 'block';
-      container.innerHTML = videos.map(v => `
-        <div class="pending-text" onclick="addPendingVideo('${v.videoId}')">
-          <span class="new-tag">+ NEW:</span> ${v.title}
-        </div>
-      `).join('');
-    });
+    banner.classList.add('visible');
   }
   
   function addPendingVideo(videoId) {
     const pending = userData.pendingNew.find(v => v.videoId === videoId);
     if (!pending) return;
     
+    // Add to myVideos
     if (!userData.myVideos[pageType]) userData.myVideos[pageType] = {};
     userData.myVideos[pageType][videoId] = {
       added: Date.now(),
       creator: pending.creator
     };
     
+    // Remove from pending
     userData.pendingNew = userData.pendingNew.filter(v => v.videoId !== videoId);
     
     saveUserData().then(() => {
       showPendingNewVideos();
-      alert('Video added! Reload page to see it in your list.');
+      alert('Video added! Reload page to see it.');
     });
   }
   
@@ -675,149 +562,20 @@
     const container = card.querySelector('.player-container');
     const isActive = container.classList.contains('active');
     
+    // Close all other players
     document.querySelectorAll('.player-container.active').forEach(p => {
       p.classList.remove('active');
       p.innerHTML = '';
     });
     
     if (!isActive) {
-      playVideo(card, videoId);
+      container.innerHTML = '<iframe src="https://www.youtube.com/embed/' + videoId + '?autoplay=1" allow="autoplay; encrypted-media" allowfullscreen></iframe>';
+      container.classList.add('active');
+      
+      // Mark as watched
+      setWatched(videoId);
+      card.classList.add('watched');
     }
-  }
-  
-  let ytPlayer = null;
-  
-  function playVideo(card, videoId) {
-    // Close any open players
-    document.querySelectorAll('.player-container.active').forEach(p => {
-      p.classList.remove('active');
-      p.innerHTML = '';
-    });
-    
-    const container = card.querySelector('.player-container');
-    container.innerHTML = '<div id="yt-player-container"></div>';
-    container.classList.add('active');
-    
-    // Use YouTube IFrame API for end detection
-    if (window.YT && window.YT.Player) {
-      createYTPlayer(videoId);
-    } else {
-      // Load YouTube API if not loaded
-      window.onYouTubeIframeAPIReady = () => createYTPlayer(videoId);
-      const tag = document.createElement('script');
-      tag.src = 'https://www.youtube.com/iframe_api';
-      document.head.appendChild(tag);
-    }
-    
-    setWatched(videoId);
-    card.classList.add('watched');
-    
-    // Scroll card into view
-    card.scrollIntoView({ behavior: 'smooth', block: 'center' });
-  }
-  
-  function createYTPlayer(videoId) {
-    ytPlayer = new YT.Player('yt-player-container', {
-      videoId: videoId,
-      width: '100%',
-      height: '100%',
-      playerVars: { autoplay: 1 },
-      events: {
-        onStateChange: onPlayerStateChange
-      }
-    });
-  }
-  
-  function onPlayerStateChange(event) {
-    // State 0 = ended
-    if (event.data === 0 && playlistQueue.length > 0 && currentPlayingIndex >= 0) {
-      // Auto-advance to next video
-      currentPlayingIndex++;
-      playNextInQueue();
-    }
-  }
-  
-  function playSelected() {
-    if (selectedVideos.size === 0) {
-      alert('Select videos to play by clicking their checkboxes');
-      return;
-    }
-    
-    // Build queue from selected videos in page order
-    playlistQueue = [];
-    document.querySelectorAll('.video-card').forEach(card => {
-      const videoId = card.dataset.videoId;
-      if (selectedVideos.has(videoId)) {
-        playlistQueue.push({ videoId, card });
-      }
-    });
-    
-    if (playlistQueue.length === 0) return;
-    
-    // Start playing first video
-    currentPlayingIndex = 0;
-    playNextInQueue();
-  }
-  
-  function playNextInQueue() {
-    hidePlaylistBar();
-    
-    if (currentPlayingIndex >= playlistQueue.length) {
-      // Playlist finished
-      playlistQueue = [];
-      currentPlayingIndex = -1;
-      alert('Playlist finished!');
-      return;
-    }
-    
-    const item = playlistQueue[currentPlayingIndex];
-    playVideo(item.card, item.videoId);
-    showPlaylistBar();
-  }
-  
-  function showPlaylistBar() {
-    let bar = document.getElementById('playlist-bar');
-    if (!bar) {
-      bar = document.createElement('div');
-      bar.id = 'playlist-bar';
-      document.body.appendChild(bar);
-    }
-    
-    const current = currentPlayingIndex + 1;
-    const total = playlistQueue.length;
-    const currentTitle = playlistQueue[currentPlayingIndex]?.card.querySelector('.video-title')?.textContent || 'Video';
-    
-    bar.innerHTML = `
-      <div class="playlist-info">
-        <span class="playlist-progress">▶ ${current} / ${total}</span>
-        <span class="playlist-title">${currentTitle.substring(0, 50)}...</span>
-      </div>
-      <div class="playlist-controls">
-        <button onclick="skipToNext()">Next ⏭</button>
-        <button onclick="stopPlaylist()">Stop ✕</button>
-      </div>
-    `;
-    bar.style.display = 'flex';
-  }
-  
-  function hidePlaylistBar() {
-    const bar = document.getElementById('playlist-bar');
-    if (bar) bar.style.display = 'none';
-  }
-  
-  function skipToNext() {
-    currentPlayingIndex++;
-    playNextInQueue();
-  }
-  
-  function stopPlaylist() {
-    playlistQueue = [];
-    currentPlayingIndex = -1;
-    hidePlaylistBar();
-    document.querySelectorAll('.player-container.active').forEach(p => {
-      p.classList.remove('active');
-      p.innerHTML = '';
-    });
   }
   
   async function clearWatched() {
@@ -835,47 +593,8 @@
     });
   }
   
-  function parseDuration(str) {
-    if (!str) return 0;
-    const parts = str.split(':').map(Number);
-    if (parts.length === 3) return parts[0] * 3600 + parts[1] * 60 + parts[2];
-    if (parts.length === 2) return parts[0] * 60 + parts[1];
-    return parts[0] || 0;
-  }
-  
-  function formatDuration(seconds) {
-    const h = Math.floor(seconds / 3600);
-    const m = Math.floor((seconds % 3600) / 60);
-    if (h > 0) return h + 'h ' + m + 'm';
-    return m + 'm';
-  }
-  
-  function updateStats() {
-    let total = 0, watched = 0;
-    document.querySelectorAll('.video-card:not(.pending-new)').forEach(card => {
-      const dur = parseDuration(card.dataset.duration);
-      total += dur;
-      if (card.classList.contains('watched')) {
-        watched += dur;
-      }
-    });
-    
-    document.getElementById('total-duration').textContent = formatDuration(total);
-    document.getElementById('watched-duration').textContent = formatDuration(watched);
-    document.getElementById('remaining-duration').textContent = formatDuration(total - watched);
-  }
-  
-  // Call updateStats after UI updates
-  const origUpdateUI = updateUI;
-  updateUI = function() {
-    origUpdateUI();
-    updateStats();
-  };
-  
-  document.addEventListener('DOMContentLoaded', () => {
-    loadUserData();
-    updateStats();
-  });
+  // Initialize on load
+  document.addEventListener('DOMContentLoaded', loadUserData);
 </script>
 </body>
 </html>
