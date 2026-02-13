@@ -262,12 +262,20 @@
   }
   #watched-duration { color: #f44; }
   #remaining-duration { color: #4a4; }
+  
+  .last-refresh {
+    color: #555;
+    font-size: 12px;
+    text-align: right;
+    margin-bottom: 8px;
+  }
   </style>
 </head>
 <body>
   <div style="margin-bottom:12px;display:flex;justify-content:space-between;align-items:center"><a href="https://youtube-playlists-alpha.vercel.app/" style="color:#4a9eff;text-decoration:none;font-size:14px">← Back to Home</a><a href="https://youtube-playlists-alpha.vercel.app/settings" style="color:#888;text-decoration:none;font-size:14px">⚙️ Manage Channels</a></div>
   <h1>📰 News Feed</h1>
   <p class="subtitle">News and current events from trusted sources • Click to play</p>
+  <div class="last-refresh" id="last-refresh">Checking...</div>
   <div id="sync-status" class="sync-status">Loading...</div>
   
   <div id="new-videos-banner" class="new-videos-banner">
@@ -690,6 +698,21 @@
   // Hook into updateUI
   const _origUpdateUI = updateUI;
   updateUI = function() { _origUpdateUI(); updateStats(); };
+  
+  // Load last refresh time
+  fetch('/last-refresh.json?' + Date.now())
+    .then(r => r.json())
+    .then(d => {
+      const dt = new Date(d.lastRefresh);
+      const now = new Date();
+      const diffH = Math.floor((now - dt) / 3600000);
+      const diffM = Math.floor(((now - dt) % 3600000) / 60000);
+      let ago = diffH > 0 ? diffH + 'h ' + diffM + 'm ago' : diffM + 'm ago';
+      document.getElementById('last-refresh').textContent = '🔄 Last checked for new content: ' + ago;
+    })
+    .catch(() => {
+      document.getElementById('last-refresh').textContent = '';
+    });
   </script>
 </body>
 </html>

@@ -16,6 +16,9 @@ if [ $? -ne 0 ]; then
   exit 1
 fi
 
+# Write refresh timestamp
+echo "{\"lastRefresh\":\"$(date -u +%Y-%m-%dT%H:%M:%SZ)\"}" > public/last-refresh.json
+
 # Build main site pages
 echo "[$(date)] Building main site pages..."
 node build-pages.js
@@ -25,6 +28,9 @@ echo "[$(date)] Copying data to sub-projects..."
 cp videos-data.json yt-research/
 cp videos-data.json yt-entertainment/
 cp videos-data.json yt-news/
+cp public/last-refresh.json yt-research/public/
+cp public/last-refresh.json yt-entertainment/public/
+cp public/last-refresh.json yt-news/public/
 
 # Build and deploy Research
 echo "[$(date)] Building and deploying yt-research..."
