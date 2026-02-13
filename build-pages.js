@@ -49,8 +49,11 @@ const CSS = `
     transition: opacity 0.3s, border 0.2s;
     position: relative;
   }
-  .video-card.watched {
+  .video-card.watched .video-header {
     opacity: 0.5;
+  }
+  .video-card.watched .new-badge {
+    display: none;
   }
   .video-card.selected {
     border: 2px solid #4a9eff;
@@ -230,6 +233,37 @@ const CSS = `
     padding-top: 20px;
     border-top: 1px solid #222;
   }
+  .last-refresh {
+    color: #555;
+    font-size: 12px;
+    text-align: right;
+    margin-bottom: 8px;
+  }
+  .stats-footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: 30px;
+    margin-bottom: 20px;
+    padding: 12px 20px;
+    background: #1a1a1a;
+    border-radius: 12px;
+  }
+  .stat-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .stat-label {
+    color: #888;
+    font-size: 13px;
+  }
+  .stat-value {
+    font-size: 18px;
+    font-weight: 600;
+    color: #fff;
+  }
+  #watched-duration { color: #f44; }
+  #remaining-duration { color: #4a4; }
   @media (max-width: 600px) {
     .video-header { flex-direction: column; }
     .thumb { width: 100%; height: auto; aspect-ratio: 16/9; }
@@ -444,23 +478,38 @@ const JS = `
     });
   }
   
+  let watchTimers = {};
+
   function togglePlayer(card, videoId) {
     const container = card.querySelector('.player-container');
     const isActive = container.classList.contains('active');
     
-    // Close all other players
+    // Close all other players and clear their timers
     document.querySelectorAll('.player-container.active').forEach(p => {
       p.classList.remove('active');
       p.innerHTML = '';
+    });
+    Object.keys(watchTimers).forEach(id => {
+      if (id !== videoId) { clearTimeout(watchTimers[id]); delete watchTimers[id]; }
     });
     
     if (!isActive) {
       container.innerHTML = '<iframe src="https://www.youtube.com/embed/' + videoId + '?autoplay=1" allow="autoplay; encrypted-media" allowfullscreen></iframe>';
       container.classList.add('active');
       
-      // Mark as watched
-      setWatched(videoId);
-      card.classList.add('watched');
+      // Mark as watched after 30 seconds of viewing
+      if (!isWatched(videoId)) {
+        watchTimers[videoId] = setTimeout(() => {
+          setWatched(videoId);
+          card.classList.add('watched');
+          updateUI();
+          debouncedSave();
+          delete watchTimers[videoId];
+        }, 30000);
+      }
+    } else {
+      // Closing player — cancel timer
+      if (watchTimers[videoId]) { clearTimeout(watchTimers[videoId]); delete watchTimers[videoId]; }
     }
   }
   
@@ -479,8 +528,51 @@ const JS = `
     });
   }
   
+  // Stats functions
+  function parseDuration(str) {
+    if (!str) return 0;
+    const parts = str.split(':').map(Number);
+    if (parts.length === 3) return parts[0] * 3600 + parts[1] * 60 + parts[2];
+    if (parts.length === 2) return parts[0] * 60 + parts[1];
+    return parts[0] || 0;
+  }
+  function formatDuration(seconds) {
+    const h = Math.floor(seconds / 3600);
+    const m = Math.floor((seconds % 3600) / 60);
+    if (h > 0) return h + 'h ' + m + 'm';
+    return m + 'm';
+  }
+  function updateStats() {
+    let total = 0, watched = 0;
+    document.querySelectorAll('.video-card').forEach(card => {
+      const durEl = card.querySelector('.duration');
+      if (!durEl) return;
+      const dur = parseDuration(durEl.textContent.trim());
+      total += dur;
+      if (card.classList.contains('watched')) watched += dur;
+    });
+    document.getElementById('total-duration').textContent = formatDuration(total);
+    document.getElementById('watched-duration').textContent = formatDuration(watched);
+    document.getElementById('remaining-duration').textContent = formatDuration(total - watched);
+  }
+  const _origUpdateUI = updateUI;
+  updateUI = function() { _origUpdateUI(); updateStats(); };
+
+  // Last refresh indicator
+  fetch('/last-refresh.json?' + Date.now())
+    .then(r => r.json())
+    .then(d => {
+      const dt = new Date(d.lastRefresh);
+      const now = new Date();
+      const diffH = Math.floor((now - dt) / 3600000);
+      const diffM = Math.floor(((now - dt) % 3600000) / 60000);
+      let ago = diffH > 0 ? diffH + 'h ' + diffM + 'm ago' : diffM + 'm ago';
+      document.getElementById('last-refresh').textContent = '🔄 Last checked for new content: ' + ago;
+    })
+    .catch(() => { document.getElementById('last-refresh').textContent = ''; });
+
   // Initialize on load
-  document.addEventListener('DOMContentLoaded', loadUserData);
+  document.addEventListener('DOMContentLoaded', () => { loadUserData(); updateStats(); });
 `;
 
 function generatePage(title, subtitle, categories, pageType) {
@@ -493,13 +585,30 @@ function generatePage(title, subtitle, categories, pageType) {
   <style>${CSS}</style>
 </head>
 <body>
+  <div style="margin-bottom:12px;display:flex;justify-content:space-between;align-items:center"><a href="https://youtube-playlists-alpha.vercel.app/" style="color:#4a9eff;text-decoration:none;font-size:14px">← Back to Home</a><a href="https://youtube-playlists-alpha.vercel.app/settings" style="color:#888;text-decoration:none;font-size:14px">⚙️ Manage Channels</a></div>
   <h1>${title}</h1>
   <p class="subtitle">${subtitle}</p>
+  <div class="last-refresh" id="last-refresh">Checking...</div>
   <div id="sync-status" class="sync-status">Loading...</div>
   
   <div id="new-videos-banner" class="new-videos-banner">
     <h3>📺 New Videos Available</h3>
     <div id="new-videos-list"></div>
+  </div>
+
+  <div class="stats-footer">
+    <div class="stat-item">
+      <span class="stat-label">Total on page:</span>
+      <span class="stat-value" id="total-duration">--</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-label">Watched:</span>
+      <span class="stat-value" id="watched-duration">--</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-label">Remaining:</span>
+      <span class="stat-value" id="remaining-duration">--</span>
+    </div>
   </div>
   
   <div class="controls">
