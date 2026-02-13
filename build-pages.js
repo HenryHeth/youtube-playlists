@@ -327,6 +327,7 @@ const JS = `
       setStatus('synced', 'Synced ✓');
     } catch (e) {
       console.error('Cloud sync unavailable:', e);
+      setStatus('error', 'Sync failed: ' + e.message);
       // Fall back to localStorage
       try {
         const local = localStorage.getItem('yt-userData');
@@ -334,11 +335,12 @@ const JS = `
           userData = JSON.parse(local);
           updateUI();
           showPendingNewVideos();
-          setStatus('synced', 'Local mode ✓');
+          setStatus('error', 'Local mode (sync failed: ' + e.message + ')');
           return;
         }
       } catch {}
-      // First visit - initialize with current videos
+      // First visit with no sync - show all videos (no filtering)
+      setStatus('error', 'First visit, no sync - showing all');
       userData.myVideos[pageType] = {};
       document.querySelectorAll('.video-card').forEach(card => {
         const videoId = card.dataset.videoId;
