@@ -1,9 +1,14 @@
 {
   "rewrites": [
-    { "source": "/research", "destination": "/yt-research/public/index.html" },
-    { "source": "/entertainment", "destination": "/yt-entertainment/public/index.html" },
-    { "source": "/news", "destination": "/yt-news/public/index.html" },
-    { "source": "/settings", "destination": "/public/settings.html" },
+    { "source": "/settings", "destination": "/settings.html" },
     { "source": "/api/:path*", "destination": "/api/:path*" }
+  ],
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        { "key": "Cache-Control", "value": "no-cache" }
+      ]
+    }
   ]
 }

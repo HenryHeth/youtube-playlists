@@ -1,7 +1,7 @@
 // Email/password auth with account creation
 // Stores accounts in JSONBlob for persistence
 
-const ACCOUNTS_BLOB_ID = process.env.ACCOUNTS_BLOB_ID || 'yt-accounts-store';
+const ACCOUNTS_BLOB_ID = process.env.ACCOUNTS_BLOB_ID || '019c5452-4769-7181-919b-337995fd6f38';
 const sessions = new Map();
 
 function generateToken() {

@@ -1,7 +1,7 @@
 // User channel management API
 // Stores channel lists per user in JSONBlob
 
-const CHANNELS_BLOB_ID = process.env.CHANNELS_BLOB_ID || 'channels-default';
+const CHANNELS_BLOB_ID = process.env.CHANNELS_BLOB_ID || '019c516b-bbdc-7cd9-90eb-629115e8b924';
 
 // Category detection based on channel content/name
 function detectCategory(channelName, channelUrl) {

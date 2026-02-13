@@ -224,10 +224,11 @@
           
           for (const ch of categories[cat]) {
             const ytUrl = `https://www.youtube.com/${ch.channel}`;
+            const escapedName = ch.name.replace(/'/g, "\\'");
             html += `
               <div class="channel-tag">
                 <a href="${ytUrl}" target="_blank">${ch.name}</a>
-                <button class="remove-btn" onclick="removeChannel('${ch.channel}', '${feed.key}', '${cat}')" title="Remove">×</button>
+                <button class="remove-btn" onclick="removeChannel('${ch.channel}', '${feed.key}', '${cat}', '${escapedName}')" title="Remove">×</button>
               </div>
             `;
           }
@@ -285,8 +286,14 @@
       btn.textContent = 'Add';
     }
     
-    async function removeChannel(handle, feed, category) {
-      if (!confirm(`Remove this channel?`)) return;
+    async function removeChannel(handle, feed, category, channelName) {
+      // Type-to-confirm delete
+      const confirmText = prompt(`To delete "${channelName}", type the channel name below:`);
+      if (confirmText === null) return; // Cancelled
+      if (confirmText.toLowerCase() !== channelName.toLowerCase()) {
+        alert('Name did not match. Channel not deleted.');
+        return;
+      }
       
       try {
         await fetch(`${API_BASE}/api/channels?action=remove`, {

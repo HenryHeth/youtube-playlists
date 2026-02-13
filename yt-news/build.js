@@ -180,53 +180,123 @@ const CSS = `
     opacity: 0.5;
     cursor: not-allowed;
   }
-  .selection-count {
-    font-size: 13px;
-    color: #888;
-  }
-  .new-videos-banner {
-    background: #1a3a1a;
-    border: 1px solid #2a5a2a;
-    border-radius: 8px;
-    padding: 16px;
-    margin-bottom: 20px;
-    display: none;
-  }
-  .new-videos-banner.visible {
-    display: block;
-  }
-  .new-videos-banner h3 {
-    color: #6c6;
-    margin-bottom: 12px;
-    font-size: 16px;
-  }
-  .new-video-item {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 8px 0;
-    border-bottom: 1px solid #2a4a2a;
-  }
-  .new-video-item:last-child {
-    border-bottom: none;
-  }
-  .new-video-item button {
+  #play-selected-btn:not(:disabled) {
     background: #4a4;
     color: #fff;
-    border: none;
-    padding: 6px 12px;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 12px;
   }
-  .new-video-item button:hover {
+  #play-selected-btn:not(:disabled):hover {
     background: #5b5;
   }
+  #playlist-bar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+    padding: 12px 20px;
+    display: none;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 1000;
+    border-top: 2px solid #4a9eff;
+    box-shadow: 0 -4px 20px rgba(0,0,0,0.5);
+  }
+  .playlist-info {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+  }
+  .playlist-progress {
+    background: #4a9eff;
+    color: #fff;
+    padding: 4px 12px;
+    border-radius: 12px;
+    font-weight: bold;
+    font-size: 14px;
+  }
+  .playlist-title {
+    color: #ccc;
+    font-size: 14px;
+  }
+  .playlist-controls {
+    display: flex;
+    gap: 10px;
+  }
+  .playlist-controls button {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+  }
+  .playlist-controls button:first-child {
+    background: #4a4;
+    color: #fff;
+  }
+  .playlist-controls button:last-child {
+    background: #666;
+    color: #fff;
+  }
+  .playlist-controls button:hover {
+    opacity: 0.9;
+  }
+  .selection-count {
+    font-size: 14px;
+    color: #4a9eff;
+    font-weight: 500;
+  }
+  .channel-pending {
+    display: none;
+    margin-bottom: 16px;
+  }
+  .pending-text {
+    background: #1a2a1a;
+    border-left: 3px solid #4a4;
+    padding: 10px 14px;
+    margin-bottom: 8px;
+    border-radius: 0 8px 8px 0;
+    cursor: pointer;
+    font-size: 14px;
+  }
+  .pending-text:hover {
+    background: #253525;
+  }
+  .pending-text .new-tag {
+    color: #6c6;
+    font-weight: 600;
+    margin-right: 8px;
+  }
+  .stats-footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: 30px;
+    margin-bottom: 20px;
+    padding: 12px 20px;
+    background: #1a1a1a;
+    border-radius: 12px;
+  }
+  .stat-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .stat-label {
+    color: #888;
+    font-size: 13px;
+  }
+  .stat-value {
+    font-size: 18px;
+    font-weight: 600;
+    color: #fff;
+  }
+  #watched-duration { color: #f44; }
+  #remaining-duration { color: #4a4; }
   .updated {
     text-align: center;
     color: #555;
     font-size: 12px;
-    margin-top: 40px;
+    margin-top: 20px;
     padding-top: 20px;
     border-top: 1px solid #222;
   }
@@ -253,6 +323,8 @@ const JS = `
   let userData = { watched: {}, myVideos: {}, pendingNew: [] };
   let syncTimeout = null;
   let selectedVideos = new Set();
+  let playlistQueue = [];
+  let currentPlayingIndex = -1;
   
   // Get page type from URL
   const pageType = location.pathname.includes('entertainment') ? 'entertainment' : 'research';
@@ -271,7 +343,7 @@ const JS = `
       // First visit: if no myVideos for this page, add all current videos
       if (!userData.myVideos[pageType] || Object.keys(userData.myVideos[pageType]).length === 0) {
         userData.myVideos[pageType] = {};
-        document.querySelectorAll('.video-card').forEach(card => {
+        document.querySelectorAll('.video-card:not(.pending-new)').forEach(card => {
           const videoId = card.dataset.videoId;
           const creator = card.dataset.creator;
           userData.myVideos[pageType][videoId] = { 
@@ -288,7 +360,6 @@ const JS = `
     } catch (e) {
       console.error('Load failed:', e);
       setStatus('error', 'Sync failed');
-      // Fall back to showing all videos
     }
   }
   
@@ -330,17 +401,15 @@ const JS = `
   }
   
   function updateUI() {
-    document.querySelectorAll('.video-card').forEach(card => {
+    document.querySelectorAll('.video-card:not(.pending-new)').forEach(card => {
       const videoId = card.dataset.videoId;
       
-      // Update watched state
       if (isWatched(videoId)) {
         card.classList.add('watched');
       } else {
         card.classList.remove('watched');
       }
       
-      // Update selection state
       if (selectedVideos.has(videoId)) {
         card.classList.add('selected');
         card.querySelector('.select-checkbox').checked = true;
@@ -365,14 +434,32 @@ const JS = `
   
   function updateSelectionCount() {
     const countEl = document.getElementById('selection-count');
+    const count = selectedVideos.size;
+    
     if (countEl) {
-      const count = selectedVideos.size;
-      countEl.textContent = count > 0 ? count + ' selected' : '';
+      if (count > 0) {
+        // Calculate total duration of selected videos
+        let totalSeconds = 0;
+        document.querySelectorAll('.video-card').forEach(card => {
+          if (selectedVideos.has(card.dataset.videoId)) {
+            totalSeconds += parseDuration(card.dataset.duration);
+          }
+        });
+        const durationStr = formatDuration(totalSeconds);
+        countEl.textContent = count + ' selected (' + durationStr + ')';
+      } else {
+        countEl.textContent = '';
+      }
     }
     
     const refreshBtn = document.getElementById('refresh-selected-btn');
     if (refreshBtn) {
-      refreshBtn.disabled = selectedVideos.size === 0;
+      refreshBtn.disabled = count === 0;
+    }
+    
+    const playBtn = document.getElementById('play-selected-btn');
+    if (playBtn) {
+      playBtn.disabled = count === 0;
     }
   }
   
@@ -381,7 +468,6 @@ const JS = `
       alert('Select videos to refresh by clicking their checkboxes');
       return;
     }
-    // Remove selected videos from myVideos - they'll be re-added on next fetch
     selectedVideos.forEach(videoId => {
       if (userData.myVideos[pageType]) {
         delete userData.myVideos[pageType][videoId];
@@ -394,43 +480,59 @@ const JS = `
   }
   
   function showPendingNewVideos() {
-    const banner = document.getElementById('new-videos-banner');
-    const list = document.getElementById('new-videos-list');
-    if (!banner || !list) return;
+    // Get video IDs already on the page
+    const onPageIds = new Set();
+    document.querySelectorAll('.video-card[data-video-id]').forEach(card => {
+      onPageIds.add(card.dataset.videoId);
+    });
     
-    const pending = userData.pendingNew.filter(v => v.pageType === pageType);
-    if (pending.length === 0) {
-      banner.classList.remove('visible');
-      return;
-    }
+    // Filter pending videos to only this feed's pageType AND not already on page
+    const pending = userData.pendingNew.filter(v => 
+      v.pageType === pageType && !onPageIds.has(v.videoId)
+    );
     
-    list.innerHTML = pending.map(v => \`
-      <div class="new-video-item">
-        <span><strong>\${v.creator}</strong>: \${v.title}</span>
-        <button onclick="addPendingVideo('\${v.videoId}')">Add to List</button>
-      </div>
-    \`).join('');
+    // Group by creator
+    const byCreator = {};
+    pending.forEach(v => {
+      if (!byCreator[v.creator]) byCreator[v.creator] = [];
+      byCreator[v.creator].push(v);
+    });
     
-    banner.classList.add('visible');
+    // Show pending videos as simple text under each channel
+    document.querySelectorAll('.channel-pending').forEach(container => {
+      const creator = container.dataset.creator;
+      const videos = byCreator[creator] || [];
+      
+      if (videos.length === 0) {
+        container.style.display = 'none';
+        container.innerHTML = '';
+        return;
+      }
+      
+      container.style.display = 'block';
+      container.innerHTML = videos.map(v => \`
+        <div class="pending-text" onclick="addPendingVideo('\${v.videoId}')">
+          <span class="new-tag">+ NEW:</span> \${v.title}
+        </div>
+      \`).join('');
+    });
   }
   
   function addPendingVideo(videoId) {
     const pending = userData.pendingNew.find(v => v.videoId === videoId);
     if (!pending) return;
     
-    // Add to myVideos
     if (!userData.myVideos[pageType]) userData.myVideos[pageType] = {};
     userData.myVideos[pageType][videoId] = {
       added: Date.now(),
       creator: pending.creator
     };
     
-    // Remove from pending
     userData.pendingNew = userData.pendingNew.filter(v => v.videoId !== videoId);
     
     saveUserData().then(() => {
       showPendingNewVideos();
-      alert('Video added! Reload page to see it.');
+      alert('Video added! Reload page to see it in your list.');
     });
   }
   
@@ -438,20 +540,149 @@ const JS = `
     const container = card.querySelector('.player-container');
     const isActive = container.classList.contains('active');
     
-    // Close all other players
     document.querySelectorAll('.player-container.active').forEach(p => {
       p.classList.remove('active');
       p.innerHTML = '';
     });
     
     if (!isActive) {
-      container.innerHTML = '<iframe src="https://www.youtube.com/embed/' + videoId + '?autoplay=1" allow="autoplay; encrypted-media" allowfullscreen></iframe>';
-      container.classList.add('active');
-      
-      // Mark as watched
-      setWatched(videoId);
-      card.classList.add('watched');
+      playVideo(card, videoId);
     }
+  }
+  
+  let ytPlayer = null;
+  
+  function playVideo(card, videoId) {
+    // Close any open players
+    document.querySelectorAll('.player-container.active').forEach(p => {
+      p.classList.remove('active');
+      p.innerHTML = '';
+    });
+    
+    const container = card.querySelector('.player-container');
+    container.innerHTML = '<div id="yt-player-container"></div>';
+    container.classList.add('active');
+    
+    // Use YouTube IFrame API for end detection
+    if (window.YT && window.YT.Player) {
+      createYTPlayer(videoId);
+    } else {
+      // Load YouTube API if not loaded
+      window.onYouTubeIframeAPIReady = () => createYTPlayer(videoId);
+      const tag = document.createElement('script');
+      tag.src = 'https://www.youtube.com/iframe_api';
+      document.head.appendChild(tag);
+    }
+    
+    setWatched(videoId);
+    card.classList.add('watched');
+    
+    // Scroll card into view
+    card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }
+  
+  function createYTPlayer(videoId) {
+    ytPlayer = new YT.Player('yt-player-container', {
+      videoId: videoId,
+      width: '100%',
+      height: '100%',
+      playerVars: { autoplay: 1 },
+      events: {
+        onStateChange: onPlayerStateChange
+      }
+    });
+  }
+  
+  function onPlayerStateChange(event) {
+    // State 0 = ended
+    if (event.data === 0 && playlistQueue.length > 0 && currentPlayingIndex >= 0) {
+      // Auto-advance to next video
+      currentPlayingIndex++;
+      playNextInQueue();
+    }
+  }
+  
+  function playSelected() {
+    if (selectedVideos.size === 0) {
+      alert('Select videos to play by clicking their checkboxes');
+      return;
+    }
+    
+    // Build queue from selected videos in page order
+    playlistQueue = [];
+    document.querySelectorAll('.video-card').forEach(card => {
+      const videoId = card.dataset.videoId;
+      if (selectedVideos.has(videoId)) {
+        playlistQueue.push({ videoId, card });
+      }
+    });
+    
+    if (playlistQueue.length === 0) return;
+    
+    // Start playing first video
+    currentPlayingIndex = 0;
+    playNextInQueue();
+  }
+  
+  function playNextInQueue() {
+    hidePlaylistBar();
+    
+    if (currentPlayingIndex >= playlistQueue.length) {
+      // Playlist finished
+      playlistQueue = [];
+      currentPlayingIndex = -1;
+      alert('Playlist finished!');
+      return;
+    }
+    
+    const item = playlistQueue[currentPlayingIndex];
+    playVideo(item.card, item.videoId);
+    showPlaylistBar();
+  }
+  
+  function showPlaylistBar() {
+    let bar = document.getElementById('playlist-bar');
+    if (!bar) {
+      bar = document.createElement('div');
+      bar.id = 'playlist-bar';
+      document.body.appendChild(bar);
+    }
+    
+    const current = currentPlayingIndex + 1;
+    const total = playlistQueue.length;
+    const currentTitle = playlistQueue[currentPlayingIndex]?.card.querySelector('.video-title')?.textContent || 'Video';
+    
+    bar.innerHTML = \`
+      <div class="playlist-info">
+        <span class="playlist-progress">▶ \${current} / \${total}</span>
+        <span class="playlist-title">\${currentTitle.substring(0, 50)}...</span>
+      </div>
+      <div class="playlist-controls">
+        <button onclick="skipToNext()">Next ⏭</button>
+        <button onclick="stopPlaylist()">Stop ✕</button>
+      </div>
+    \`;
+    bar.style.display = 'flex';
+  }
+  
+  function hidePlaylistBar() {
+    const bar = document.getElementById('playlist-bar');
+    if (bar) bar.style.display = 'none';
+  }
+  
+  function skipToNext() {
+    currentPlayingIndex++;
+    playNextInQueue();
+  }
+  
+  function stopPlaylist() {
+    playlistQueue = [];
+    currentPlayingIndex = -1;
+    hidePlaylistBar();
+    document.querySelectorAll('.player-container.active').forEach(p => {
+      p.classList.remove('active');
+      p.innerHTML = '';
+    });
   }
   
   async function clearWatched() {
@@ -469,8 +700,47 @@ const JS = `
     });
   }
   
-  // Initialize on load
-  document.addEventListener('DOMContentLoaded', loadUserData);
+  function parseDuration(str) {
+    if (!str) return 0;
+    const parts = str.split(':').map(Number);
+    if (parts.length === 3) return parts[0] * 3600 + parts[1] * 60 + parts[2];
+    if (parts.length === 2) return parts[0] * 60 + parts[1];
+    return parts[0] || 0;
+  }
+  
+  function formatDuration(seconds) {
+    const h = Math.floor(seconds / 3600);
+    const m = Math.floor((seconds % 3600) / 60);
+    if (h > 0) return h + 'h ' + m + 'm';
+    return m + 'm';
+  }
+  
+  function updateStats() {
+    let total = 0, watched = 0;
+    document.querySelectorAll('.video-card:not(.pending-new)').forEach(card => {
+      const dur = parseDuration(card.dataset.duration);
+      total += dur;
+      if (card.classList.contains('watched')) {
+        watched += dur;
+      }
+    });
+    
+    document.getElementById('total-duration').textContent = formatDuration(total);
+    document.getElementById('watched-duration').textContent = formatDuration(watched);
+    document.getElementById('remaining-duration').textContent = formatDuration(total - watched);
+  }
+  
+  // Call updateStats after UI updates
+  const origUpdateUI = updateUI;
+  updateUI = function() {
+    origUpdateUI();
+    updateStats();
+  };
+  
+  document.addEventListener('DOMContentLoaded', () => {
+    loadUserData();
+    updateStats();
+  });
 `;
 
 function generatePage(title, subtitle, categories, pageType) {
@@ -484,21 +754,32 @@ function generatePage(title, subtitle, categories, pageType) {
 </head>
 <body>
   <nav class="top-nav">
-    <a href="/" class="back-link">← Home</a>
-    <a href="/settings" class="settings-link">+ Add Channel</a>
+    <a href="https://youtube-playlists-alpha.vercel.app" class="back-link">← Home</a>
+    <a href="https://youtube-playlists-alpha.vercel.app/settings" class="settings-link">⚙️ Manage Channels</a>
   </nav>
   <h1>${title}</h1>
   <p class="subtitle">${subtitle}</p>
   <div id="sync-status" class="sync-status">Loading...</div>
   
-  <div id="new-videos-banner" class="new-videos-banner">
-    <h3>📺 New Videos Available</h3>
-    <div id="new-videos-list"></div>
+  <div class="stats-footer">
+    <div class="stat-item">
+      <span class="stat-label">Total on page:</span>
+      <span class="stat-value" id="total-duration">--</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-label">Watched:</span>
+      <span class="stat-value" id="watched-duration">--</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-label">Remaining:</span>
+      <span class="stat-value" id="remaining-duration">--</span>
+    </div>
   </div>
   
   <div class="controls">
     <button onclick="hideWatched()">Hide Watched</button>
     <button onclick="clearWatched()">Clear History</button>
+    <button id="play-selected-btn" onclick="playSelected()" disabled>▶ Play Selected</button>
     <button id="refresh-selected-btn" onclick="refreshSelected()" disabled>Refresh Selected</button>
     <span id="selection-count" class="selection-count"></span>
   </div>
@@ -515,7 +796,7 @@ function generatePage(title, subtitle, categories, pageType) {
         const newBadge = video.isNew ? '<span class="new-badge">NEW</span>' : '';
         const durationBadge = video.duration ? `<span class="duration">${escapeHtml(video.duration)}</span>` : '';
         
-        html += `    <div class="video-card" data-video-id="${video.videoId}" data-creator="${escapeHtml(creator.creator)}">
+        html += `    <div class="video-card" data-video-id="${video.videoId}" data-creator="${escapeHtml(creator.creator)}" data-duration="${escapeHtml(video.duration || '')}">
       <input type="checkbox" class="select-checkbox" onclick="toggleSelect('${video.videoId}', this, event)">
       <div class="video-header" onclick="togglePlayer(this.parentElement, '${video.videoId}')">
         <div class="thumb-container">
@@ -536,6 +817,9 @@ function generatePage(title, subtitle, categories, pageType) {
     </div>
 `;
       }
+      // Add placeholder for pending new videos from this creator
+      html += `    <div class="channel-pending" data-creator="${escapeHtml(creator.creator)}"></div>
+`;
     }
     html += `  </div>
 `;
@@ -546,7 +830,7 @@ function generatePage(title, subtitle, categories, pageType) {
     dateStyle: 'medium',
     timeStyle: 'short'
   });
-  html += `  <div class="updated">Last updated: ${now} PST</div>
+  html += `<div class="updated">Last updated: ${now} PST</div>
   <script>${JS}</script>
 </body>
 </html>`;
@@ -566,13 +850,25 @@ function escapeHtml(str) {
 // Create public directory
 fs.mkdirSync('public', { recursive: true });
 
-// Build news page
-const newsHtml = generatePage(
+// Build research page
+const researchHtml = generatePage(
   '📰 News Feed',
-  'Curated news videos • Click to play',
+  'Current events and news • Click to play',
   data.news,
-  'news'
+  'research'
 );
-fs.writeFileSync('public/index.html', newsHtml);
-console.log('✅ Built public/index.html');
+fs.writeFileSync('public/research.html', researchHtml);
+fs.writeFileSync('public/index.html', researchHtml);
+console.log('✅ Built public/research.html + index.html');
 
+// Build entertainment page
+const entertainmentHtml = generatePage(
+  '⛵ Entertainment Feed',
+  'Sailing content for leisure time • Click to play',
+  data.entertainment,
+  'entertainment'
+);
+fs.writeFileSync('public/entertainment.html', entertainmentHtml);
+console.log('✅ Built public/entertainment.html');
+
+console.log('\\nDone!');

@@ -1,4 +1,208 @@
 {
+  "research": {
+    "AI and Tech": [
+      {
+        "creator": "Matt Wolfe",
+        "channel": "@mreflow",
+        "videos": [
+          {
+            "title": "The AI Wake-Up Call Everyone Needs Right Now!",
+            "url": "https://www.youtube.com/watch?v=sLhxdcpuot0",
+            "views": "55K views",
+            "dateStr": "11 hours ago",
+            "duration": "28:06",
+            "videoId": "sLhxdcpuot0",
+            "thumbnail": "https://i.ytimg.com/vi/sLhxdcpuot0/hqdefault.jpg",
+            "isNew": true
+          }
+        ]
+      },
+      {
+        "creator": "Matthew Berman",
+        "channel": "@matthew_berman",
+        "videos": [
+          {
+            "title": "How I'm using OpenClaw Everyday (Use Cases)",
+            "url": "https://www.youtube.com/watch?v=Q7r--i9lLck",
+            "views": "55K views",
+            "dateStr": "15 hours ago",
+            "duration": "27:41",
+            "videoId": "Q7r--i9lLck",
+            "thumbnail": "https://i.ytimg.com/vi/Q7r--i9lLck/hqdefault.jpg",
+            "isNew": true
+          }
+        ]
+      }
+    ],
+    "News and Finance": [
+      {
+        "creator": "Claus Kellerman POV",
+        "channel": "@clauskellermanpov3004",
+        "videos": [
+          {
+            "title": "US LIES ARE OUT OF CONTROL - THE BIGGEST THREAT TO CANADA",
+            "url": "https://www.youtube.com/watch?v=XUHJ_DX_PwI",
+            "views": "58K views",
+            "dateStr": "20 hours ago",
+            "duration": "13:45",
+            "videoId": "XUHJ_DX_PwI",
+            "thumbnail": "https://i.ytimg.com/vi/XUHJ_DX_PwI/hqdefault.jpg",
+            "isNew": true
+          }
+        ]
+      },
+      {
+        "creator": "Russell Matthews",
+        "channel": "@russellmatthews",
+        "videos": [
+          {
+            "title": "EXPOSED: Canada Police Tied to Criminal Gangs, Blackmail, Drugs",
+            "url": "https://www.youtube.com/watch?v=oEQowHRmVe8",
+            "views": "27K views",
+            "dateStr": "6 days ago",
+            "duration": "13:37",
+            "videoId": "oEQowHRmVe8",
+            "thumbnail": "https://i.ytimg.com/vi/oEQowHRmVe8/hqdefault.jpg",
+            "isNew": true
+          }
+        ]
+      },
+      {
+        "creator": "Mark Mitchell",
+        "channel": "@MortgageBrokerLondonOntario",
+        "videos": [
+          {
+            "title": "Real Estate Scams Unravelling",
+            "url": "https://www.youtube.com/watch?v=zoYtn5C2e5w&pp=0gcJCZQKAYcqIYzv",
+            "views": "8.3K views",
+            "dateStr": "17 hours ago",
+            "duration": "8:09",
+            "videoId": "zoYtn5C2e5w",
+            "thumbnail": "https://i.ytimg.com/vi/zoYtn5C2e5w/hqdefault.jpg",
+            "isNew": true
+          }
+        ]
+      },
+      {
+        "creator": "Ben Felix",
+        "channel": "@BenFelixCSI",
+        "videos": [
+          {
+            "title": "The Biggest Mistakes in Personal Finance",
+            "url": "https://www.youtube.com/watch?v=d7wnAw7ufG4",
+            "views": "191K views",
+            "dateStr": "3 days ago",
+            "duration": "15:37",
+            "videoId": "d7wnAw7ufG4",
+            "thumbnail": "https://i.ytimg.com/vi/d7wnAw7ufG4/hqdefault.jpg",
+            "isNew": true
+          }
+        ]
+      }
+    ],
+    "Health": [
+      {
+        "creator": "Doctor Alex",
+        "channel": "@DrAlexGeorge",
+        "videos": [
+          {
+            "title": "I Quit Alcohol For 1000 Days But Didn’t Expect This",
+            "url": "https://www.youtube.com/watch?v=QvhKvX5e-S8",
+            "views": "5.4K views",
+            "dateStr": "3 days ago",
+            "duration": "13:12",
+            "videoId": "QvhKvX5e-S8",
+            "thumbnail": "https://i.ytimg.com/vi/QvhKvX5e-S8/hqdefault.jpg",
+            "isNew": true
+          }
+        ]
+      },
+      {
+        "creator": "Nutrition Made Simple!",
+        "channel": "@NutritionMadeSimple",
+        "videos": [
+          {
+            "title": "7 Surprising Foods that Help Fight CANCER",
+            "url": "https://www.youtube.com/watch?v=rEE7yamHeoo",
+            "views": "28K views",
+            "dateStr": "1 day ago",
+            "duration": "8:34",
+            "videoId": "rEE7yamHeoo",
+            "thumbnail": "https://i.ytimg.com/vi/rEE7yamHeoo/hqdefault.jpg",
+            "isNew": true
+          }
+        ]
+      },
+      {
+        "creator": "Nick Norwitz",
+        "channel": "@nicknorwitzMDPhD",
+        "videos": [
+          {
+            "title": "The 75-Year-Old Obesity Riddle Science Just Solved",
+            "url": "https://www.youtube.com/watch?v=gbxH6DXZprw",
+            "views": "19K views",
+            "dateStr": "22 hours ago",
+            "duration": "14:35",
+            "videoId": "gbxH6DXZprw",
+            "thumbnail": "https://i.ytimg.com/vi/gbxH6DXZprw/hqdefault.jpg",
+            "isNew": true
+          }
+        ]
+      }
+    ]
+  },
+  "entertainment": {
+    "Sailing": [
+      {
+        "creator": "Practical Sailor",
+        "channel": "@practical-sailor",
+        "videos": [
+          {
+            "title": "This “Bulletproof” Cruiser Has a Serious Weak Spot Caliber 40 LRC SE",
+            "url": "https://www.youtube.com/watch?v=HFsjRc4Y2t0",
+            "views": "12K views",
+            "dateStr": "2 days ago",
+            "duration": "9:03",
+            "videoId": "HFsjRc4Y2t0",
+            "thumbnail": "https://i.ytimg.com/vi/HFsjRc4Y2t0/hqdefault.jpg",
+            "isNew": true
+          }
+        ]
+      },
+      {
+        "creator": "New Kids On The Dock",
+        "channel": "@Thenewkidsonthedock",
+        "videos": [
+          {
+            "title": "This System is CRITICAL for our 57ft Abandoned Catamaran…And We’ve Never Done it Before 😬",
+            "url": "https://www.youtube.com/watch?v=jE05We9IJIA",
+            "views": "135K views",
+            "dateStr": "6 days ago",
+            "duration": "42:02",
+            "videoId": "jE05We9IJIA",
+            "thumbnail": "https://i.ytimg.com/vi/jE05We9IJIA/hqdefault.jpg",
+            "isNew": true
+          }
+        ]
+      },
+      {
+        "creator": "Sailing Parlay Revival",
+        "channel": "@ParlayRevival",
+        "videos": [
+          {
+            "title": "REBUILDING OUR HULLS: Blister repair series - part 4  (Episode 350)",
+            "url": "https://www.youtube.com/watch?v=XhZZCNfBmLI",
+            "views": "153K views",
+            "dateStr": "3 days ago",
+            "duration": "23:23",
+            "videoId": "XhZZCNfBmLI",
+            "thumbnail": "https://i.ytimg.com/vi/XhZZCNfBmLI/hqdefault.jpg",
+            "isNew": true
+          }
+        ]
+      }
+    ]
+  },
   "news": {
     "News": [
       {
@@ -6,12 +210,13 @@
         "channel": "@clauskellermanpov3004",
         "videos": [
           {
-            "title": "USA LAUNCHES MOST IGNORANT EXTORTION THREAT ON CANADA",
-            "url": "https://www.youtube.com/watch?v=DiZTxRpWNk0",
-            "views": "45K views",
-            "dateStr": "6 hours ago",
-            "videoId": "DiZTxRpWNk0",
-            "thumbnail": "https://i.ytimg.com/vi/DiZTxRpWNk0/hqdefault.jpg",
+            "title": "US LIES ARE OUT OF CONTROL - THE BIGGEST THREAT TO CANADA",
+            "url": "https://www.youtube.com/watch?v=XUHJ_DX_PwI&pp=0gcJCZQKAYcqIYzv",
+            "views": "58K views",
+            "dateStr": "20 hours ago",
+            "duration": "13:45",
+            "videoId": "XUHJ_DX_PwI",
+            "thumbnail": "https://i.ytimg.com/vi/XUHJ_DX_PwI/hqdefault.jpg",
             "isNew": true
           }
         ]
@@ -21,12 +226,13 @@
         "channel": "@GlobalNews",
         "videos": [
           {
-            "title": "Carney comments on Trump threat to block opening of Gordie Howe bridge",
-            "url": "https://www.youtube.com/watch?v=NqMutxrZshY",
-            "views": "",
-            "dateStr": "Recent",
-            "videoId": "NqMutxrZshY",
-            "thumbnail": "https://i.ytimg.com/vi/NqMutxrZshY/hqdefault.jpg",
+            "title": "What we know about the Tumbler Ridge shooting victims, suspect",
+            "url": "https://www.youtube.com/watch?v=VwDEbz51bqA",
+            "views": "136K views",
+            "dateStr": "6 hours ago",
+            "duration": "2:58",
+            "videoId": "VwDEbz51bqA",
+            "thumbnail": "https://i.ytimg.com/vi/VwDEbz51bqA/hqdefault.jpg",
             "isNew": true
           }
         ]
@@ -36,12 +242,13 @@
         "channel": "@CTVNews",
         "videos": [
           {
-            "title": "Early federal election has come up with conversations with Carney but 'it's up to him': Ford",
-            "url": "https://www.youtube.com/watch?v=WAKOZloEtGw",
-            "views": "",
-            "dateStr": "Recent",
-            "videoId": "WAKOZloEtGw",
-            "thumbnail": "https://i.ytimg.com/vi/WAKOZloEtGw/hqdefault.jpg",
+            "title": "Major Canadian airlines suspend flights to Cuba",
+            "url": "https://www.youtube.com/watch?v=1YQUw7uEp7c",
+            "views": "161 views",
+            "dateStr": "58 minutes ago",
+            "duration": "2:29",
+            "videoId": "1YQUw7uEp7c",
+            "thumbnail": "https://i.ytimg.com/vi/1YQUw7uEp7c/hqdefault.jpg",
             "isNew": true
           }
         ]
@@ -51,12 +258,13 @@
         "channel": "@briantylercohen",
         "videos": [
           {
-            "title": "Trump ATTACKS Olympian in INSANE tirade",
-            "url": "https://www.youtube.com/watch?v=cV_3EyVNr7I",
-            "views": "",
-            "dateStr": "Recent",
-            "videoId": "cV_3EyVNr7I",
-            "thumbnail": "https://i.ytimg.com/vi/cV_3EyVNr7I/hqdefault.jpg",
+            "title": "Pam Bondi dealt NIGHTMARE blow after disaster hearing | Another Day",
+            "url": "https://www.youtube.com/watch?v=nrGBkyvMRHA",
+            "views": "169K views",
+            "dateStr": "5 hours ago",
+            "duration": "10:12",
+            "videoId": "nrGBkyvMRHA",
+            "thumbnail": "https://i.ytimg.com/vi/nrGBkyvMRHA/hqdefault.jpg",
             "isNew": true
           }
         ]
@@ -66,12 +274,13 @@
         "channel": "@HouseofEl",
         "videos": [
           {
-            "title": "China ORDERS Banks to MASS DUMP US Treasuries - US Panics as Dollar COLLAPSES Under Trump",
-            "url": "https://www.youtube.com/watch?v=N2FLAPCSbZo",
-            "views": "",
-            "dateStr": "Recent",
-            "videoId": "N2FLAPCSbZo",
-            "thumbnail": "https://i.ytimg.com/vi/N2FLAPCSbZo/hqdefault.jpg",
+            "title": "Trump's Bridge Threat BACKFIRED - Humuliated as Carney Explains FACTS",
+            "url": "https://www.youtube.com/watch?v=VY2NhHM01jM",
+            "views": "44K views",
+            "dateStr": "15 hours ago",
+            "duration": "8:01",
+            "videoId": "VY2NhHM01jM",
+            "thumbnail": "https://i.ytimg.com/vi/VY2NhHM01jM/hqdefault.jpg",
             "isNew": true
           }
         ]
@@ -79,17 +288,7 @@
       {
         "creator": "Angry Mortgage Podcast",
         "channel": "@AngryMortgagePodcast",
-        "videos": [
-          {
-            "title": "AI: The Trillion Dollar Business",
-            "url": "https://www.youtube.com/watch?v=0ypLH4q-3Rw",
-            "views": "",
-            "dateStr": "Recent",
-            "videoId": "0ypLH4q-3Rw",
-            "thumbnail": "https://i.ytimg.com/vi/0ypLH4q-3Rw/hqdefault.jpg",
-            "isNew": true
-          }
-        ]
+        "videos": []
       }
     ]
   }

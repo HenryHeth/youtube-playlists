@@ -1,13 +1,17 @@
 const puppeteer = require('puppeteer-core');
 
-const CREATORS = {
+// JSONBlob ID for channel config (same as settings page uses)
+const CHANNELS_BLOB_ID = '019c516b-bbdc-7cd9-90eb-629115e8b924';
+
+// Fallback channels if JSONBlob fails
+const DEFAULT_CREATORS = {
   research: {
     'AI and Tech': [
       { name: 'Matt Wolfe', channel: '@mreflow' },
-      { name: 'Matthew Berman', channel: '@matthew_berman' }
+      { name: 'Matthew Berman', channel: '@matthew_berman' },
+      { name: 'Nate B Jones', channel: '@NateBJones' }
     ],
     'News and Finance': [
-      { name: 'Claus Kellerman POV', channel: '@clauskellermanpov3004' },
       { name: 'Russell Matthews', channel: '@russellmatthews' },
       { name: 'Mark Mitchell', channel: '@MortgageBrokerLondonOntario' },
       { name: 'Ben Felix', channel: '@BenFelixCSI' }
@@ -26,6 +30,37 @@ const CREATORS = {
     ]
   }
 };
+
+// Load channels from JSONBlob (settings page database)
+async function loadChannels() {
+  try {
+    const resp = await fetch(`https://jsonblob.com/api/jsonBlob/${CHANNELS_BLOB_ID}`);
+    if (resp.ok) {
+      const data = await resp.json();
+      if (data.channels) {
+        console.log('Loaded channels from settings database');
+        // Convert from JSONBlob format to fetcher format
+        const creators = {};
+        for (const [feed, categories] of Object.entries(data.channels)) {
+          creators[feed] = {};
+          for (const [cat, channels] of Object.entries(categories)) {
+            creators[feed][cat] = channels.map(ch => ({
+              name: ch.name,
+              channel: ch.channel
+            }));
+          }
+        }
+        return creators;
+      }
+    }
+  } catch (e) {
+    console.log('Failed to load from JSONBlob, using defaults:', e.message);
+  }
+  return DEFAULT_CREATORS;
+}
+
+// Will be populated by loadChannels()
+let CREATORS = DEFAULT_CREATORS;
 
 function extractVideoId(url) {
   if (!url) return null;
@@ -144,13 +179,16 @@ function isRecent(dateStr) {
 }
 
 async function fetchAllVideos() {
+  // Load channels from settings database
+  CREATORS = await loadChannels();
+  
   console.log('Connecting to browser...');
   const browser = await puppeteer.connect({
     browserURL: 'http://127.0.0.1:18800',
     defaultViewport: null
   });
   
-  const results = { research: {}, entertainment: {} };
+  const results = { research: {}, entertainment: {}, news: {} };
   
   for (const [category, subcats] of Object.entries(CREATORS)) {
     results[category] = {};
