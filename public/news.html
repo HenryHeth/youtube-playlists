@@ -561,23 +561,38 @@
     });
   }
   
+  let watchTimers = {};
+  
   function togglePlayer(card, videoId) {
     const container = card.querySelector('.player-container');
     const isActive = container.classList.contains('active');
     
-    // Close all other players
+    // Close all other players and clear their timers
     document.querySelectorAll('.player-container.active').forEach(p => {
       p.classList.remove('active');
       p.innerHTML = '';
+    });
+    Object.keys(watchTimers).forEach(id => {
+      if (id !== videoId) { clearTimeout(watchTimers[id]); delete watchTimers[id]; }
     });
     
     if (!isActive) {
       container.innerHTML = '<iframe src="https://www.youtube.com/embed/' + videoId + '?autoplay=1" allow="autoplay; encrypted-media" allowfullscreen></iframe>';
       container.classList.add('active');
       
-      // Mark as watched
-      setWatched(videoId);
-      card.classList.add('watched');
+      // Mark as watched after 30 seconds of viewing
+      if (!isWatched(videoId)) {
+        watchTimers[videoId] = setTimeout(() => {
+          setWatched(videoId);
+          card.classList.add('watched');
+          updateUI();
+          debouncedSave();
+          delete watchTimers[videoId];
+        }, 30000);
+      }
+    } else {
+      // Closing player — cancel timer
+      if (watchTimers[videoId]) { clearTimeout(watchTimers[videoId]); delete watchTimers[videoId]; }
     }
   }
   
