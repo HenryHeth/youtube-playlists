@@ -48,11 +48,8 @@
     transition: opacity 0.3s, border 0.2s;
     position: relative;
   }
-  .video-card.watched .video-header {
+  .video-card.watched {
     opacity: 0.5;
-  }
-  .video-card.watched .new-badge {
-    display: none;
   }
   .video-card.selected {
     border: 2px solid #4a9eff;
@@ -236,46 +233,11 @@
     .video-header { flex-direction: column; }
     .thumb { width: 100%; height: auto; aspect-ratio: 16/9; }
   }
-
-  .stats-footer {
-    display: flex;
-    justify-content: flex-end;
-    gap: 30px;
-    margin-bottom: 20px;
-    padding: 12px 20px;
-    background: #1a1a1a;
-    border-radius: 12px;
-  }
-  .stat-item {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-  }
-  .stat-label {
-    color: #888;
-    font-size: 13px;
-  }
-  .stat-value {
-    font-size: 18px;
-    font-weight: 600;
-    color: #fff;
-  }
-  #watched-duration { color: #f44; }
-  #remaining-duration { color: #4a4; }
-  
-  .last-refresh {
-    color: #555;
-    font-size: 12px;
-    text-align: right;
-    margin-bottom: 8px;
-  }
-  </style>
+</style>
 </head>
 <body>
-  <div style="margin-bottom:12px;display:flex;justify-content:space-between;align-items:center"><a href="https://youtube-playlists-alpha.vercel.app/" style="color:#4a9eff;text-decoration:none;font-size:14px">← Back to Home</a><a href="https://youtube-playlists-alpha.vercel.app/settings" style="color:#888;text-decoration:none;font-size:14px">⚙️ Manage Channels</a></div>
   <h1>🔬 Research Feed</h1>
   <p class="subtitle">Curated videos from AI, Finance, and Health creators • Click to play</p>
-  <div class="last-refresh" id="last-refresh">Checking...</div>
   <div id="sync-status" class="sync-status">Loading...</div>
   
   <div id="new-videos-banner" class="new-videos-banner">
@@ -283,21 +245,6 @@
     <div id="new-videos-list"></div>
   </div>
   
-  
-  <div class="stats-footer">
-    <div class="stat-item">
-      <span class="stat-label">Total on page:</span>
-      <span class="stat-value" id="total-duration">--</span>
-    </div>
-    <div class="stat-item">
-      <span class="stat-label">Watched:</span>
-      <span class="stat-value" id="watched-duration">--</span>
-    </div>
-    <div class="stat-item">
-      <span class="stat-label">Remaining:</span>
-      <span class="stat-value" id="remaining-duration">--</span>
-    </div>
-  </div>
   <div class="controls">
     <button onclick="hideWatched()">Hide Watched</button>
     <button onclick="clearWatched()">Clear History</button>
@@ -306,39 +253,39 @@
   </div>
   <div class="category">
     <h2>AI and Tech</h2>
-    <div class="video-card" data-video-id="sLhxdcpuot0" data-creator="Matt Wolfe">
-      <input type="checkbox" class="select-checkbox" onclick="toggleSelect('sLhxdcpuot0', this, event)">
-      <div class="video-header" onclick="togglePlayer(this.parentElement, 'sLhxdcpuot0')">
+    <div class="video-card" data-video-id="Tk9bVpYIIjc" data-creator="Matt Wolfe">
+      <input type="checkbox" class="select-checkbox" onclick="toggleSelect('Tk9bVpYIIjc', this, event)">
+      <div class="video-header" onclick="togglePlayer(this.parentElement, 'Tk9bVpYIIjc')">
         <div class="thumb-container">
-          <img class="thumb" src="https://i.ytimg.com/vi/sLhxdcpuot0/hqdefault.jpg" alt="" loading="lazy">
+          <img class="thumb" src="https://i.ytimg.com/vi/Tk9bVpYIIjc/hqdefault.jpg" alt="" loading="lazy">
           <span class="new-badge">NEW</span>
-          <span class="duration">28:06</span>
+          <span class="duration">15:43</span>
         </div>
         <div class="video-info">
           <div class="creator-name"><a href="https://www.youtube.com/@mreflow" target="_blank" onclick="event.stopPropagation()">Matt Wolfe</a></div>
-          <div class="video-title">The AI Wake-Up Call Everyone Needs Right Now!</div>
+          <div class="video-title">ChatGPT Ads Are Here. It Gets Worse.</div>
           <div class="video-meta">
-            <span class="video-date">16 hours ago</span>
-            <span>75K views</span>
+            <span class="video-date">9 hours ago</span>
+            <span>22K views</span>
           </div>
         </div>
       </div>
       <div class="player-container"></div>
     </div>
-    <div class="video-card" data-video-id="Q7r--i9lLck" data-creator="Matthew Berman">
-      <input type="checkbox" class="select-checkbox" onclick="toggleSelect('Q7r--i9lLck', this, event)">
-      <div class="video-header" onclick="togglePlayer(this.parentElement, 'Q7r--i9lLck')">
+    <div class="video-card" data-video-id="31A41ckhb7Q" data-creator="Matthew Berman">
+      <input type="checkbox" class="select-checkbox" onclick="toggleSelect('31A41ckhb7Q', this, event)">
+      <div class="video-header" onclick="togglePlayer(this.parentElement, '31A41ckhb7Q')">
         <div class="thumb-container">
-          <img class="thumb" src="https://i.ytimg.com/vi/Q7r--i9lLck/hqdefault.jpg" alt="" loading="lazy">
+          <img class="thumb" src="https://i.ytimg.com/vi/31A41ckhb7Q/hqdefault.jpg" alt="" loading="lazy">
           <span class="new-badge">NEW</span>
-          <span class="duration">27:41</span>
+          <span class="duration">20:12</span>
         </div>
         <div class="video-info">
           <div class="creator-name"><a href="https://www.youtube.com/@matthew_berman" target="_blank" onclick="event.stopPropagation()">Matthew Berman</a></div>
-          <div class="video-title">How I&#39;m using OpenClaw Everyday (Use Cases)</div>
+          <div class="video-title">Something big is happening...</div>
           <div class="video-meta">
-            <span class="video-date">20 hours ago</span>
-            <span>65K views</span>
+            <span class="video-date">9 hours ago</span>
+            <span>64K views</span>
           </div>
         </div>
       </div>
@@ -360,7 +307,7 @@
           <div class="video-title">US LIES ARE OUT OF CONTROL - THE BIGGEST THREAT TO CANADA</div>
           <div class="video-meta">
             <span class="video-date">1 day ago</span>
-            <span>60K views</span>
+            <span>64K views</span>
           </div>
         </div>
       </div>
@@ -378,8 +325,8 @@
           <div class="creator-name"><a href="https://www.youtube.com/@russellmatthews" target="_blank" onclick="event.stopPropagation()">Russell Matthews</a></div>
           <div class="video-title">EXPOSED: Canada Police Tied to Criminal Gangs, Blackmail, Drugs</div>
           <div class="video-meta">
-            <span class="video-date">6 days ago</span>
-            <span>27K views</span>
+            <span class="video-date">7 days ago</span>
+            <span>28K views</span>
           </div>
         </div>
       </div>
@@ -397,8 +344,8 @@
           <div class="creator-name"><a href="https://www.youtube.com/@MortgageBrokerLondonOntario" target="_blank" onclick="event.stopPropagation()">Mark Mitchell</a></div>
           <div class="video-title">Real Estate Scams Unravelling</div>
           <div class="video-meta">
-            <span class="video-date">22 hours ago</span>
-            <span>8.9K views</span>
+            <span class="video-date">1 day ago</span>
+            <span>10K views</span>
           </div>
         </div>
       </div>
@@ -417,7 +364,7 @@
           <div class="video-title">The Biggest Mistakes in Personal Finance</div>
           <div class="video-meta">
             <span class="video-date">4 days ago</span>
-            <span>193K views</span>
+            <span>197K views</span>
           </div>
         </div>
       </div>
@@ -439,7 +386,7 @@
           <div class="video-title">I Quit Alcohol For 1000 Days But Didn’t Expect This</div>
           <div class="video-meta">
             <span class="video-date">4 days ago</span>
-            <span>5.4K views</span>
+            <span>5.5K views</span>
           </div>
         </div>
       </div>
@@ -458,7 +405,7 @@
           <div class="video-title">7 Surprising Foods that Help Fight CANCER</div>
           <div class="video-meta">
             <span class="video-date">2 days ago</span>
-            <span>29K views</span>
+            <span>31K views</span>
           </div>
         </div>
       </div>
@@ -477,14 +424,14 @@
           <div class="video-title">The 75-Year-Old Obesity Riddle Science Just Solved</div>
           <div class="video-meta">
             <span class="video-date">1 day ago</span>
-            <span>20K views</span>
+            <span>23K views</span>
           </div>
         </div>
       </div>
       <div class="player-container"></div>
     </div>
   </div>
-  <div class="updated">Last updated: Feb 12, 2026, 4:58 PM PST</div>
+  <div class="updated">Last updated: Feb 12, 2026, 8:07 PM PST</div>
   <script>
   const BLOB_URL = 'https://jsonblob.com/api/jsonBlob/019c547f-4dd8-779b-ba67-4d612b238762';
   let userData = { watched: {}, myVideos: {}, pendingNew: [] };
@@ -693,38 +640,23 @@
     });
   }
   
-  let watchTimers = {};
-  
   function togglePlayer(card, videoId) {
     const container = card.querySelector('.player-container');
     const isActive = container.classList.contains('active');
     
-    // Close all other players and clear their timers
+    // Close all other players
     document.querySelectorAll('.player-container.active').forEach(p => {
       p.classList.remove('active');
       p.innerHTML = '';
-    });
-    Object.keys(watchTimers).forEach(id => {
-      if (id !== videoId) { clearTimeout(watchTimers[id]); delete watchTimers[id]; }
     });
     
     if (!isActive) {
       container.innerHTML = '<iframe src="https://www.youtube.com/embed/' + videoId + '?autoplay=1" allow="autoplay; encrypted-media" allowfullscreen></iframe>';
       container.classList.add('active');
       
-      // Mark as watched after 30 seconds of viewing
-      if (!isWatched(videoId)) {
-        watchTimers[videoId] = setTimeout(() => {
-          setWatched(videoId);
-          card.classList.add('watched');
-          updateUI();
-          debouncedSave();
-          delete watchTimers[videoId];
-        }, 30000);
-      }
-    } else {
-      // Closing player — cancel timer
-      if (watchTimers[videoId]) { clearTimeout(watchTimers[videoId]); delete watchTimers[videoId]; }
+      // Mark as watched
+      setWatched(videoId);
+      card.classList.add('watched');
     }
   }
   
@@ -745,56 +677,6 @@
   
   // Initialize on load
   document.addEventListener('DOMContentLoaded', loadUserData);
-
-  function parseDuration(str) {
-    if (!str) return 0;
-    const parts = str.split(':').map(Number);
-    if (parts.length === 3) return parts[0] * 3600 + parts[1] * 60 + parts[2];
-    if (parts.length === 2) return parts[0] * 60 + parts[1];
-    return parts[0] || 0;
-  }
-
-  function formatDuration(seconds) {
-    const h = Math.floor(seconds / 3600);
-    const m = Math.floor((seconds % 3600) / 60);
-    if (h > 0) return h + 'h ' + m + 'm';
-    return m + 'm';
-  }
-
-  function updateStats() {
-    let total = 0, watched = 0;
-    document.querySelectorAll('.video-card').forEach(card => {
-      const durEl = card.querySelector('.duration');
-      if (!durEl) return;
-      const dur = parseDuration(durEl.textContent.trim());
-      total += dur;
-      if (card.classList.contains('watched')) {
-        watched += dur;
-      }
-    });
-    document.getElementById('total-duration').textContent = formatDuration(total);
-    document.getElementById('watched-duration').textContent = formatDuration(watched);
-    document.getElementById('remaining-duration').textContent = formatDuration(total - watched);
-  }
-
-  // Hook into updateUI
-  const _origUpdateUI = updateUI;
-  updateUI = function() { _origUpdateUI(); updateStats(); };
-  
-  // Load last refresh time
-  fetch('/last-refresh.json?' + Date.now())
-    .then(r => r.json())
-    .then(d => {
-      const dt = new Date(d.lastRefresh);
-      const now = new Date();
-      const diffH = Math.floor((now - dt) / 3600000);
-      const diffM = Math.floor(((now - dt) % 3600000) / 60000);
-      let ago = diffH > 0 ? diffH + 'h ' + diffM + 'm ago' : diffM + 'm ago';
-      document.getElementById('last-refresh').textContent = '🔄 Last checked for new content: ' + ago;
-    })
-    .catch(() => {
-      document.getElementById('last-refresh').textContent = '';
-    });
-  </script>
+</script>
 </body>
 </html>

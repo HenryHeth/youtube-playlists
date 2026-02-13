@@ -48,11 +48,8 @@
     transition: opacity 0.3s, border 0.2s;
     position: relative;
   }
-  .video-card.watched .video-header {
+  .video-card.watched {
     opacity: 0.5;
-  }
-  .video-card.watched .new-badge {
-    display: none;
   }
   .video-card.selected {
     border: 2px solid #4a9eff;
@@ -236,46 +233,11 @@
     .video-header { flex-direction: column; }
     .thumb { width: 100%; height: auto; aspect-ratio: 16/9; }
   }
-
-  .stats-footer {
-    display: flex;
-    justify-content: flex-end;
-    gap: 30px;
-    margin-bottom: 20px;
-    padding: 12px 20px;
-    background: #1a1a1a;
-    border-radius: 12px;
-  }
-  .stat-item {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-  }
-  .stat-label {
-    color: #888;
-    font-size: 13px;
-  }
-  .stat-value {
-    font-size: 18px;
-    font-weight: 600;
-    color: #fff;
-  }
-  #watched-duration { color: #f44; }
-  #remaining-duration { color: #4a4; }
-  
-  .last-refresh {
-    color: #555;
-    font-size: 12px;
-    text-align: right;
-    margin-bottom: 8px;
-  }
-  </style>
+</style>
 </head>
 <body>
-  <div style="margin-bottom:12px;display:flex;justify-content:space-between;align-items:center"><a href="https://youtube-playlists-alpha.vercel.app/" style="color:#4a9eff;text-decoration:none;font-size:14px">← Back to Home</a><a href="https://youtube-playlists-alpha.vercel.app/settings" style="color:#888;text-decoration:none;font-size:14px">⚙️ Manage Channels</a></div>
   <h1>📰 News Feed</h1>
   <p class="subtitle">News and current events from trusted sources • Click to play</p>
-  <div class="last-refresh" id="last-refresh">Checking...</div>
   <div id="sync-status" class="sync-status">Loading...</div>
   
   <div id="new-videos-banner" class="new-videos-banner">
@@ -283,21 +245,6 @@
     <div id="new-videos-list"></div>
   </div>
   
-  
-  <div class="stats-footer">
-    <div class="stat-item">
-      <span class="stat-label">Total on page:</span>
-      <span class="stat-value" id="total-duration">--</span>
-    </div>
-    <div class="stat-item">
-      <span class="stat-label">Watched:</span>
-      <span class="stat-value" id="watched-duration">--</span>
-    </div>
-    <div class="stat-item">
-      <span class="stat-label">Remaining:</span>
-      <span class="stat-value" id="remaining-duration">--</span>
-    </div>
-  </div>
   <div class="controls">
     <button onclick="hideWatched()">Hide Watched</button>
     <button onclick="clearWatched()">Clear History</button>
@@ -319,90 +266,90 @@
           <div class="video-title">US LIES ARE OUT OF CONTROL - THE BIGGEST THREAT TO CANADA</div>
           <div class="video-meta">
             <span class="video-date">1 day ago</span>
-            <span>60K views</span>
+            <span>64K views</span>
           </div>
         </div>
       </div>
       <div class="player-container"></div>
     </div>
-    <div class="video-card" data-video-id="xvFYJ5mQ7Jc" data-creator="Global News">
-      <input type="checkbox" class="select-checkbox" onclick="toggleSelect('xvFYJ5mQ7Jc', this, event)">
-      <div class="video-header" onclick="togglePlayer(this.parentElement, 'xvFYJ5mQ7Jc')">
+    <div class="video-card" data-video-id="K_15G6wxfig" data-creator="Global News">
+      <input type="checkbox" class="select-checkbox" onclick="toggleSelect('K_15G6wxfig', this, event)">
+      <div class="video-header" onclick="togglePlayer(this.parentElement, 'K_15G6wxfig')">
         <div class="thumb-container">
-          <img class="thumb" src="https://i.ytimg.com/vi/xvFYJ5mQ7Jc/hqdefault.jpg" alt="" loading="lazy">
+          <img class="thumb" src="https://i.ytimg.com/vi/K_15G6wxfig/hqdefault.jpg" alt="" loading="lazy">
           <span class="new-badge">NEW</span>
-          <span class="duration">3:36</span>
+          <span class="duration">2:18</span>
         </div>
         <div class="video-info">
           <div class="creator-name"><a href="https://www.youtube.com/@GlobalNews" target="_blank" onclick="event.stopPropagation()">Global News</a></div>
-          <div class="video-title">“It could have been me”: Tumbler Ridge girl escapes school shooting that left classmates dead</div>
+          <div class="video-title">B.C. government faces opposition from First Nation for routine wolf cull</div>
           <div class="video-meta">
-            <span class="video-date">11 minutes ago</span>
-            <span>162 views</span>
+            <span class="video-date">5 minutes ago</span>
+            <span>35 views</span>
           </div>
         </div>
       </div>
       <div class="player-container"></div>
     </div>
-    <div class="video-card" data-video-id="SdK3-BxN5fo" data-creator="CTV News">
-      <input type="checkbox" class="select-checkbox" onclick="toggleSelect('SdK3-BxN5fo', this, event)">
-      <div class="video-header" onclick="togglePlayer(this.parentElement, 'SdK3-BxN5fo')">
+    <div class="video-card" data-video-id="5_e_sdCBvTo" data-creator="CTV News">
+      <input type="checkbox" class="select-checkbox" onclick="toggleSelect('5_e_sdCBvTo', this, event)">
+      <div class="video-header" onclick="togglePlayer(this.parentElement, '5_e_sdCBvTo')">
         <div class="thumb-container">
-          <img class="thumb" src="https://i.ytimg.com/vi/SdK3-BxN5fo/hqdefault.jpg" alt="" loading="lazy">
+          <img class="thumb" src="https://i.ytimg.com/vi/5_e_sdCBvTo/hqdefault.jpg" alt="" loading="lazy">
           <span class="new-badge">NEW</span>
-          <span class="duration">44:14</span>
+          <span class="duration">1:50</span>
         </div>
         <div class="video-info">
           <div class="creator-name"><a href="https://www.youtube.com/@CTVNews" target="_blank" onclick="event.stopPropagation()">CTV News</a></div>
-          <div class="video-title">Sask site of mass shooting reacts to Tumbler Ridge incident | CTV News Saskatoon at Six  Feb 11, &#39;26</div>
+          <div class="video-title">Edmonton developing catalogue of design templates for infill homes</div>
           <div class="video-meta">
-            <span class="video-date">2 minutes ago</span>
-            <span>52 views</span>
+            <span class="video-date">6 minutes ago</span>
+            <span>11 views</span>
           </div>
         </div>
       </div>
       <div class="player-container"></div>
     </div>
-    <div class="video-card" data-video-id="nrGBkyvMRHA" data-creator="Brian Tyler Cohen">
-      <input type="checkbox" class="select-checkbox" onclick="toggleSelect('nrGBkyvMRHA', this, event)">
-      <div class="video-header" onclick="togglePlayer(this.parentElement, 'nrGBkyvMRHA')">
+    <div class="video-card" data-video-id="68E8FMDBtXo" data-creator="Brian Tyler Cohen">
+      <input type="checkbox" class="select-checkbox" onclick="toggleSelect('68E8FMDBtXo', this, event)">
+      <div class="video-header" onclick="togglePlayer(this.parentElement, '68E8FMDBtXo')">
         <div class="thumb-container">
-          <img class="thumb" src="https://i.ytimg.com/vi/nrGBkyvMRHA/hqdefault.jpg" alt="" loading="lazy">
+          <img class="thumb" src="https://i.ytimg.com/vi/68E8FMDBtXo/hqdefault.jpg" alt="" loading="lazy">
           <span class="new-badge">NEW</span>
-          <span class="duration">10:12</span>
+          <span class="duration">10:16</span>
         </div>
         <div class="video-info">
           <div class="creator-name"><a href="https://www.youtube.com/@briantylercohen" target="_blank" onclick="event.stopPropagation()">Brian Tyler Cohen</a></div>
-          <div class="video-title">Pam Bondi dealt NIGHTMARE blow after disaster hearing | Another Day</div>
+          <div class="video-title">Pam Bondi gets the news she FEARED MOST</div>
           <div class="video-meta">
-            <span class="video-date">10 hours ago</span>
-            <span>313K views</span>
+            <span class="video-date">6 minutes ago</span>
+            <span>6.4K views</span>
           </div>
         </div>
       </div>
       <div class="player-container"></div>
     </div>
-    <div class="video-card" data-video-id="dCrHOjmVz_I" data-creator="House of El">
-      <input type="checkbox" class="select-checkbox" onclick="toggleSelect('dCrHOjmVz_I', this, event)">
-      <div class="video-header" onclick="togglePlayer(this.parentElement, 'dCrHOjmVz_I')">
+    <div class="video-card" data-video-id="SbqP8kUN-4M" data-creator="House of El">
+      <input type="checkbox" class="select-checkbox" onclick="toggleSelect('SbqP8kUN-4M', this, event)">
+      <div class="video-header" onclick="togglePlayer(this.parentElement, 'SbqP8kUN-4M')">
         <div class="thumb-container">
-          <img class="thumb" src="https://i.ytimg.com/vi/dCrHOjmVz_I/hqdefault.jpg" alt="" loading="lazy">
+          <img class="thumb" src="https://i.ytimg.com/vi/SbqP8kUN-4M/hqdefault.jpg" alt="" loading="lazy">
           <span class="new-badge">NEW</span>
-          <span class="duration">10:00</span>
+          <span class="duration">9:36</span>
         </div>
         <div class="video-info">
           <div class="creator-name"><a href="https://www.youtube.com/@HouseofEl" target="_blank" onclick="event.stopPropagation()">House of El</a></div>
-          <div class="video-title">Europe ABANDONS US Payment Systems - 130M Users Switch to Wero, Ditch Visa/Mastercard</div>
+          <div class="video-title">France TURNS on America - Macron Lists US as Threat Alongside China, Russia</div>
           <div class="video-meta">
-            <span class="video-date">1 hour ago</span>
-            <span>8K views</span>
+            <span class="video-date">10 hours ago</span>
+            <span>31K views</span>
           </div>
         </div>
       </div>
       <div class="player-container"></div>
     </div>
   </div>
-  <div class="updated">Last updated: Feb 12, 2026, 4:58 PM PST</div>
+  <div class="updated">Last updated: Feb 12, 2026, 8:07 PM PST</div>
   <script>
   const BLOB_URL = 'https://jsonblob.com/api/jsonBlob/019c547f-4dd8-779b-ba67-4d612b238762';
   let userData = { watched: {}, myVideos: {}, pendingNew: [] };
@@ -611,38 +558,23 @@
     });
   }
   
-  let watchTimers = {};
-  
   function togglePlayer(card, videoId) {
     const container = card.querySelector('.player-container');
     const isActive = container.classList.contains('active');
     
-    // Close all other players and clear their timers
+    // Close all other players
     document.querySelectorAll('.player-container.active').forEach(p => {
       p.classList.remove('active');
       p.innerHTML = '';
-    });
-    Object.keys(watchTimers).forEach(id => {
-      if (id !== videoId) { clearTimeout(watchTimers[id]); delete watchTimers[id]; }
     });
     
     if (!isActive) {
       container.innerHTML = '<iframe src="https://www.youtube.com/embed/' + videoId + '?autoplay=1" allow="autoplay; encrypted-media" allowfullscreen></iframe>';
       container.classList.add('active');
       
-      // Mark as watched after 30 seconds of viewing
-      if (!isWatched(videoId)) {
-        watchTimers[videoId] = setTimeout(() => {
-          setWatched(videoId);
-          card.classList.add('watched');
-          updateUI();
-          debouncedSave();
-          delete watchTimers[videoId];
-        }, 30000);
-      }
-    } else {
-      // Closing player — cancel timer
-      if (watchTimers[videoId]) { clearTimeout(watchTimers[videoId]); delete watchTimers[videoId]; }
+      // Mark as watched
+      setWatched(videoId);
+      card.classList.add('watched');
     }
   }
   
@@ -663,56 +595,6 @@
   
   // Initialize on load
   document.addEventListener('DOMContentLoaded', loadUserData);
-
-  function parseDuration(str) {
-    if (!str) return 0;
-    const parts = str.split(':').map(Number);
-    if (parts.length === 3) return parts[0] * 3600 + parts[1] * 60 + parts[2];
-    if (parts.length === 2) return parts[0] * 60 + parts[1];
-    return parts[0] || 0;
-  }
-
-  function formatDuration(seconds) {
-    const h = Math.floor(seconds / 3600);
-    const m = Math.floor((seconds % 3600) / 60);
-    if (h > 0) return h + 'h ' + m + 'm';
-    return m + 'm';
-  }
-
-  function updateStats() {
-    let total = 0, watched = 0;
-    document.querySelectorAll('.video-card').forEach(card => {
-      const durEl = card.querySelector('.duration');
-      if (!durEl) return;
-      const dur = parseDuration(durEl.textContent.trim());
-      total += dur;
-      if (card.classList.contains('watched')) {
-        watched += dur;
-      }
-    });
-    document.getElementById('total-duration').textContent = formatDuration(total);
-    document.getElementById('watched-duration').textContent = formatDuration(watched);
-    document.getElementById('remaining-duration').textContent = formatDuration(total - watched);
-  }
-
-  // Hook into updateUI
-  const _origUpdateUI = updateUI;
-  updateUI = function() { _origUpdateUI(); updateStats(); };
-  
-  // Load last refresh time
-  fetch('/last-refresh.json?' + Date.now())
-    .then(r => r.json())
-    .then(d => {
-      const dt = new Date(d.lastRefresh);
-      const now = new Date();
-      const diffH = Math.floor((now - dt) / 3600000);
-      const diffM = Math.floor(((now - dt) % 3600000) / 60000);
-      let ago = diffH > 0 ? diffH + 'h ' + diffM + 'm ago' : diffM + 'm ago';
-      document.getElementById('last-refresh').textContent = '🔄 Last checked for new content: ' + ago;
-    })
-    .catch(() => {
-      document.getElementById('last-refresh').textContent = '';
-    });
-  </script>
+</script>
 </body>
 </html>

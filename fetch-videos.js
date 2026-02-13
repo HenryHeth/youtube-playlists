@@ -72,7 +72,7 @@ function getThumbnail(videoId) {
   return videoId ? `https://i.ytimg.com/vi/${videoId}/hqdefault.jpg` : null;
 }
 
-async function getChannelVideos(browser, channelHandle, limit = 1) {
+async function getChannelVideos(browser, channelHandle, limit = 3) {
   const page = await browser.newPage();
   await page.setUserAgent('Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36');
   
