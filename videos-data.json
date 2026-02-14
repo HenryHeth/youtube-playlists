@@ -6,14 +6,24 @@
         "channel": "@mreflow",
         "videos": [
           {
+            "title": "AI News: This Video Model Has Everyone Freaked Out!",
+            "url": "https://www.youtube.com/watch?v=msrbd-d6lWk&pp=0gcJCYcKAYcqIYzv",
+            "views": "48K views",
+            "dateStr": "14 hours ago",
+            "duration": "30:53",
+            "videoId": "msrbd-d6lWk",
+            "thumbnail": "https://i.ytimg.com/vi/msrbd-d6lWk/hqdefault.jpg",
+            "isNew": true
+          },
+          {
             "title": "ChatGPT Ads Are Here. It Gets Worse.",
             "url": "https://www.youtube.com/watch?v=Tk9bVpYIIjc",
-            "views": "22K views",
-            "dateStr": "9 hours ago",
+            "views": "33K views",
+            "dateStr": "21 hours ago",
             "duration": "15:43",
             "videoId": "Tk9bVpYIIjc",
             "thumbnail": "https://i.ytimg.com/vi/Tk9bVpYIIjc/hqdefault.jpg",
-            "isNew": true
+            "isNew": false
           },
           {
             "videoId": "sLhxdcpuot0",
@@ -34,8 +44,8 @@
           {
             "title": "Something big is happening...",
             "url": "https://www.youtube.com/watch?v=31A41ckhb7Q",
-            "views": "64K views",
-            "dateStr": "9 hours ago",
+            "views": "118K views",
+            "dateStr": "1 day ago",
             "duration": "20:12",
             "videoId": "31A41ckhb7Q",
             "thumbnail": "https://i.ytimg.com/vi/31A41ckhb7Q/hqdefault.jpg",
@@ -52,6 +62,22 @@
             "isNew": false
           }
         ]
+      },
+      {
+        "creator": "Nate B Jones",
+        "channel": "@NateBJones",
+        "videos": [
+          {
+            "title": "I Just Did a Full Day of Analyst Work in 10 Minutes. The $120K Job Description Just Changed Forever.",
+            "url": "https://www.youtube.com/watch?v=U1oHRqUkI1E",
+            "views": "58K views",
+            "dateStr": "16 hours ago",
+            "duration": "29:20",
+            "videoId": "U1oHRqUkI1E",
+            "thumbnail": "https://i.ytimg.com/vi/U1oHRqUkI1E/hqdefault.jpg",
+            "isNew": true
+          }
+        ]
       }
     ],
     "News and Finance": [
@@ -63,11 +89,11 @@
             "title": "EXPOSED: Canada Police Tied to Criminal Gangs, Blackmail, Drugs",
             "url": "https://www.youtube.com/watch?v=oEQowHRmVe8",
             "views": "28K views",
-            "dateStr": "7 days ago",
+            "dateStr": "8 days ago",
             "duration": "13:37",
             "videoId": "oEQowHRmVe8",
             "thumbnail": "https://i.ytimg.com/vi/oEQowHRmVe8/hqdefault.jpg",
-            "isNew": true
+            "isNew": false
           }
         ]
       },
@@ -76,6 +102,16 @@
         "channel": "@MortgageBrokerLondonOntario",
         "videos": [
           {
+            "title": "'Stupid' Not to Buy Real Estate: CBC",
+            "url": "https://www.youtube.com/watch?v=78egAVwDx6E",
+            "views": "16K views",
+            "dateStr": "17 hours ago",
+            "duration": "8:22",
+            "videoId": "78egAVwDx6E",
+            "thumbnail": "https://i.ytimg.com/vi/78egAVwDx6E/hqdefault.jpg",
+            "isNew": true
+          },
+          {
             "title": "Real Estate Scams Unravelling",
             "url": "https://www.youtube.com/watch?v=zoYtn5C2e5w",
             "views": "10K views",
@@ -83,7 +119,7 @@
             "duration": "8:09",
             "videoId": "zoYtn5C2e5w",
             "thumbnail": "https://i.ytimg.com/vi/zoYtn5C2e5w/hqdefault.jpg",
-            "isNew": true
+            "isNew": false
           }
         ]
       },
@@ -94,8 +130,8 @@
           {
             "title": "The Biggest Mistakes in Personal Finance",
             "url": "https://www.youtube.com/watch?v=d7wnAw7ufG4",
-            "views": "197K views",
-            "dateStr": "4 days ago",
+            "views": "204K views",
+            "dateStr": "5 days ago",
             "duration": "15:37",
             "videoId": "d7wnAw7ufG4",
             "thumbnail": "https://i.ytimg.com/vi/d7wnAw7ufG4/hqdefault.jpg",
@@ -110,10 +146,10 @@
         "channel": "@DrAlexGeorge",
         "videos": [
           {
-            "title": "I Quit Alcohol For 1000 Days But Didn’t Expect This",
+            "title": "What Really Happened After 1000 Days Without Alcohol",
             "url": "https://www.youtube.com/watch?v=QvhKvX5e-S8",
-            "views": "5.5K views",
-            "dateStr": "4 days ago",
+            "views": "5.6K views",
+            "dateStr": "5 days ago",
             "duration": "13:12",
             "videoId": "QvhKvX5e-S8",
             "thumbnail": "https://i.ytimg.com/vi/QvhKvX5e-S8/hqdefault.jpg",
@@ -126,6 +162,16 @@
         "channel": "@NutritionMadeSimple",
         "videos": [
           {
+            "title": "I´m on the Epstein List (Full Reveal)",
+            "url": "https://www.youtube.com/watch?v=Fp-m0QOz2N8",
+            "views": "39K views",
+            "dateStr": "16 hours ago",
+            "duration": "5:25",
+            "videoId": "Fp-m0QOz2N8",
+            "thumbnail": "https://i.ytimg.com/vi/Fp-m0QOz2N8/hqdefault.jpg",
+            "isNew": true
+          },
+          {
             "title": "7 Surprising Foods that Help Fight CANCER",
             "url": "https://www.youtube.com/watch?v=rEE7yamHeoo",
             "views": "31K views",
@@ -133,7 +179,7 @@
             "duration": "8:34",
             "videoId": "rEE7yamHeoo",
             "thumbnail": "https://i.ytimg.com/vi/rEE7yamHeoo/hqdefault.jpg",
-            "isNew": true
+            "isNew": false
           }
         ]
       },
@@ -142,6 +188,16 @@
         "channel": "@nicknorwitzMDPhD",
         "videos": [
           {
+            "title": "Is Your Gut Broken? Here's the Reset Button",
+            "url": "https://www.youtube.com/watch?v=DxBsocVIBSM",
+            "views": "17K views",
+            "dateStr": "20 hours ago",
+            "duration": "16:12",
+            "videoId": "DxBsocVIBSM",
+            "thumbnail": "https://i.ytimg.com/vi/DxBsocVIBSM/hqdefault.jpg",
+            "isNew": true
+          },
+          {
             "title": "The 75-Year-Old Obesity Riddle Science Just Solved",
             "url": "https://www.youtube.com/watch?v=gbxH6DXZprw",
             "views": "23K views",
@@ -149,7 +205,7 @@
             "duration": "14:35",
             "videoId": "gbxH6DXZprw",
             "thumbnail": "https://i.ytimg.com/vi/gbxH6DXZprw/hqdefault.jpg",
-            "isNew": true
+            "isNew": false
           }
         ]
       }
@@ -164,8 +220,8 @@
           {
             "title": "This “Bulletproof” Cruiser Has a Serious Weak Spot Caliber 40 LRC SE",
             "url": "https://www.youtube.com/watch?v=HFsjRc4Y2t0",
-            "views": "13K views",
-            "dateStr": "3 days ago",
+            "views": "14K views",
+            "dateStr": "4 days ago",
             "duration": "9:03",
             "videoId": "HFsjRc4Y2t0",
             "thumbnail": "https://i.ytimg.com/vi/HFsjRc4Y2t0/hqdefault.jpg",
@@ -179,9 +235,9 @@
         "videos": [
           {
             "title": "Catamaran of our Dreams - But First? Finish These RUDDERS!",
-            "url": "https://www.youtube.com/watch?v=2nqPuQtLQE4&pp=0gcJCYcKAYcqIYzv",
-            "views": "56K views",
-            "dateStr": "8 hours ago",
+            "url": "https://www.youtube.com/watch?v=2nqPuQtLQE4",
+            "views": "102K views",
+            "dateStr": "1 day ago",
             "duration": "34:16",
             "videoId": "2nqPuQtLQE4",
             "thumbnail": "https://i.ytimg.com/vi/2nqPuQtLQE4/hqdefault.jpg",
@@ -195,9 +251,9 @@
         "videos": [
           {
             "title": "REBUILDING OUR HULLS: Blister repair series - part 4  (Episode 350)",
-            "url": "https://www.youtube.com/watch?v=XhZZCNfBmLI",
-            "views": "157K views",
-            "dateStr": "4 days ago",
+            "url": "https://www.youtube.com/watch?v=XhZZCNfBmLI&pp=0gcJCYcKAYcqIYzv",
+            "views": "162K views",
+            "dateStr": "5 days ago",
             "duration": "23:23",
             "videoId": "XhZZCNfBmLI",
             "thumbnail": "https://i.ytimg.com/vi/XhZZCNfBmLI/hqdefault.jpg",
@@ -207,93 +263,5 @@
       }
     ]
   },
-  "news": {
-    "News": [
-      {
-        "creator": "Claus Kellerman POV",
-        "channel": "@clauskellermanpov3004",
-        "videos": [
-          {
-            "title": "US LIES ARE OUT OF CONTROL - THE BIGGEST THREAT TO CANADA",
-            "url": "https://www.youtube.com/watch?v=XUHJ_DX_PwI",
-            "views": "64K views",
-            "dateStr": "1 day ago",
-            "duration": "13:45",
-            "videoId": "XUHJ_DX_PwI",
-            "thumbnail": "https://i.ytimg.com/vi/XUHJ_DX_PwI/hqdefault.jpg",
-            "isNew": true
-          }
-        ]
-      },
-      {
-        "creator": "Global News",
-        "channel": "@GlobalNews",
-        "videos": [
-          {
-            "title": "B.C. government faces opposition from First Nation for routine wolf cull",
-            "url": "https://www.youtube.com/watch?v=K_15G6wxfig",
-            "views": "35 views",
-            "dateStr": "5 minutes ago",
-            "duration": "2:18",
-            "videoId": "K_15G6wxfig",
-            "thumbnail": "https://i.ytimg.com/vi/K_15G6wxfig/hqdefault.jpg",
-            "isNew": true
-          }
-        ]
-      },
-      {
-        "creator": "CTV News",
-        "channel": "@CTVNews",
-        "videos": [
-          {
-            "title": "Edmonton developing catalogue of design templates for infill homes",
-            "url": "https://www.youtube.com/watch?v=5_e_sdCBvTo",
-            "views": "11 views",
-            "dateStr": "6 minutes ago",
-            "duration": "1:50",
-            "videoId": "5_e_sdCBvTo",
-            "thumbnail": "https://i.ytimg.com/vi/5_e_sdCBvTo/hqdefault.jpg",
-            "isNew": true
-          }
-        ]
-      },
-      {
-        "creator": "Brian Tyler Cohen",
-        "channel": "@briantylercohen",
-        "videos": [
-          {
-            "title": "Pam Bondi gets the news she FEARED MOST",
-            "url": "https://www.youtube.com/watch?v=68E8FMDBtXo",
-            "views": "6.4K views",
-            "dateStr": "6 minutes ago",
-            "duration": "10:16",
-            "videoId": "68E8FMDBtXo",
-            "thumbnail": "https://i.ytimg.com/vi/68E8FMDBtXo/hqdefault.jpg",
-            "isNew": true
-          }
-        ]
-      },
-      {
-        "creator": "House of El",
-        "channel": "@HouseofEl",
-        "videos": [
-          {
-            "title": "France TURNS on America - Macron Lists US as Threat Alongside China, Russia",
-            "url": "https://www.youtube.com/watch?v=SbqP8kUN-4M&pp=0gcJCYcKAYcqIYzv",
-            "views": "31K views",
-            "dateStr": "10 hours ago",
-            "duration": "9:36",
-            "videoId": "SbqP8kUN-4M",
-            "thumbnail": "https://i.ytimg.com/vi/SbqP8kUN-4M/hqdefault.jpg",
-            "isNew": true
-          }
-        ]
-      },
-      {
-        "creator": "Angry Mortgage Podcast",
-        "channel": "@AngryMortgagePodcast",
-        "videos": []
-      }
-    ]
-  }
+  "news": {}
 }

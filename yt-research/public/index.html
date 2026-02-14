@@ -48,11 +48,8 @@
     transition: opacity 0.3s, border 0.2s;
     position: relative;
   }
-  .video-card.watched .video-header {
+  .video-card.watched {
     opacity: 0.5;
-  }
-  .video-card.watched .new-badge {
-    display: none;
   }
   .video-card.selected {
     border: 2px solid #4a9eff;
@@ -182,61 +179,92 @@
     opacity: 0.5;
     cursor: not-allowed;
   }
-  .selection-count {
-    font-size: 13px;
-    color: #888;
-  }
-  .new-videos-banner {
-    background: #1a3a1a;
-    border: 1px solid #2a5a2a;
-    border-radius: 8px;
-    padding: 16px;
-    margin-bottom: 20px;
-    display: none;
-  }
-  .new-videos-banner.visible {
-    display: block;
-  }
-  .new-videos-banner h3 {
-    color: #6c6;
-    margin-bottom: 12px;
-    font-size: 16px;
-  }
-  .new-video-item {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 8px 0;
-    border-bottom: 1px solid #2a4a2a;
-  }
-  .new-video-item:last-child {
-    border-bottom: none;
-  }
-  .new-video-item button {
+  #play-selected-btn:not(:disabled) {
     background: #4a4;
     color: #fff;
-    border: none;
-    padding: 6px 12px;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 12px;
   }
-  .new-video-item button:hover {
+  #play-selected-btn:not(:disabled):hover {
     background: #5b5;
   }
-  .updated {
-    text-align: center;
-    color: #555;
-    font-size: 12px;
-    margin-top: 40px;
-    padding-top: 20px;
-    border-top: 1px solid #222;
+  #playlist-bar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+    padding: 12px 20px;
+    display: none;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 1000;
+    border-top: 2px solid #4a9eff;
+    box-shadow: 0 -4px 20px rgba(0,0,0,0.5);
   }
-  .last-refresh {
-    color: #555;
-    font-size: 12px;
-    text-align: right;
+  .playlist-info {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+  }
+  .playlist-progress {
+    background: #4a9eff;
+    color: #fff;
+    padding: 4px 12px;
+    border-radius: 12px;
+    font-weight: bold;
+    font-size: 14px;
+  }
+  .playlist-title {
+    color: #ccc;
+    font-size: 14px;
+  }
+  .playlist-controls {
+    display: flex;
+    gap: 10px;
+  }
+  .playlist-controls button {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+  }
+  .playlist-controls button:first-child {
+    background: #4a4;
+    color: #fff;
+  }
+  .playlist-controls button:last-child {
+    background: #666;
+    color: #fff;
+  }
+  .playlist-controls button:hover {
+    opacity: 0.9;
+  }
+  .selection-count {
+    font-size: 14px;
+    color: #4a9eff;
+    font-weight: 500;
+  }
+  .channel-pending {
+    display: none;
+    margin-bottom: 16px;
+  }
+  .pending-text {
+    background: #1a2a1a;
+    border-left: 3px solid #4a4;
+    padding: 10px 14px;
     margin-bottom: 8px;
+    border-radius: 0 8px 8px 0;
+    cursor: pointer;
+    font-size: 14px;
+  }
+  .pending-text:hover {
+    background: #253525;
+  }
+  .pending-text .new-tag {
+    color: #6c6;
+    font-weight: 600;
+    margin-right: 8px;
   }
   .stats-footer {
     display: flex;
@@ -263,22 +291,26 @@
   }
   #watched-duration { color: #f44; }
   #remaining-duration { color: #4a4; }
-  .new-video-indicator {
-    background: #1a2a1a;
-    border-left: 3px solid #4a4;
-    padding: 10px 16px;
-    margin: -8px 0 12px 0;
-    border-radius: 0 8px 8px 0;
-    font-size: 13px;
-    color: #ccc;
+  .updated {
+    text-align: center;
+    color: #555;
+    font-size: 12px;
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid #222;
   }
-  .indicator-badge {
-    font-weight: 600;
-    color: #6c6;
+  .top-nav {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
   }
-  .indicator-duration {
+  .top-nav a {
     color: #888;
+    text-decoration: none;
+    font-size: 14px;
   }
+  .top-nav a:hover { color: #fff; }
+  .settings-link { color: #4a9eff; }
   @media (max-width: 600px) {
     .video-header { flex-direction: column; }
     .thumb { width: 100%; height: auto; aspect-ratio: 16/9; }
@@ -286,14 +318,14 @@
 </style>
 </head>
 <body>
-  <div style="margin-bottom:12px;display:flex;justify-content:space-between;align-items:center"><a href="https://youtube-playlists-alpha.vercel.app/" style="color:#4a9eff;text-decoration:none;font-size:14px">← Back to Home</a><a href="https://youtube-playlists-alpha.vercel.app/settings" style="color:#888;text-decoration:none;font-size:14px">⚙️ Manage Channels</a></div>
+  <nav class="top-nav">
+    <a href="https://youtube-playlists-alpha.vercel.app" class="back-link">← Home</a>
+    <a href="https://youtube-playlists-alpha.vercel.app/settings" class="settings-link">⚙️ Manage Channels</a>
+  </nav>
   <h1>🔬 Research Feed</h1>
   <p class="subtitle">Curated videos from AI, Finance, and Health creators • Click to play</p>
-  <div class="last-refresh" id="last-refresh">Checking...</div>
   <div id="sync-status" class="sync-status">Loading...</div>
   
-  <!-- New video indicators appear inline below each creator's card -->
-
   <div class="stats-footer">
     <div class="stat-item">
       <span class="stat-label">Total on page:</span>
@@ -312,31 +344,51 @@
   <div class="controls">
     <button onclick="hideWatched()">Hide Watched</button>
     <button onclick="clearWatched()">Clear History</button>
+    <button id="play-selected-btn" onclick="playSelected()" disabled>▶ Play Selected</button>
     <button id="refresh-selected-btn" onclick="refreshSelected()" disabled>Refresh Selected</button>
     <span id="selection-count" class="selection-count"></span>
   </div>
   <div class="category">
     <h2>AI and Tech</h2>
-    <div class="video-card" data-video-id="Tk9bVpYIIjc" data-creator="Matt Wolfe">
+    <div class="video-card" data-video-id="msrbd-d6lWk" data-creator="Matt Wolfe" data-duration="30:53">
+      <input type="checkbox" class="select-checkbox" onclick="toggleSelect('msrbd-d6lWk', this, event)">
+      <div class="video-header" onclick="togglePlayer(this.parentElement, 'msrbd-d6lWk')">
+        <div class="thumb-container">
+          <img class="thumb" src="https://i.ytimg.com/vi/msrbd-d6lWk/hqdefault.jpg" alt="" loading="lazy">
+          <span class="new-badge">NEW</span>
+          <span class="duration">30:53</span>
+        </div>
+        <div class="video-info">
+          <div class="creator-name"><a href="https://www.youtube.com/@mreflow" target="_blank" onclick="event.stopPropagation()">Matt Wolfe</a></div>
+          <div class="video-title">AI News: This Video Model Has Everyone Freaked Out!</div>
+          <div class="video-meta">
+            <span class="video-date">14 hours ago</span>
+            <span>48K views</span>
+          </div>
+        </div>
+      </div>
+      <div class="player-container"></div>
+    </div>
+    <div class="video-card" data-video-id="Tk9bVpYIIjc" data-creator="Matt Wolfe" data-duration="15:43">
       <input type="checkbox" class="select-checkbox" onclick="toggleSelect('Tk9bVpYIIjc', this, event)">
       <div class="video-header" onclick="togglePlayer(this.parentElement, 'Tk9bVpYIIjc')">
         <div class="thumb-container">
           <img class="thumb" src="https://i.ytimg.com/vi/Tk9bVpYIIjc/hqdefault.jpg" alt="" loading="lazy">
-          <span class="new-badge">NEW</span>
+          
           <span class="duration">15:43</span>
         </div>
         <div class="video-info">
           <div class="creator-name"><a href="https://www.youtube.com/@mreflow" target="_blank" onclick="event.stopPropagation()">Matt Wolfe</a></div>
           <div class="video-title">ChatGPT Ads Are Here. It Gets Worse.</div>
           <div class="video-meta">
-            <span class="video-date">9 hours ago</span>
-            <span>22K views</span>
+            <span class="video-date">21 hours ago</span>
+            <span>33K views</span>
           </div>
         </div>
       </div>
       <div class="player-container"></div>
     </div>
-    <div class="video-card" data-video-id="sLhxdcpuot0" data-creator="Matt Wolfe">
+    <div class="video-card" data-video-id="sLhxdcpuot0" data-creator="Matt Wolfe" data-duration="28:06">
       <input type="checkbox" class="select-checkbox" onclick="toggleSelect('sLhxdcpuot0', this, event)">
       <div class="video-header" onclick="togglePlayer(this.parentElement, 'sLhxdcpuot0')">
         <div class="thumb-container">
@@ -355,7 +407,8 @@
       </div>
       <div class="player-container"></div>
     </div>
-    <div class="video-card" data-video-id="31A41ckhb7Q" data-creator="Matthew Berman">
+    <div class="channel-pending" data-creator="Matt Wolfe"></div>
+    <div class="video-card" data-video-id="31A41ckhb7Q" data-creator="Matthew Berman" data-duration="20:12">
       <input type="checkbox" class="select-checkbox" onclick="toggleSelect('31A41ckhb7Q', this, event)">
       <div class="video-header" onclick="togglePlayer(this.parentElement, '31A41ckhb7Q')">
         <div class="thumb-container">
@@ -367,14 +420,14 @@
           <div class="creator-name"><a href="https://www.youtube.com/@matthew_berman" target="_blank" onclick="event.stopPropagation()">Matthew Berman</a></div>
           <div class="video-title">Something big is happening...</div>
           <div class="video-meta">
-            <span class="video-date">9 hours ago</span>
-            <span>64K views</span>
+            <span class="video-date">1 day ago</span>
+            <span>118K views</span>
           </div>
         </div>
       </div>
       <div class="player-container"></div>
     </div>
-    <div class="video-card" data-video-id="Q7r--i9lLck" data-creator="Matthew Berman">
+    <div class="video-card" data-video-id="Q7r--i9lLck" data-creator="Matthew Berman" data-duration="27:41">
       <input type="checkbox" class="select-checkbox" onclick="toggleSelect('Q7r--i9lLck', this, event)">
       <div class="video-header" onclick="togglePlayer(this.parentElement, 'Q7r--i9lLck')">
         <div class="thumb-container">
@@ -393,34 +446,75 @@
       </div>
       <div class="player-container"></div>
     </div>
+    <div class="channel-pending" data-creator="Matthew Berman"></div>
+    <div class="video-card" data-video-id="U1oHRqUkI1E" data-creator="Nate B Jones" data-duration="29:20">
+      <input type="checkbox" class="select-checkbox" onclick="toggleSelect('U1oHRqUkI1E', this, event)">
+      <div class="video-header" onclick="togglePlayer(this.parentElement, 'U1oHRqUkI1E')">
+        <div class="thumb-container">
+          <img class="thumb" src="https://i.ytimg.com/vi/U1oHRqUkI1E/hqdefault.jpg" alt="" loading="lazy">
+          <span class="new-badge">NEW</span>
+          <span class="duration">29:20</span>
+        </div>
+        <div class="video-info">
+          <div class="creator-name"><a href="https://www.youtube.com/@NateBJones" target="_blank" onclick="event.stopPropagation()">Nate B Jones</a></div>
+          <div class="video-title">I Just Did a Full Day of Analyst Work in 10 Minutes. The $120K Job Description Just Changed Forever.</div>
+          <div class="video-meta">
+            <span class="video-date">16 hours ago</span>
+            <span>58K views</span>
+          </div>
+        </div>
+      </div>
+      <div class="player-container"></div>
+    </div>
+    <div class="channel-pending" data-creator="Nate B Jones"></div>
   </div>
   <div class="category">
     <h2>News and Finance</h2>
-    <div class="video-card" data-video-id="oEQowHRmVe8" data-creator="Russell Matthews">
+    <div class="video-card" data-video-id="oEQowHRmVe8" data-creator="Russell Matthews" data-duration="13:37">
       <input type="checkbox" class="select-checkbox" onclick="toggleSelect('oEQowHRmVe8', this, event)">
       <div class="video-header" onclick="togglePlayer(this.parentElement, 'oEQowHRmVe8')">
         <div class="thumb-container">
           <img class="thumb" src="https://i.ytimg.com/vi/oEQowHRmVe8/hqdefault.jpg" alt="" loading="lazy">
-          <span class="new-badge">NEW</span>
+          
           <span class="duration">13:37</span>
         </div>
         <div class="video-info">
           <div class="creator-name"><a href="https://www.youtube.com/@russellmatthews" target="_blank" onclick="event.stopPropagation()">Russell Matthews</a></div>
           <div class="video-title">EXPOSED: Canada Police Tied to Criminal Gangs, Blackmail, Drugs</div>
           <div class="video-meta">
-            <span class="video-date">7 days ago</span>
+            <span class="video-date">8 days ago</span>
             <span>28K views</span>
           </div>
         </div>
       </div>
       <div class="player-container"></div>
     </div>
-    <div class="video-card" data-video-id="zoYtn5C2e5w" data-creator="Mark Mitchell">
+    <div class="channel-pending" data-creator="Russell Matthews"></div>
+    <div class="video-card" data-video-id="78egAVwDx6E" data-creator="Mark Mitchell" data-duration="8:22">
+      <input type="checkbox" class="select-checkbox" onclick="toggleSelect('78egAVwDx6E', this, event)">
+      <div class="video-header" onclick="togglePlayer(this.parentElement, '78egAVwDx6E')">
+        <div class="thumb-container">
+          <img class="thumb" src="https://i.ytimg.com/vi/78egAVwDx6E/hqdefault.jpg" alt="" loading="lazy">
+          <span class="new-badge">NEW</span>
+          <span class="duration">8:22</span>
+        </div>
+        <div class="video-info">
+          <div class="creator-name"><a href="https://www.youtube.com/@MortgageBrokerLondonOntario" target="_blank" onclick="event.stopPropagation()">Mark Mitchell</a></div>
+          <div class="video-title">&#39;Stupid&#39; Not to Buy Real Estate: CBC</div>
+          <div class="video-meta">
+            <span class="video-date">17 hours ago</span>
+            <span>16K views</span>
+          </div>
+        </div>
+      </div>
+      <div class="player-container"></div>
+    </div>
+    <div class="video-card" data-video-id="zoYtn5C2e5w" data-creator="Mark Mitchell" data-duration="8:09">
       <input type="checkbox" class="select-checkbox" onclick="toggleSelect('zoYtn5C2e5w', this, event)">
       <div class="video-header" onclick="togglePlayer(this.parentElement, 'zoYtn5C2e5w')">
         <div class="thumb-container">
           <img class="thumb" src="https://i.ytimg.com/vi/zoYtn5C2e5w/hqdefault.jpg" alt="" loading="lazy">
-          <span class="new-badge">NEW</span>
+          
           <span class="duration">8:09</span>
         </div>
         <div class="video-info">
@@ -434,7 +528,8 @@
       </div>
       <div class="player-container"></div>
     </div>
-    <div class="video-card" data-video-id="d7wnAw7ufG4" data-creator="Ben Felix">
+    <div class="channel-pending" data-creator="Mark Mitchell"></div>
+    <div class="video-card" data-video-id="d7wnAw7ufG4" data-creator="Ben Felix" data-duration="15:37">
       <input type="checkbox" class="select-checkbox" onclick="toggleSelect('d7wnAw7ufG4', this, event)">
       <div class="video-header" onclick="togglePlayer(this.parentElement, 'd7wnAw7ufG4')">
         <div class="thumb-container">
@@ -446,17 +541,18 @@
           <div class="creator-name"><a href="https://www.youtube.com/@BenFelixCSI" target="_blank" onclick="event.stopPropagation()">Ben Felix</a></div>
           <div class="video-title">The Biggest Mistakes in Personal Finance</div>
           <div class="video-meta">
-            <span class="video-date">4 days ago</span>
-            <span>197K views</span>
+            <span class="video-date">5 days ago</span>
+            <span>204K views</span>
           </div>
         </div>
       </div>
       <div class="player-container"></div>
     </div>
+    <div class="channel-pending" data-creator="Ben Felix"></div>
   </div>
   <div class="category">
     <h2>Health</h2>
-    <div class="video-card" data-video-id="QvhKvX5e-S8" data-creator="Doctor Alex">
+    <div class="video-card" data-video-id="QvhKvX5e-S8" data-creator="Doctor Alex" data-duration="13:12">
       <input type="checkbox" class="select-checkbox" onclick="toggleSelect('QvhKvX5e-S8', this, event)">
       <div class="video-header" onclick="togglePlayer(this.parentElement, 'QvhKvX5e-S8')">
         <div class="thumb-container">
@@ -466,21 +562,41 @@
         </div>
         <div class="video-info">
           <div class="creator-name"><a href="https://www.youtube.com/@DrAlexGeorge" target="_blank" onclick="event.stopPropagation()">Doctor Alex</a></div>
-          <div class="video-title">I Quit Alcohol For 1000 Days But Didn’t Expect This</div>
+          <div class="video-title">What Really Happened After 1000 Days Without Alcohol</div>
           <div class="video-meta">
-            <span class="video-date">4 days ago</span>
-            <span>5.5K views</span>
+            <span class="video-date">5 days ago</span>
+            <span>5.6K views</span>
           </div>
         </div>
       </div>
       <div class="player-container"></div>
     </div>
-    <div class="video-card" data-video-id="rEE7yamHeoo" data-creator="Nutrition Made Simple!">
+    <div class="channel-pending" data-creator="Doctor Alex"></div>
+    <div class="video-card" data-video-id="Fp-m0QOz2N8" data-creator="Nutrition Made Simple!" data-duration="5:25">
+      <input type="checkbox" class="select-checkbox" onclick="toggleSelect('Fp-m0QOz2N8', this, event)">
+      <div class="video-header" onclick="togglePlayer(this.parentElement, 'Fp-m0QOz2N8')">
+        <div class="thumb-container">
+          <img class="thumb" src="https://i.ytimg.com/vi/Fp-m0QOz2N8/hqdefault.jpg" alt="" loading="lazy">
+          <span class="new-badge">NEW</span>
+          <span class="duration">5:25</span>
+        </div>
+        <div class="video-info">
+          <div class="creator-name"><a href="https://www.youtube.com/@NutritionMadeSimple" target="_blank" onclick="event.stopPropagation()">Nutrition Made Simple!</a></div>
+          <div class="video-title">I´m on the Epstein List (Full Reveal)</div>
+          <div class="video-meta">
+            <span class="video-date">16 hours ago</span>
+            <span>39K views</span>
+          </div>
+        </div>
+      </div>
+      <div class="player-container"></div>
+    </div>
+    <div class="video-card" data-video-id="rEE7yamHeoo" data-creator="Nutrition Made Simple!" data-duration="8:34">
       <input type="checkbox" class="select-checkbox" onclick="toggleSelect('rEE7yamHeoo', this, event)">
       <div class="video-header" onclick="togglePlayer(this.parentElement, 'rEE7yamHeoo')">
         <div class="thumb-container">
           <img class="thumb" src="https://i.ytimg.com/vi/rEE7yamHeoo/hqdefault.jpg" alt="" loading="lazy">
-          <span class="new-badge">NEW</span>
+          
           <span class="duration">8:34</span>
         </div>
         <div class="video-info">
@@ -494,12 +610,32 @@
       </div>
       <div class="player-container"></div>
     </div>
-    <div class="video-card" data-video-id="gbxH6DXZprw" data-creator="Nick Norwitz">
+    <div class="channel-pending" data-creator="Nutrition Made Simple!"></div>
+    <div class="video-card" data-video-id="DxBsocVIBSM" data-creator="Nick Norwitz" data-duration="16:12">
+      <input type="checkbox" class="select-checkbox" onclick="toggleSelect('DxBsocVIBSM', this, event)">
+      <div class="video-header" onclick="togglePlayer(this.parentElement, 'DxBsocVIBSM')">
+        <div class="thumb-container">
+          <img class="thumb" src="https://i.ytimg.com/vi/DxBsocVIBSM/hqdefault.jpg" alt="" loading="lazy">
+          <span class="new-badge">NEW</span>
+          <span class="duration">16:12</span>
+        </div>
+        <div class="video-info">
+          <div class="creator-name"><a href="https://www.youtube.com/@nicknorwitzMDPhD" target="_blank" onclick="event.stopPropagation()">Nick Norwitz</a></div>
+          <div class="video-title">Is Your Gut Broken? Here&#39;s the Reset Button</div>
+          <div class="video-meta">
+            <span class="video-date">20 hours ago</span>
+            <span>17K views</span>
+          </div>
+        </div>
+      </div>
+      <div class="player-container"></div>
+    </div>
+    <div class="video-card" data-video-id="gbxH6DXZprw" data-creator="Nick Norwitz" data-duration="14:35">
       <input type="checkbox" class="select-checkbox" onclick="toggleSelect('gbxH6DXZprw', this, event)">
       <div class="video-header" onclick="togglePlayer(this.parentElement, 'gbxH6DXZprw')">
         <div class="thumb-container">
           <img class="thumb" src="https://i.ytimg.com/vi/gbxH6DXZprw/hqdefault.jpg" alt="" loading="lazy">
-          <span class="new-badge">NEW</span>
+          
           <span class="duration">14:35</span>
         </div>
         <div class="video-info">
@@ -513,18 +649,19 @@
       </div>
       <div class="player-container"></div>
     </div>
+    <div class="channel-pending" data-creator="Nick Norwitz"></div>
   </div>
-  <div class="updated">Last updated: Feb 12, 2026, 8:53 PM PST</div>
+<div class="updated">Last updated: Feb 14, 2026, 12:00 AM PST</div>
   <script>
   const BLOB_URL = '/api/sync?feed=research';
   let userData = { watched: {}, myVideos: {}, pendingNew: [] };
   let syncTimeout = null;
   let selectedVideos = new Set();
+  let playlistQueue = [];
+  let currentPlayingIndex = -1;
   
-  // Get page type from URL or hostname
-  const pageType = location.hostname.includes('entertainment') ? 'entertainment' :
-                   location.hostname.includes('news') ? 'news' :
-                   location.pathname.includes('entertainment') ? 'entertainment' : 'research';
+  // Get page type from URL
+  const pageType = location.pathname.includes('entertainment') ? 'entertainment' : 'research';
   
   async function loadUserData() {
     setStatus('syncing', 'Loading...');
@@ -540,7 +677,7 @@
       // First visit: if no myVideos for this page, add all current videos
       if (!userData.myVideos[pageType] || Object.keys(userData.myVideos[pageType]).length === 0) {
         userData.myVideos[pageType] = {};
-        document.querySelectorAll('.video-card').forEach(card => {
+        document.querySelectorAll('.video-card:not(.pending-new)').forEach(card => {
           const videoId = card.dataset.videoId;
           const creator = card.dataset.creator;
           userData.myVideos[pageType][videoId] = { 
@@ -555,36 +692,13 @@
       showPendingNewVideos();
       setStatus('synced', 'Synced ✓');
     } catch (e) {
-      console.error('Cloud sync unavailable:', e);
-      setStatus('error', 'Sync failed: ' + e.message);
-      // Fall back to localStorage
-      try {
-        const local = localStorage.getItem('yt-userData');
-        if (local) {
-          userData = JSON.parse(local);
-          updateUI();
-          showPendingNewVideos();
-          setStatus('error', 'Local mode (sync failed: ' + e.message + ')');
-          return;
-        }
-      } catch {}
-      // First visit with no sync - show all videos (no filtering)
-      setStatus('error', 'First visit, no sync - showing all');
-      userData.myVideos[pageType] = {};
-      document.querySelectorAll('.video-card').forEach(card => {
-        const videoId = card.dataset.videoId;
-        const creator = card.dataset.creator;
-        userData.myVideos[pageType][videoId] = { added: Date.now(), creator };
-      });
-      localStorage.setItem('yt-userData', JSON.stringify(userData));
-      setStatus('synced', 'Local mode ✓');
+      console.error('Load failed:', e);
+      setStatus('error', 'Sync failed');
     }
   }
   
   async function saveUserData() {
     setStatus('syncing', 'Saving...');
-    // Always save to localStorage
-    localStorage.setItem('yt-userData', JSON.stringify(userData));
     try {
       await fetch(BLOB_URL, {
         method: 'PUT',
@@ -593,8 +707,8 @@
       });
       setStatus('synced', 'Synced ✓');
     } catch (e) {
-      console.error('Cloud sync unavailable:', e);
-      setStatus('synced', 'Local mode ✓');
+      console.error('Save failed:', e);
+      setStatus('error', 'Sync failed');
     }
   }
   
@@ -621,28 +735,15 @@
   }
   
   function updateUI() {
-    const userPageVideos = (userData.myVideos && userData.myVideos[pageType]) || {};
-    const hasUserVideos = Object.keys(userPageVideos).length > 0;
-    
-    document.querySelectorAll('.video-card').forEach(card => {
+    document.querySelectorAll('.video-card:not(.pending-new)').forEach(card => {
       const videoId = card.dataset.videoId;
       
-      // Hide videos not in user's list (unless first visit / no list yet)
-      if (hasUserVideos && !userPageVideos[videoId]) {
-        card.style.display = 'none';
-        return;
-      } else {
-        card.style.display = '';
-      }
-      
-      // Update watched state
       if (isWatched(videoId)) {
         card.classList.add('watched');
       } else {
         card.classList.remove('watched');
       }
       
-      // Update selection state
       if (selectedVideos.has(videoId)) {
         card.classList.add('selected');
         card.querySelector('.select-checkbox').checked = true;
@@ -650,13 +751,6 @@
         card.classList.remove('selected');
         card.querySelector('.select-checkbox').checked = false;
       }
-    });
-    
-    // Hide empty categories
-    document.querySelectorAll('.category').forEach(cat => {
-      const visibleCards = cat.querySelectorAll('.video-card[style=""], .video-card:not([style])');
-      const hasVisible = Array.from(cat.querySelectorAll('.video-card')).some(c => c.style.display !== 'none');
-      cat.style.display = hasVisible ? '' : 'none';
     });
     
     updateSelectionCount();
@@ -674,14 +768,32 @@
   
   function updateSelectionCount() {
     const countEl = document.getElementById('selection-count');
+    const count = selectedVideos.size;
+    
     if (countEl) {
-      const count = selectedVideos.size;
-      countEl.textContent = count > 0 ? count + ' selected' : '';
+      if (count > 0) {
+        // Calculate total duration of selected videos
+        let totalSeconds = 0;
+        document.querySelectorAll('.video-card').forEach(card => {
+          if (selectedVideos.has(card.dataset.videoId)) {
+            totalSeconds += parseDuration(card.dataset.duration);
+          }
+        });
+        const durationStr = formatDuration(totalSeconds);
+        countEl.textContent = count + ' selected (' + durationStr + ')';
+      } else {
+        countEl.textContent = '';
+      }
     }
     
     const refreshBtn = document.getElementById('refresh-selected-btn');
     if (refreshBtn) {
-      refreshBtn.disabled = selectedVideos.size === 0;
+      refreshBtn.disabled = count === 0;
+    }
+    
+    const playBtn = document.getElementById('play-selected-btn');
+    if (playBtn) {
+      playBtn.disabled = count === 0;
     }
   }
   
@@ -690,148 +802,221 @@
       alert('Select videos to refresh by clicking their checkboxes');
       return;
     }
-    // For each selected video, check if there's a pending new video for that creator
-    // If so, swap it in (replace the old video with the new one)
-    let swapped = 0;
     selectedVideos.forEach(videoId => {
-      const card = document.querySelector(`.video-card[data-video-id="${videoId}"]`);
-      if (!card) return;
-      const creator = card.dataset.creator;
-      const pending = (userData.pendingNew || []).find(v => v.creator === creator && v.pageType === pageType);
-      
-      if (pending) {
-        // Remove old video from myVideos
-        if (userData.myVideos[pageType]) delete userData.myVideos[pageType][videoId];
-        // Add new video to myVideos
-        if (!userData.myVideos[pageType]) userData.myVideos[pageType] = {};
-        userData.myVideos[pageType][pending.videoId] = { added: Date.now(), creator: pending.creator };
-        // Remove from pending
-        userData.pendingNew = userData.pendingNew.filter(v => v.videoId !== pending.videoId);
-        // Update the card in-place
-        swapCardContent(card, pending);
-        swapped++;
+      if (userData.myVideos[pageType]) {
+        delete userData.myVideos[pageType][videoId];
       }
     });
     selectedVideos.clear();
     saveUserData().then(() => {
-      updateUI();
-      showNewVideoIndicators();
+      alert('Selected videos will be refreshed on next update. Reload to see changes.');
     });
-    if (swapped > 0) {
-      // Uncheck all
-      document.querySelectorAll('.select-checkbox').forEach(cb => cb.checked = false);
-    }
   }
   
-  function swapCardContent(card, newVideo) {
-    // Update card attributes
-    card.dataset.videoId = newVideo.videoId;
-    // Update thumbnail
-    const thumb = card.querySelector('.thumb');
-    if (thumb) thumb.src = newVideo.thumbnail || 'https://i.ytimg.com/vi/' + newVideo.videoId + '/hqdefault.jpg';
-    // Update title
-    const title = card.querySelector('.video-title');
-    if (title) title.textContent = newVideo.title;
-    // Update duration
-    const dur = card.querySelector('.duration');
-    if (dur) dur.textContent = newVideo.duration || '';
-    // Update date
-    const dateEl = card.querySelector('.video-date');
-    if (dateEl) dateEl.textContent = newVideo.dateStr || '';
-    // Update NEW badge
-    let badge = card.querySelector('.new-badge');
-    if (!badge) {
-      badge = document.createElement('span');
-      badge.className = 'new-badge';
-      badge.textContent = 'NEW';
-      card.querySelector('.thumb-container')?.appendChild(badge);
-    }
-    badge.style.display = '';
-    // Update checkbox onclick
-    const cb = card.querySelector('.select-checkbox');
-    if (cb) cb.setAttribute('onclick', "toggleSelect('" + newVideo.videoId + "', this, event)");
-    // Update header onclick
-    const header = card.querySelector('.video-header');
-    if (header) header.setAttribute('onclick', "togglePlayer(this.parentElement, '" + newVideo.videoId + "')");
-    // Close any open player
-    const player = card.querySelector('.player-container');
-    if (player) { player.classList.remove('active'); player.innerHTML = ''; }
-    // Remove watched state
-    card.classList.remove('watched');
-  }
-  
-  function showNewVideoIndicators() {
-    // Remove old indicators
-    document.querySelectorAll('.new-video-indicator').forEach(el => el.remove());
+  function showPendingNewVideos() {
+    // Get video IDs already on the page
+    const onPageIds = new Set();
+    document.querySelectorAll('.video-card[data-video-id]').forEach(card => {
+      onPageIds.add(card.dataset.videoId);
+    });
     
-    const pending = (userData.pendingNew || []).filter(v => v.pageType === pageType);
-    if (pending.length === 0) return;
+    // Filter pending videos to only this feed's pageType AND not already on page
+    const pending = userData.pendingNew.filter(v => 
+      v.pageType === pageType && !onPageIds.has(v.videoId)
+    );
     
-    // For each pending video, find the card for that creator and add indicator below it
-    pending.forEach(p => {
-      // Find the card for this creator
-      const cards = document.querySelectorAll(`.video-card[data-creator="${p.creator}"]`);
-      const card = Array.from(cards).find(c => c.style.display !== 'none');
-      if (!card) return;
+    // Group by creator
+    const byCreator = {};
+    pending.forEach(v => {
+      if (!byCreator[v.creator]) byCreator[v.creator] = [];
+      byCreator[v.creator].push(v);
+    });
+    
+    // Show pending videos as simple text under each channel
+    document.querySelectorAll('.channel-pending').forEach(container => {
+      const creator = container.dataset.creator;
+      const videos = byCreator[creator] || [];
       
-      const currentVideoId = card.dataset.videoId;
-      
-      // If current video is watched, auto-swap
-      if (isWatched(currentVideoId)) {
-        // Remove old from myVideos, add new
-        if (userData.myVideos[pageType]) delete userData.myVideos[pageType][currentVideoId];
-        if (!userData.myVideos[pageType]) userData.myVideos[pageType] = {};
-        userData.myVideos[pageType][p.videoId] = { added: Date.now(), creator: p.creator };
-        userData.pendingNew = userData.pendingNew.filter(v => v.videoId !== p.videoId);
-        swapCardContent(card, p);
-        debouncedSave();
+      if (videos.length === 0) {
+        container.style.display = 'none';
+        container.innerHTML = '';
         return;
       }
       
-      // Not watched — show indicator below card
-      const indicator = document.createElement('div');
-      indicator.className = 'new-video-indicator';
-      indicator.innerHTML = `<span class="indicator-badge">🆕 NEW</span> <strong>${p.creator}</strong>: ${p.title} · <span class="indicator-duration">${p.duration || ''}</span>`;
-      card.after(indicator);
+      container.style.display = 'block';
+      container.innerHTML = videos.map(v => `
+        <div class="pending-text" onclick="addPendingVideo('${v.videoId}')">
+          <span class="new-tag">+ NEW:</span> ${v.title}
+        </div>
+      `).join('');
     });
   }
   
-  // Keep old function name for compatibility but redirect
-  function showPendingNewVideos() { showNewVideoIndicators(); }
+  function addPendingVideo(videoId) {
+    const pending = userData.pendingNew.find(v => v.videoId === videoId);
+    if (!pending) return;
+    
+    if (!userData.myVideos[pageType]) userData.myVideos[pageType] = {};
+    userData.myVideos[pageType][videoId] = {
+      added: Date.now(),
+      creator: pending.creator
+    };
+    
+    userData.pendingNew = userData.pendingNew.filter(v => v.videoId !== videoId);
+    
+    saveUserData().then(() => {
+      showPendingNewVideos();
+      alert('Video added! Reload page to see it in your list.');
+    });
+  }
   
-  let watchTimers = {};
-
   function togglePlayer(card, videoId) {
     const container = card.querySelector('.player-container');
     const isActive = container.classList.contains('active');
     
-    // Close all other players and clear their timers
     document.querySelectorAll('.player-container.active').forEach(p => {
       p.classList.remove('active');
       p.innerHTML = '';
     });
-    Object.keys(watchTimers).forEach(id => {
-      if (id !== videoId) { clearTimeout(watchTimers[id]); delete watchTimers[id]; }
-    });
     
     if (!isActive) {
-      container.innerHTML = '<iframe src="https://www.youtube.com/embed/' + videoId + '?autoplay=1" allow="autoplay; encrypted-media" allowfullscreen></iframe>';
-      container.classList.add('active');
-      
-      // Mark as watched after 30 seconds of viewing
-      if (!isWatched(videoId)) {
-        watchTimers[videoId] = setTimeout(() => {
-          setWatched(videoId);
-          card.classList.add('watched');
-          updateUI();
-          debouncedSave();
-          delete watchTimers[videoId];
-        }, 30000);
-      }
-    } else {
-      // Closing player — cancel timer
-      if (watchTimers[videoId]) { clearTimeout(watchTimers[videoId]); delete watchTimers[videoId]; }
+      playVideo(card, videoId);
     }
+  }
+  
+  let ytPlayer = null;
+  
+  function playVideo(card, videoId) {
+    // Close any open players
+    document.querySelectorAll('.player-container.active').forEach(p => {
+      p.classList.remove('active');
+      p.innerHTML = '';
+    });
+    
+    const container = card.querySelector('.player-container');
+    container.innerHTML = '<div id="yt-player-container"></div>';
+    container.classList.add('active');
+    
+    // Use YouTube IFrame API for end detection
+    if (window.YT && window.YT.Player) {
+      createYTPlayer(videoId);
+    } else {
+      // Load YouTube API if not loaded
+      window.onYouTubeIframeAPIReady = () => createYTPlayer(videoId);
+      const tag = document.createElement('script');
+      tag.src = 'https://www.youtube.com/iframe_api';
+      document.head.appendChild(tag);
+    }
+    
+    setWatched(videoId);
+    card.classList.add('watched');
+    
+    // Scroll card into view
+    card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }
+  
+  function createYTPlayer(videoId) {
+    ytPlayer = new YT.Player('yt-player-container', {
+      videoId: videoId,
+      width: '100%',
+      height: '100%',
+      playerVars: { autoplay: 1 },
+      events: {
+        onStateChange: onPlayerStateChange
+      }
+    });
+  }
+  
+  function onPlayerStateChange(event) {
+    // State 0 = ended
+    if (event.data === 0 && playlistQueue.length > 0 && currentPlayingIndex >= 0) {
+      // Auto-advance to next video
+      currentPlayingIndex++;
+      playNextInQueue();
+    }
+  }
+  
+  function playSelected() {
+    if (selectedVideos.size === 0) {
+      alert('Select videos to play by clicking their checkboxes');
+      return;
+    }
+    
+    // Build queue from selected videos in page order
+    playlistQueue = [];
+    document.querySelectorAll('.video-card').forEach(card => {
+      const videoId = card.dataset.videoId;
+      if (selectedVideos.has(videoId)) {
+        playlistQueue.push({ videoId, card });
+      }
+    });
+    
+    if (playlistQueue.length === 0) return;
+    
+    // Start playing first video
+    currentPlayingIndex = 0;
+    playNextInQueue();
+  }
+  
+  function playNextInQueue() {
+    hidePlaylistBar();
+    
+    if (currentPlayingIndex >= playlistQueue.length) {
+      // Playlist finished
+      playlistQueue = [];
+      currentPlayingIndex = -1;
+      alert('Playlist finished!');
+      return;
+    }
+    
+    const item = playlistQueue[currentPlayingIndex];
+    playVideo(item.card, item.videoId);
+    showPlaylistBar();
+  }
+  
+  function showPlaylistBar() {
+    let bar = document.getElementById('playlist-bar');
+    if (!bar) {
+      bar = document.createElement('div');
+      bar.id = 'playlist-bar';
+      document.body.appendChild(bar);
+    }
+    
+    const current = currentPlayingIndex + 1;
+    const total = playlistQueue.length;
+    const currentTitle = playlistQueue[currentPlayingIndex]?.card.querySelector('.video-title')?.textContent || 'Video';
+    
+    bar.innerHTML = `
+      <div class="playlist-info">
+        <span class="playlist-progress">▶ ${current} / ${total}</span>
+        <span class="playlist-title">${currentTitle.substring(0, 50)}...</span>
+      </div>
+      <div class="playlist-controls">
+        <button onclick="skipToNext()">Next ⏭</button>
+        <button onclick="stopPlaylist()">Stop ✕</button>
+      </div>
+    `;
+    bar.style.display = 'flex';
+  }
+  
+  function hidePlaylistBar() {
+    const bar = document.getElementById('playlist-bar');
+    if (bar) bar.style.display = 'none';
+  }
+  
+  function skipToNext() {
+    currentPlayingIndex++;
+    playNextInQueue();
+  }
+  
+  function stopPlaylist() {
+    playlistQueue = [];
+    currentPlayingIndex = -1;
+    hidePlaylistBar();
+    document.querySelectorAll('.player-container.active').forEach(p => {
+      p.classList.remove('active');
+      p.innerHTML = '';
+    });
   }
   
   async function clearWatched() {
@@ -849,7 +1034,6 @@
     });
   }
   
-  // Stats functions
   function parseDuration(str) {
     if (!str) return 0;
     const parts = str.split(':').map(Number);
@@ -857,43 +1041,40 @@
     if (parts.length === 2) return parts[0] * 60 + parts[1];
     return parts[0] || 0;
   }
+  
   function formatDuration(seconds) {
     const h = Math.floor(seconds / 3600);
     const m = Math.floor((seconds % 3600) / 60);
     if (h > 0) return h + 'h ' + m + 'm';
     return m + 'm';
   }
+  
   function updateStats() {
     let total = 0, watched = 0;
-    document.querySelectorAll('.video-card').forEach(card => {
-      const durEl = card.querySelector('.duration');
-      if (!durEl) return;
-      const dur = parseDuration(durEl.textContent.trim());
+    document.querySelectorAll('.video-card:not(.pending-new)').forEach(card => {
+      const dur = parseDuration(card.dataset.duration);
       total += dur;
-      if (card.classList.contains('watched')) watched += dur;
+      if (card.classList.contains('watched')) {
+        watched += dur;
+      }
     });
+    
     document.getElementById('total-duration').textContent = formatDuration(total);
     document.getElementById('watched-duration').textContent = formatDuration(watched);
     document.getElementById('remaining-duration').textContent = formatDuration(total - watched);
   }
-  const _origUpdateUI = updateUI;
-  updateUI = function() { _origUpdateUI(); updateStats(); };
-
-  // Last refresh indicator
-  fetch('/last-refresh.json?' + Date.now())
-    .then(r => r.json())
-    .then(d => {
-      const dt = new Date(d.lastRefresh);
-      const now = new Date();
-      const diffH = Math.floor((now - dt) / 3600000);
-      const diffM = Math.floor(((now - dt) % 3600000) / 60000);
-      let ago = diffH > 0 ? diffH + 'h ' + diffM + 'm ago' : diffM + 'm ago';
-      document.getElementById('last-refresh').textContent = '🔄 Last checked for new content: ' + ago;
-    })
-    .catch(() => { document.getElementById('last-refresh').textContent = ''; });
-
-  // Initialize on load
-  document.addEventListener('DOMContentLoaded', () => { loadUserData(); updateStats(); });
+  
+  // Call updateStats after UI updates
+  const origUpdateUI = updateUI;
+  updateUI = function() {
+    origUpdateUI();
+    updateStats();
+  };
+  
+  document.addEventListener('DOMContentLoaded', () => {
+    loadUserData();
+    updateStats();
+  });
 </script>
 </body>
 </html>

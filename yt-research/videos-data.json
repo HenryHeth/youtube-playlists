@@ -6,14 +6,34 @@
         "channel": "@mreflow",
         "videos": [
           {
+            "title": "AI News: This Video Model Has Everyone Freaked Out!",
+            "url": "https://www.youtube.com/watch?v=msrbd-d6lWk&pp=0gcJCYcKAYcqIYzv",
+            "views": "48K views",
+            "dateStr": "14 hours ago",
+            "duration": "30:53",
+            "videoId": "msrbd-d6lWk",
+            "thumbnail": "https://i.ytimg.com/vi/msrbd-d6lWk/hqdefault.jpg",
+            "isNew": true
+          },
+          {
+            "title": "ChatGPT Ads Are Here. It Gets Worse.",
+            "url": "https://www.youtube.com/watch?v=Tk9bVpYIIjc",
+            "views": "33K views",
+            "dateStr": "21 hours ago",
+            "duration": "15:43",
+            "videoId": "Tk9bVpYIIjc",
+            "thumbnail": "https://i.ytimg.com/vi/Tk9bVpYIIjc/hqdefault.jpg",
+            "isNew": false
+          },
+          {
+            "videoId": "sLhxdcpuot0",
             "title": "The AI Wake-Up Call Everyone Needs Right Now!",
             "url": "https://www.youtube.com/watch?v=sLhxdcpuot0",
-            "views": "75K views",
-            "dateStr": "16 hours ago",
-            "duration": "28:06",
-            "videoId": "sLhxdcpuot0",
             "thumbnail": "https://i.ytimg.com/vi/sLhxdcpuot0/hqdefault.jpg",
-            "isNew": true
+            "dateStr": "1 day ago",
+            "duration": "28:06",
+            "views": "75K views",
+            "isNew": false
           }
         ]
       },
@@ -22,13 +42,39 @@
         "channel": "@matthew_berman",
         "videos": [
           {
+            "title": "Something big is happening...",
+            "url": "https://www.youtube.com/watch?v=31A41ckhb7Q",
+            "views": "118K views",
+            "dateStr": "1 day ago",
+            "duration": "20:12",
+            "videoId": "31A41ckhb7Q",
+            "thumbnail": "https://i.ytimg.com/vi/31A41ckhb7Q/hqdefault.jpg",
+            "isNew": true
+          },
+          {
+            "videoId": "Q7r--i9lLck",
             "title": "How I'm using OpenClaw Everyday (Use Cases)",
             "url": "https://www.youtube.com/watch?v=Q7r--i9lLck",
-            "views": "65K views",
-            "dateStr": "20 hours ago",
-            "duration": "27:41",
-            "videoId": "Q7r--i9lLck",
             "thumbnail": "https://i.ytimg.com/vi/Q7r--i9lLck/hqdefault.jpg",
+            "dateStr": "2 days ago",
+            "duration": "27:41",
+            "views": "120K views",
+            "isNew": false
+          }
+        ]
+      },
+      {
+        "creator": "Nate B Jones",
+        "channel": "@NateBJones",
+        "videos": [
+          {
+            "title": "I Just Did a Full Day of Analyst Work in 10 Minutes. The $120K Job Description Just Changed Forever.",
+            "url": "https://www.youtube.com/watch?v=U1oHRqUkI1E",
+            "views": "58K views",
+            "dateStr": "16 hours ago",
+            "duration": "29:20",
+            "videoId": "U1oHRqUkI1E",
+            "thumbnail": "https://i.ytimg.com/vi/U1oHRqUkI1E/hqdefault.jpg",
             "isNew": true
           }
         ]
@@ -36,34 +82,18 @@
     ],
     "News and Finance": [
       {
-        "creator": "Claus Kellerman POV",
-        "channel": "@clauskellermanpov3004",
-        "videos": [
-          {
-            "title": "US LIES ARE OUT OF CONTROL - THE BIGGEST THREAT TO CANADA",
-            "url": "https://www.youtube.com/watch?v=XUHJ_DX_PwI",
-            "views": "60K views",
-            "dateStr": "1 day ago",
-            "duration": "13:45",
-            "videoId": "XUHJ_DX_PwI",
-            "thumbnail": "https://i.ytimg.com/vi/XUHJ_DX_PwI/hqdefault.jpg",
-            "isNew": true
-          }
-        ]
-      },
-      {
         "creator": "Russell Matthews",
         "channel": "@russellmatthews",
         "videos": [
           {
             "title": "EXPOSED: Canada Police Tied to Criminal Gangs, Blackmail, Drugs",
             "url": "https://www.youtube.com/watch?v=oEQowHRmVe8",
-            "views": "27K views",
-            "dateStr": "6 days ago",
+            "views": "28K views",
+            "dateStr": "8 days ago",
             "duration": "13:37",
             "videoId": "oEQowHRmVe8",
             "thumbnail": "https://i.ytimg.com/vi/oEQowHRmVe8/hqdefault.jpg",
-            "isNew": true
+            "isNew": false
           }
         ]
       },
@@ -72,14 +102,24 @@
         "channel": "@MortgageBrokerLondonOntario",
         "videos": [
           {
+            "title": "'Stupid' Not to Buy Real Estate: CBC",
+            "url": "https://www.youtube.com/watch?v=78egAVwDx6E",
+            "views": "16K views",
+            "dateStr": "17 hours ago",
+            "duration": "8:22",
+            "videoId": "78egAVwDx6E",
+            "thumbnail": "https://i.ytimg.com/vi/78egAVwDx6E/hqdefault.jpg",
+            "isNew": true
+          },
+          {
             "title": "Real Estate Scams Unravelling",
             "url": "https://www.youtube.com/watch?v=zoYtn5C2e5w",
-            "views": "8.9K views",
-            "dateStr": "22 hours ago",
+            "views": "10K views",
+            "dateStr": "1 day ago",
             "duration": "8:09",
             "videoId": "zoYtn5C2e5w",
             "thumbnail": "https://i.ytimg.com/vi/zoYtn5C2e5w/hqdefault.jpg",
-            "isNew": true
+            "isNew": false
           }
         ]
       },
@@ -90,8 +130,8 @@
           {
             "title": "The Biggest Mistakes in Personal Finance",
             "url": "https://www.youtube.com/watch?v=d7wnAw7ufG4",
-            "views": "193K views",
-            "dateStr": "4 days ago",
+            "views": "204K views",
+            "dateStr": "5 days ago",
             "duration": "15:37",
             "videoId": "d7wnAw7ufG4",
             "thumbnail": "https://i.ytimg.com/vi/d7wnAw7ufG4/hqdefault.jpg",
@@ -106,10 +146,10 @@
         "channel": "@DrAlexGeorge",
         "videos": [
           {
-            "title": "I Quit Alcohol For 1000 Days But Didn’t Expect This",
+            "title": "What Really Happened After 1000 Days Without Alcohol",
             "url": "https://www.youtube.com/watch?v=QvhKvX5e-S8",
-            "views": "5.4K views",
-            "dateStr": "4 days ago",
+            "views": "5.6K views",
+            "dateStr": "5 days ago",
             "duration": "13:12",
             "videoId": "QvhKvX5e-S8",
             "thumbnail": "https://i.ytimg.com/vi/QvhKvX5e-S8/hqdefault.jpg",
@@ -122,14 +162,24 @@
         "channel": "@NutritionMadeSimple",
         "videos": [
           {
+            "title": "I´m on the Epstein List (Full Reveal)",
+            "url": "https://www.youtube.com/watch?v=Fp-m0QOz2N8",
+            "views": "39K views",
+            "dateStr": "16 hours ago",
+            "duration": "5:25",
+            "videoId": "Fp-m0QOz2N8",
+            "thumbnail": "https://i.ytimg.com/vi/Fp-m0QOz2N8/hqdefault.jpg",
+            "isNew": true
+          },
+          {
             "title": "7 Surprising Foods that Help Fight CANCER",
             "url": "https://www.youtube.com/watch?v=rEE7yamHeoo",
-            "views": "29K views",
+            "views": "31K views",
             "dateStr": "2 days ago",
             "duration": "8:34",
             "videoId": "rEE7yamHeoo",
             "thumbnail": "https://i.ytimg.com/vi/rEE7yamHeoo/hqdefault.jpg",
-            "isNew": true
+            "isNew": false
           }
         ]
       },
@@ -138,14 +188,24 @@
         "channel": "@nicknorwitzMDPhD",
         "videos": [
           {
+            "title": "Is Your Gut Broken? Here's the Reset Button",
+            "url": "https://www.youtube.com/watch?v=DxBsocVIBSM",
+            "views": "17K views",
+            "dateStr": "20 hours ago",
+            "duration": "16:12",
+            "videoId": "DxBsocVIBSM",
+            "thumbnail": "https://i.ytimg.com/vi/DxBsocVIBSM/hqdefault.jpg",
+            "isNew": true
+          },
+          {
             "title": "The 75-Year-Old Obesity Riddle Science Just Solved",
             "url": "https://www.youtube.com/watch?v=gbxH6DXZprw",
-            "views": "20K views",
+            "views": "23K views",
             "dateStr": "1 day ago",
             "duration": "14:35",
             "videoId": "gbxH6DXZprw",
             "thumbnail": "https://i.ytimg.com/vi/gbxH6DXZprw/hqdefault.jpg",
-            "isNew": true
+            "isNew": false
           }
         ]
       }
@@ -160,8 +220,8 @@
           {
             "title": "This “Bulletproof” Cruiser Has a Serious Weak Spot Caliber 40 LRC SE",
             "url": "https://www.youtube.com/watch?v=HFsjRc4Y2t0",
-            "views": "12K views",
-            "dateStr": "3 days ago",
+            "views": "14K views",
+            "dateStr": "4 days ago",
             "duration": "9:03",
             "videoId": "HFsjRc4Y2t0",
             "thumbnail": "https://i.ytimg.com/vi/HFsjRc4Y2t0/hqdefault.jpg",
@@ -174,13 +234,13 @@
         "channel": "@Thenewkidsonthedock",
         "videos": [
           {
-            "title": "This System is CRITICAL for our 57ft Abandoned Catamaran…And We’ve Never Done it Before 😬",
-            "url": "https://www.youtube.com/watch?v=jE05We9IJIA",
-            "views": "136K views",
-            "dateStr": "6 days ago",
-            "duration": "42:02",
-            "videoId": "jE05We9IJIA",
-            "thumbnail": "https://i.ytimg.com/vi/jE05We9IJIA/hqdefault.jpg",
+            "title": "Catamaran of our Dreams - But First? Finish These RUDDERS!",
+            "url": "https://www.youtube.com/watch?v=2nqPuQtLQE4",
+            "views": "102K views",
+            "dateStr": "1 day ago",
+            "duration": "34:16",
+            "videoId": "2nqPuQtLQE4",
+            "thumbnail": "https://i.ytimg.com/vi/2nqPuQtLQE4/hqdefault.jpg",
             "isNew": true
           }
         ]
@@ -191,9 +251,9 @@
         "videos": [
           {
             "title": "REBUILDING OUR HULLS: Blister repair series - part 4  (Episode 350)",
-            "url": "https://www.youtube.com/watch?v=XhZZCNfBmLI",
-            "views": "154K views",
-            "dateStr": "4 days ago",
+            "url": "https://www.youtube.com/watch?v=XhZZCNfBmLI&pp=0gcJCYcKAYcqIYzv",
+            "views": "162K views",
+            "dateStr": "5 days ago",
             "duration": "23:23",
             "videoId": "XhZZCNfBmLI",
             "thumbnail": "https://i.ytimg.com/vi/XhZZCNfBmLI/hqdefault.jpg",
@@ -203,93 +263,5 @@
       }
     ]
   },
-  "news": {
-    "News": [
-      {
-        "creator": "Claus Kellerman POV",
-        "channel": "@clauskellermanpov3004",
-        "videos": [
-          {
-            "title": "US LIES ARE OUT OF CONTROL - THE BIGGEST THREAT TO CANADA",
-            "url": "https://www.youtube.com/watch?v=XUHJ_DX_PwI",
-            "views": "60K views",
-            "dateStr": "1 day ago",
-            "duration": "13:45",
-            "videoId": "XUHJ_DX_PwI",
-            "thumbnail": "https://i.ytimg.com/vi/XUHJ_DX_PwI/hqdefault.jpg",
-            "isNew": true
-          }
-        ]
-      },
-      {
-        "creator": "Global News",
-        "channel": "@GlobalNews",
-        "videos": [
-          {
-            "title": "“It could have been me”: Tumbler Ridge girl escapes school shooting that left classmates dead",
-            "url": "https://www.youtube.com/watch?v=xvFYJ5mQ7Jc",
-            "views": "162 views",
-            "dateStr": "11 minutes ago",
-            "duration": "3:36",
-            "videoId": "xvFYJ5mQ7Jc",
-            "thumbnail": "https://i.ytimg.com/vi/xvFYJ5mQ7Jc/hqdefault.jpg",
-            "isNew": true
-          }
-        ]
-      },
-      {
-        "creator": "CTV News",
-        "channel": "@CTVNews",
-        "videos": [
-          {
-            "title": "Sask site of mass shooting reacts to Tumbler Ridge incident | CTV News Saskatoon at Six  Feb 11, '26",
-            "url": "https://www.youtube.com/watch?v=SdK3-BxN5fo",
-            "views": "52 views",
-            "dateStr": "2 minutes ago",
-            "duration": "44:14",
-            "videoId": "SdK3-BxN5fo",
-            "thumbnail": "https://i.ytimg.com/vi/SdK3-BxN5fo/hqdefault.jpg",
-            "isNew": true
-          }
-        ]
-      },
-      {
-        "creator": "Brian Tyler Cohen",
-        "channel": "@briantylercohen",
-        "videos": [
-          {
-            "title": "Pam Bondi dealt NIGHTMARE blow after disaster hearing | Another Day",
-            "url": "https://www.youtube.com/watch?v=nrGBkyvMRHA",
-            "views": "313K views",
-            "dateStr": "10 hours ago",
-            "duration": "10:12",
-            "videoId": "nrGBkyvMRHA",
-            "thumbnail": "https://i.ytimg.com/vi/nrGBkyvMRHA/hqdefault.jpg",
-            "isNew": true
-          }
-        ]
-      },
-      {
-        "creator": "House of El",
-        "channel": "@HouseofEl",
-        "videos": [
-          {
-            "title": "Europe ABANDONS US Payment Systems - 130M Users Switch to Wero, Ditch Visa/Mastercard",
-            "url": "https://www.youtube.com/watch?v=dCrHOjmVz_I",
-            "views": "8K views",
-            "dateStr": "1 hour ago",
-            "duration": "10:00",
-            "videoId": "dCrHOjmVz_I",
-            "thumbnail": "https://i.ytimg.com/vi/dCrHOjmVz_I/hqdefault.jpg",
-            "isNew": true
-          }
-        ]
-      },
-      {
-        "creator": "Angry Mortgage Podcast",
-        "channel": "@AngryMortgagePodcast",
-        "videos": []
-      }
-    ]
-  }
+  "news": {}
 }
