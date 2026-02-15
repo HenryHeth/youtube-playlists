@@ -7,9 +7,9 @@
         "videos": [
           {
             "title": "AI News: This Video Model Has Everyone Freaked Out!",
-            "url": "https://www.youtube.com/watch?v=msrbd-d6lWk&pp=0gcJCYcKAYcqIYzv",
-            "views": "48K views",
-            "dateStr": "14 hours ago",
+            "url": "https://www.youtube.com/watch?v=msrbd-d6lWk",
+            "views": "63K views",
+            "dateStr": "22 hours ago",
             "duration": "30:53",
             "videoId": "msrbd-d6lWk",
             "thumbnail": "https://i.ytimg.com/vi/msrbd-d6lWk/hqdefault.jpg",
@@ -44,7 +44,7 @@
           {
             "title": "Something big is happening...",
             "url": "https://www.youtube.com/watch?v=31A41ckhb7Q",
-            "views": "118K views",
+            "views": "124K views",
             "dateStr": "1 day ago",
             "duration": "20:12",
             "videoId": "31A41ckhb7Q",
@@ -68,6 +68,16 @@
         "channel": "@NateBJones",
         "videos": [
           {
+            "title": "Why $650 Billion in AI Spending ISN'T Enough. The 4 Skills that Survive and What This Means for You.",
+            "url": "https://www.youtube.com/watch?v=NCgdpbEvNVA",
+            "views": "3.6K views",
+            "dateStr": "56 minutes ago",
+            "duration": "22:53",
+            "videoId": "NCgdpbEvNVA",
+            "thumbnail": "https://i.ytimg.com/vi/NCgdpbEvNVA/hqdefault.jpg",
+            "isNew": true
+          },
+          {
             "title": "I Just Did a Full Day of Analyst Work in 10 Minutes. The $120K Job Description Just Changed Forever.",
             "url": "https://www.youtube.com/watch?v=U1oHRqUkI1E",
             "views": "58K views",
@@ -75,7 +85,7 @@
             "duration": "29:20",
             "videoId": "U1oHRqUkI1E",
             "thumbnail": "https://i.ytimg.com/vi/U1oHRqUkI1E/hqdefault.jpg",
-            "isNew": true
+            "isNew": false
           }
         ]
       }
@@ -104,8 +114,8 @@
           {
             "title": "'Stupid' Not to Buy Real Estate: CBC",
             "url": "https://www.youtube.com/watch?v=78egAVwDx6E",
-            "views": "16K views",
-            "dateStr": "17 hours ago",
+            "views": "18K views",
+            "dateStr": "1 day ago",
             "duration": "8:22",
             "videoId": "78egAVwDx6E",
             "thumbnail": "https://i.ytimg.com/vi/78egAVwDx6E/hqdefault.jpg",
@@ -130,8 +140,8 @@
           {
             "title": "The Biggest Mistakes in Personal Finance",
             "url": "https://www.youtube.com/watch?v=d7wnAw7ufG4",
-            "views": "204K views",
-            "dateStr": "5 days ago",
+            "views": "206K views",
+            "dateStr": "6 days ago",
             "duration": "15:37",
             "videoId": "d7wnAw7ufG4",
             "thumbnail": "https://i.ytimg.com/vi/d7wnAw7ufG4/hqdefault.jpg",
@@ -147,9 +157,9 @@
         "videos": [
           {
             "title": "What Really Happened After 1000 Days Without Alcohol",
-            "url": "https://www.youtube.com/watch?v=QvhKvX5e-S8",
-            "views": "5.6K views",
-            "dateStr": "5 days ago",
+            "url": "https://www.youtube.com/watch?v=QvhKvX5e-S8&pp=0gcJCYcKAYcqIYzv",
+            "views": "5.7K views",
+            "dateStr": "6 days ago",
             "duration": "13:12",
             "videoId": "QvhKvX5e-S8",
             "thumbnail": "https://i.ytimg.com/vi/QvhKvX5e-S8/hqdefault.jpg",
@@ -164,8 +174,8 @@
           {
             "title": "I´m on the Epstein List (Full Reveal)",
             "url": "https://www.youtube.com/watch?v=Fp-m0QOz2N8",
-            "views": "39K views",
-            "dateStr": "16 hours ago",
+            "views": "43K views",
+            "dateStr": "1 day ago",
             "duration": "5:25",
             "videoId": "Fp-m0QOz2N8",
             "thumbnail": "https://i.ytimg.com/vi/Fp-m0QOz2N8/hqdefault.jpg",
@@ -190,8 +200,8 @@
           {
             "title": "Is Your Gut Broken? Here's the Reset Button",
             "url": "https://www.youtube.com/watch?v=DxBsocVIBSM",
-            "views": "17K views",
-            "dateStr": "20 hours ago",
+            "views": "18K views",
+            "dateStr": "1 day ago",
             "duration": "16:12",
             "videoId": "DxBsocVIBSM",
             "thumbnail": "https://i.ytimg.com/vi/DxBsocVIBSM/hqdefault.jpg",
@@ -218,6 +228,16 @@
         "channel": "@practical-sailor",
         "videos": [
           {
+            "title": "Living on a Boat Off Grid: What No One Explains",
+            "url": "https://www.youtube.com/watch?v=OX5qxoITec0&pp=0gcJCYcKAYcqIYzv",
+            "views": "4.3K views",
+            "dateStr": "4 hours ago",
+            "duration": "9:59",
+            "videoId": "OX5qxoITec0",
+            "thumbnail": "https://i.ytimg.com/vi/OX5qxoITec0/hqdefault.jpg",
+            "isNew": true
+          },
+          {
             "title": "This “Bulletproof” Cruiser Has a Serious Weak Spot Caliber 40 LRC SE",
             "url": "https://www.youtube.com/watch?v=HFsjRc4Y2t0",
             "views": "14K views",
@@ -225,7 +245,7 @@
             "duration": "9:03",
             "videoId": "HFsjRc4Y2t0",
             "thumbnail": "https://i.ytimg.com/vi/HFsjRc4Y2t0/hqdefault.jpg",
-            "isNew": true
+            "isNew": false
           }
         ]
       },
@@ -235,8 +255,8 @@
         "videos": [
           {
             "title": "Catamaran of our Dreams - But First? Finish These RUDDERS!",
-            "url": "https://www.youtube.com/watch?v=2nqPuQtLQE4",
-            "views": "102K views",
+            "url": "https://www.youtube.com/watch?v=2nqPuQtLQE4&pp=0gcJCYcKAYcqIYzv",
+            "views": "107K views",
             "dateStr": "1 day ago",
             "duration": "34:16",
             "videoId": "2nqPuQtLQE4",
@@ -251,9 +271,9 @@
         "videos": [
           {
             "title": "REBUILDING OUR HULLS: Blister repair series - part 4  (Episode 350)",
-            "url": "https://www.youtube.com/watch?v=XhZZCNfBmLI&pp=0gcJCYcKAYcqIYzv",
-            "views": "162K views",
-            "dateStr": "5 days ago",
+            "url": "https://www.youtube.com/watch?v=XhZZCNfBmLI",
+            "views": "164K views",
+            "dateStr": "6 days ago",
             "duration": "23:23",
             "videoId": "XhZZCNfBmLI",
             "thumbnail": "https://i.ytimg.com/vi/XhZZCNfBmLI/hqdefault.jpg",
