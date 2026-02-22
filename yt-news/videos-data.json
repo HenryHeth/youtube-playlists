@@ -6,6 +6,16 @@
         "channel": "@mreflow",
         "videos": [
           {
+            "title": "AI News: 5 New Models Dropped This Week!",
+            "url": "https://www.youtube.com/watch?v=5cMZqjrgq6Y",
+            "views": "54K views",
+            "dateStr": "1 day ago",
+            "duration": "31:06",
+            "videoId": "5cMZqjrgq6Y",
+            "thumbnail": "https://i.ytimg.com/vi/5cMZqjrgq6Y/hqdefault.jpg",
+            "isNew": true
+          },
+          {
             "title": "AI News: This Video Model Has Everyone Freaked Out!",
             "url": "https://www.youtube.com/watch?v=msrbd-d6lWk",
             "views": "63K views",
@@ -13,7 +23,7 @@
             "duration": "30:53",
             "videoId": "msrbd-d6lWk",
             "thumbnail": "https://i.ytimg.com/vi/msrbd-d6lWk/hqdefault.jpg",
-            "isNew": true
+            "isNew": false
           },
           {
             "title": "ChatGPT Ads Are Here. It Gets Worse.",
@@ -42,6 +52,16 @@
         "channel": "@matthew_berman",
         "videos": [
           {
+            "title": "Google just dropped Gemini 3.1... (WOAH)",
+            "url": "https://www.youtube.com/watch?v=W5dlgzluems&pp=0gcJCaIKAYcqIYzv",
+            "views": "60K views",
+            "dateStr": "1 day ago",
+            "duration": "6:22",
+            "videoId": "W5dlgzluems",
+            "thumbnail": "https://i.ytimg.com/vi/W5dlgzluems/hqdefault.jpg",
+            "isNew": true
+          },
+          {
             "title": "Something big is happening...",
             "url": "https://www.youtube.com/watch?v=31A41ckhb7Q",
             "views": "124K views",
@@ -49,7 +69,7 @@
             "duration": "20:12",
             "videoId": "31A41ckhb7Q",
             "thumbnail": "https://i.ytimg.com/vi/31A41ckhb7Q/hqdefault.jpg",
-            "isNew": true
+            "isNew": false
           },
           {
             "videoId": "Q7r--i9lLck",
@@ -68,6 +88,16 @@
         "channel": "@NateBJones",
         "videos": [
           {
+            "title": "The $285B Sell-Off Was Just the Beginning — The Infrastructure Story Is Bigger.",
+            "url": "https://www.youtube.com/watch?v=O-0poNv2jD4&pp=0gcJCaIKAYcqIYzv",
+            "views": "67K views",
+            "dateStr": "12 hours ago",
+            "duration": "29:14",
+            "videoId": "O-0poNv2jD4",
+            "thumbnail": "https://i.ytimg.com/vi/O-0poNv2jD4/hqdefault.jpg",
+            "isNew": true
+          },
+          {
             "title": "Why $650 Billion in AI Spending ISN'T Enough. The 4 Skills that Survive and What This Means for You.",
             "url": "https://www.youtube.com/watch?v=NCgdpbEvNVA",
             "views": "3.6K views",
@@ -75,7 +105,7 @@
             "duration": "22:53",
             "videoId": "NCgdpbEvNVA",
             "thumbnail": "https://i.ytimg.com/vi/NCgdpbEvNVA/hqdefault.jpg",
-            "isNew": true
+            "isNew": false
           },
           {
             "title": "I Just Did a Full Day of Analyst Work in 10 Minutes. The $120K Job Description Just Changed Forever.",
@@ -96,6 +126,16 @@
         "channel": "@russellmatthews",
         "videos": [
           {
+            "title": "Trump's Fed Pick: Epstein Ties + Rate Cut Risks",
+            "url": "https://www.youtube.com/watch?v=O620-bSHF-M&pp=0gcJCaIKAYcqIYzv",
+            "views": "2.4K views",
+            "dateStr": "5 days ago",
+            "duration": "10:13",
+            "videoId": "O620-bSHF-M",
+            "thumbnail": "https://i.ytimg.com/vi/O620-bSHF-M/hqdefault.jpg",
+            "isNew": true
+          },
+          {
             "title": "EXPOSED: Canada Police Tied to Criminal Gangs, Blackmail, Drugs",
             "url": "https://www.youtube.com/watch?v=oEQowHRmVe8",
             "views": "28K views",
@@ -112,6 +152,16 @@
         "channel": "@MortgageBrokerLondonOntario",
         "videos": [
           {
+            "title": "Home Sales Plunge on Snow: CREA",
+            "url": "https://www.youtube.com/watch?v=jDmeqWAlGBE&pp=0gcJCaIKAYcqIYzv",
+            "views": "11K views",
+            "dateStr": "3 days ago",
+            "duration": "8:19",
+            "videoId": "jDmeqWAlGBE",
+            "thumbnail": "https://i.ytimg.com/vi/jDmeqWAlGBE/hqdefault.jpg",
+            "isNew": true
+          },
+          {
             "title": "'Stupid' Not to Buy Real Estate: CBC",
             "url": "https://www.youtube.com/watch?v=78egAVwDx6E",
             "views": "18K views",
@@ -119,7 +169,7 @@
             "duration": "8:22",
             "videoId": "78egAVwDx6E",
             "thumbnail": "https://i.ytimg.com/vi/78egAVwDx6E/hqdefault.jpg",
-            "isNew": true
+            "isNew": false
           },
           {
             "title": "Real Estate Scams Unravelling",
@@ -140,12 +190,12 @@
           {
             "title": "The Biggest Mistakes in Personal Finance",
             "url": "https://www.youtube.com/watch?v=d7wnAw7ufG4",
-            "views": "206K views",
-            "dateStr": "6 days ago",
+            "views": "232K views",
+            "dateStr": "13 days ago",
             "duration": "15:37",
             "videoId": "d7wnAw7ufG4",
             "thumbnail": "https://i.ytimg.com/vi/d7wnAw7ufG4/hqdefault.jpg",
-            "isNew": true
+            "isNew": false
           }
         ]
       }
@@ -156,6 +206,16 @@
         "channel": "@DrAlexGeorge",
         "videos": [
           {
+            "title": "A Day In The Life Of An Influencer | Dr Alex George",
+            "url": "https://www.youtube.com/watch?v=tSQU2AIHtKE",
+            "views": "1.6K views",
+            "dateStr": "3 days ago",
+            "duration": "23:27",
+            "videoId": "tSQU2AIHtKE",
+            "thumbnail": "https://i.ytimg.com/vi/tSQU2AIHtKE/hqdefault.jpg",
+            "isNew": true
+          },
+          {
             "title": "What Really Happened After 1000 Days Without Alcohol",
             "url": "https://www.youtube.com/watch?v=QvhKvX5e-S8&pp=0gcJCYcKAYcqIYzv",
             "views": "5.7K views",
@@ -163,7 +223,7 @@
             "duration": "13:12",
             "videoId": "QvhKvX5e-S8",
             "thumbnail": "https://i.ytimg.com/vi/QvhKvX5e-S8/hqdefault.jpg",
-            "isNew": true
+            "isNew": false
           }
         ]
       },
@@ -172,6 +232,16 @@
         "channel": "@NutritionMadeSimple",
         "videos": [
           {
+            "title": "Lowering THIS Avoids Heart Attacks",
+            "url": "https://www.youtube.com/watch?v=m-mQOPWkE1g&pp=0gcJCaIKAYcqIYzv",
+            "views": "37K views",
+            "dateStr": "4 days ago",
+            "duration": "9:15",
+            "videoId": "m-mQOPWkE1g",
+            "thumbnail": "https://i.ytimg.com/vi/m-mQOPWkE1g/hqdefault.jpg",
+            "isNew": true
+          },
+          {
             "title": "I´m on the Epstein List (Full Reveal)",
             "url": "https://www.youtube.com/watch?v=Fp-m0QOz2N8",
             "views": "43K views",
@@ -179,7 +249,7 @@
             "duration": "5:25",
             "videoId": "Fp-m0QOz2N8",
             "thumbnail": "https://i.ytimg.com/vi/Fp-m0QOz2N8/hqdefault.jpg",
-            "isNew": true
+            "isNew": false
           },
           {
             "title": "7 Surprising Foods that Help Fight CANCER",
@@ -198,6 +268,16 @@
         "channel": "@nicknorwitzMDPhD",
         "videos": [
           {
+            "title": "The 20-Year-Old Cholesterol Study Everyone Missed",
+            "url": "https://www.youtube.com/watch?v=KMVsg9EnbcE",
+            "views": "44K views",
+            "dateStr": "1 day ago",
+            "duration": "19:27",
+            "videoId": "KMVsg9EnbcE",
+            "thumbnail": "https://i.ytimg.com/vi/KMVsg9EnbcE/hqdefault.jpg",
+            "isNew": true
+          },
+          {
             "title": "Is Your Gut Broken? Here's the Reset Button",
             "url": "https://www.youtube.com/watch?v=DxBsocVIBSM",
             "views": "18K views",
@@ -205,7 +285,7 @@
             "duration": "16:12",
             "videoId": "DxBsocVIBSM",
             "thumbnail": "https://i.ytimg.com/vi/DxBsocVIBSM/hqdefault.jpg",
-            "isNew": true
+            "isNew": false
           },
           {
             "title": "The 75-Year-Old Obesity Riddle Science Just Solved",
@@ -228,6 +308,16 @@
         "channel": "@practical-sailor",
         "videos": [
           {
+            "title": "The Sailing Safety Gear Most People Forget Until It’s Too Late",
+            "url": "https://www.youtube.com/watch?v=-Lpzivpr3so",
+            "views": "7.6K views",
+            "dateStr": "16 hours ago",
+            "duration": "11:25",
+            "videoId": "-Lpzivpr3so",
+            "thumbnail": "https://i.ytimg.com/vi/-Lpzivpr3so/hqdefault.jpg",
+            "isNew": true
+          },
+          {
             "title": "Living on a Boat Off Grid: What No One Explains",
             "url": "https://www.youtube.com/watch?v=OX5qxoITec0&pp=0gcJCYcKAYcqIYzv",
             "views": "4.3K views",
@@ -235,7 +325,7 @@
             "duration": "9:59",
             "videoId": "OX5qxoITec0",
             "thumbnail": "https://i.ytimg.com/vi/OX5qxoITec0/hqdefault.jpg",
-            "isNew": true
+            "isNew": false
           },
           {
             "title": "This “Bulletproof” Cruiser Has a Serious Weak Spot Caliber 40 LRC SE",
@@ -254,6 +344,16 @@
         "channel": "@Thenewkidsonthedock",
         "videos": [
           {
+            "title": "We Only Have 117 Hours To Finish This Boat...",
+            "url": "https://www.youtube.com/watch?v=0TXUaQdOSrs",
+            "views": "140K views",
+            "dateStr": "2 days ago",
+            "duration": "45:57",
+            "videoId": "0TXUaQdOSrs",
+            "thumbnail": "https://i.ytimg.com/vi/0TXUaQdOSrs/hqdefault.jpg",
+            "isNew": true
+          },
+          {
             "title": "Catamaran of our Dreams - But First? Finish These RUDDERS!",
             "url": "https://www.youtube.com/watch?v=2nqPuQtLQE4&pp=0gcJCYcKAYcqIYzv",
             "views": "107K views",
@@ -261,7 +361,7 @@
             "duration": "34:16",
             "videoId": "2nqPuQtLQE4",
             "thumbnail": "https://i.ytimg.com/vi/2nqPuQtLQE4/hqdefault.jpg",
-            "isNew": true
+            "isNew": false
           }
         ]
       },
@@ -270,6 +370,16 @@
         "channel": "@ParlayRevival",
         "videos": [
           {
+            "title": "Home made fuel polishing system: NO MORE DIESEL BUG! - (Episode 351)",
+            "url": "https://www.youtube.com/watch?v=nkYag_KWg5Q",
+            "views": "162K views",
+            "dateStr": "6 days ago",
+            "duration": "23:12",
+            "videoId": "nkYag_KWg5Q",
+            "thumbnail": "https://i.ytimg.com/vi/nkYag_KWg5Q/hqdefault.jpg",
+            "isNew": true
+          },
+          {
             "title": "REBUILDING OUR HULLS: Blister repair series - part 4  (Episode 350)",
             "url": "https://www.youtube.com/watch?v=XhZZCNfBmLI",
             "views": "164K views",
@@ -277,7 +387,7 @@
             "duration": "23:23",
             "videoId": "XhZZCNfBmLI",
             "thumbnail": "https://i.ytimg.com/vi/XhZZCNfBmLI/hqdefault.jpg",
-            "isNew": true
+            "isNew": false
           }
         ]
       }
