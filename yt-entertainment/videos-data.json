@@ -6,14 +6,24 @@
         "channel": "@mreflow",
         "videos": [
           {
+            "title": "China’s Attack on Anthropic Explained",
+            "url": "https://www.youtube.com/watch?v=sNCPV-Og9A8",
+            "views": "17K views",
+            "dateStr": "8 hours ago",
+            "duration": "13:25",
+            "videoId": "sNCPV-Og9A8",
+            "thumbnail": "https://i.ytimg.com/vi/sNCPV-Og9A8/hqdefault.jpg",
+            "isNew": true
+          },
+          {
             "title": "AI News: 5 New Models Dropped This Week!",
             "url": "https://www.youtube.com/watch?v=5cMZqjrgq6Y",
-            "views": "70K views",
-            "dateStr": "3 days ago",
+            "views": "72K views",
+            "dateStr": "4 days ago",
             "duration": "31:06",
             "videoId": "5cMZqjrgq6Y",
             "thumbnail": "https://i.ytimg.com/vi/5cMZqjrgq6Y/hqdefault.jpg",
-            "isNew": true
+            "isNew": false
           },
           {
             "title": "AI News: This Video Model Has Everyone Freaked Out!",
@@ -52,14 +62,24 @@
         "channel": "@matthew_berman",
         "videos": [
           {
+            "title": "I found the perfect OpenClaw setup...",
+            "url": "https://www.youtube.com/watch?v=3110hx3ygp0",
+            "views": "20K views",
+            "dateStr": "9 hours ago",
+            "duration": "40:00",
+            "videoId": "3110hx3ygp0",
+            "thumbnail": "https://i.ytimg.com/vi/3110hx3ygp0/hqdefault.jpg",
+            "isNew": true
+          },
+          {
             "title": "Google just dropped Gemini 3.1... (WOAH)",
             "url": "https://www.youtube.com/watch?v=W5dlgzluems",
-            "views": "73K views",
-            "dateStr": "3 days ago",
+            "views": "74K views",
+            "dateStr": "4 days ago",
             "duration": "6:22",
             "videoId": "W5dlgzluems",
             "thumbnail": "https://i.ytimg.com/vi/W5dlgzluems/hqdefault.jpg",
-            "isNew": true
+            "isNew": false
           },
           {
             "title": "Something big is happening...",
@@ -88,14 +108,24 @@
         "channel": "@NateBJones",
         "videos": [
           {
+            "title": "Prompt Engineering Is Dead. Context Engineering Is Dying. What Comes Next Changes Everything.",
+            "url": "https://www.youtube.com/watch?v=QWzLPn164w0",
+            "views": "85K views",
+            "dateStr": "18 hours ago",
+            "duration": "29:41",
+            "videoId": "QWzLPn164w0",
+            "thumbnail": "https://i.ytimg.com/vi/QWzLPn164w0/hqdefault.jpg",
+            "isNew": true
+          },
+          {
             "title": "Google's New AI Is Smarter Than Everyone's But It Costs HALF as Much. Here's Why They Don't Care.",
             "url": "https://www.youtube.com/watch?v=8jKAT8GNDE0",
-            "views": "124K views",
-            "dateStr": "18 hours ago",
+            "views": "134K views",
+            "dateStr": "22 hours ago",
             "duration": "36:37",
             "videoId": "8jKAT8GNDE0",
             "thumbnail": "https://i.ytimg.com/vi/8jKAT8GNDE0/hqdefault.jpg",
-            "isNew": true
+            "isNew": false
           },
           {
             "title": "The $285B Sell-Off Was Just the Beginning — The Infrastructure Story Is Bigger.",
@@ -138,8 +168,8 @@
           {
             "title": "Retirement Risk: Canada’s $84,000,000,000 Bet",
             "url": "https://www.youtube.com/watch?v=DNCj9pWtHaU",
-            "views": "3.5K views",
-            "dateStr": "11 hours ago",
+            "views": "6.2K views",
+            "dateStr": "1 day ago",
             "duration": "12:02",
             "videoId": "DNCj9pWtHaU",
             "thumbnail": "https://i.ytimg.com/vi/DNCj9pWtHaU/hqdefault.jpg",
@@ -174,8 +204,8 @@
           {
             "title": "Canada's Banks Predict Rate Hikes",
             "url": "https://www.youtube.com/watch?v=xdZ8qNAMeP4",
-            "views": "20K views",
-            "dateStr": "20 hours ago",
+            "views": "26K views",
+            "dateStr": "1 day ago",
             "duration": "9:37",
             "videoId": "xdZ8qNAMeP4",
             "thumbnail": "https://i.ytimg.com/vi/xdZ8qNAMeP4/hqdefault.jpg",
@@ -220,8 +250,8 @@
           {
             "title": "Renting vs. Buying a Home: The Reckoning",
             "url": "https://www.youtube.com/watch?v=aU7v87EhDBI",
-            "views": "141K views",
-            "dateStr": "1 day ago",
+            "views": "156K views",
+            "dateStr": "2 days ago",
             "duration": "14:40",
             "videoId": "aU7v87EhDBI",
             "thumbnail": "https://i.ytimg.com/vi/aU7v87EhDBI/hqdefault.jpg",
@@ -247,9 +277,9 @@
         "videos": [
           {
             "title": "Alcohol and Weight Loss - The Shocking Truth",
-            "url": "https://www.youtube.com/watch?v=QxMq__HLzqo&pp=0gcJCaIKAYcqIYzv",
-            "views": "4K views",
-            "dateStr": "1 day ago",
+            "url": "https://www.youtube.com/watch?v=QxMq__HLzqo",
+            "views": "5.1K views",
+            "dateStr": "2 days ago",
             "duration": "13:24",
             "videoId": "QxMq__HLzqo",
             "thumbnail": "https://i.ytimg.com/vi/QxMq__HLzqo/hqdefault.jpg",
@@ -284,8 +314,8 @@
           {
             "title": "Doctor Reacts to Bryan Johnson´s Bloodwork",
             "url": "https://www.youtube.com/watch?v=xNfVUpMGMhg",
-            "views": "42K views",
-            "dateStr": "17 hours ago",
+            "views": "71K views",
+            "dateStr": "1 day ago",
             "duration": "14:28",
             "videoId": "xNfVUpMGMhg",
             "thumbnail": "https://i.ytimg.com/vi/xNfVUpMGMhg/hqdefault.jpg",
@@ -330,8 +360,8 @@
           {
             "title": "This Study Changed How I See Junk Food",
             "url": "https://www.youtube.com/watch?v=hDqDZm-znXo",
-            "views": "34K views",
-            "dateStr": "21 hours ago",
+            "views": "42K views",
+            "dateStr": "1 day ago",
             "duration": "13:42",
             "videoId": "hDqDZm-znXo",
             "thumbnail": "https://i.ytimg.com/vi/hDqDZm-znXo/hqdefault.jpg",
@@ -380,8 +410,8 @@
           {
             "title": "Why the Catalina 42 Took Over the Caribbean",
             "url": "https://www.youtube.com/watch?v=H7lqLW9JoGc",
-            "views": "9.3K views",
-            "dateStr": "21 hours ago",
+            "views": "12K views",
+            "dateStr": "1 day ago",
             "duration": "11:08",
             "videoId": "H7lqLW9JoGc",
             "thumbnail": "https://i.ytimg.com/vi/H7lqLW9JoGc/hqdefault.jpg",
@@ -426,8 +456,8 @@
           {
             "title": "We Only Have 117 Hours To Finish This Boat...",
             "url": "https://www.youtube.com/watch?v=0TXUaQdOSrs",
-            "views": "161K views",
-            "dateStr": "4 days ago",
+            "views": "165K views",
+            "dateStr": "5 days ago",
             "duration": "45:57",
             "videoId": "0TXUaQdOSrs",
             "thumbnail": "https://i.ytimg.com/vi/0TXUaQdOSrs/hqdefault.jpg",
@@ -452,8 +482,8 @@
           {
             "title": "THIS IS THE LAST THING ANY BOAT OWNER WANTS TO FIND! - (Episode 352)",
             "url": "https://www.youtube.com/watch?v=KB-1qR_snYg",
-            "views": "150K views",
-            "dateStr": "1 day ago",
+            "views": "165K views",
+            "dateStr": "2 days ago",
             "duration": "22:09",
             "videoId": "KB-1qR_snYg",
             "thumbnail": "https://i.ytimg.com/vi/KB-1qR_snYg/hqdefault.jpg",
